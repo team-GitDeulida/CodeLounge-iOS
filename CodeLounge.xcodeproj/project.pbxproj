@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DF27E91D2D0ACC11002BBF9C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF27E91C2D0ACC11002BBF9C /* LoginView.swift */; };
+		DF27E9202D0ACF5F002BBF9C /* Extension+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF27E91E2D0ACF5F002BBF9C /* Extension+Color.swift */; };
 		DF28200B2D09499300C1B298 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF28200A2D09499300C1B298 /* MainTabView.swift */; };
 		DF28200D2D09517400C1B298 /* CSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF28200C2D09517400C1B298 /* CSView.swift */; };
 		DF28200F2D09517E00C1B298 /* iOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF28200E2D09517E00C1B298 /* iOSView.swift */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DF27E91C2D0ACC11002BBF9C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		DF27E91E2D0ACF5F002BBF9C /* Extension+Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+Color.swift"; sourceTree = "<group>"; };
 		DF28200A2D09499300C1B298 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		DF28200C2D09517400C1B298 /* CSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSView.swift; sourceTree = "<group>"; };
 		DF28200E2D09517E00C1B298 /* iOSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSView.swift; sourceTree = "<group>"; };
@@ -42,9 +46,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DF27E91B2D0ACC07002BBF9C /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				DF27E91C2D0ACC11002BBF9C /* LoginView.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		DF27E91F2D0ACF5F002BBF9C /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				DF27E91E2D0ACF5F002BBF9C /* Extension+Color.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		DF2820092D09498400C1B298 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DF27E91B2D0ACC07002BBF9C /* Login */,
 				DF3C9F682D075B8700CCB65A /* ContentView.swift */,
 				DF28200E2D09517E00C1B298 /* iOSView.swift */,
 				DF28200A2D09499300C1B298 /* MainTabView.swift */,
@@ -75,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				DF3C9F662D075B8700CCB65A /* CodeLoungeApp.swift */,
+				DF27E91F2D0ACF5F002BBF9C /* Extension */,
 				DF2820092D09498400C1B298 /* View */,
 				DF3C9F6A2D075B8800CCB65A /* Assets.xcassets */,
 				DF3C9F6C2D075B8800CCB65A /* Preview Content */,
@@ -166,6 +188,8 @@
 				DF3C9F692D075B8700CCB65A /* ContentView.swift in Sources */,
 				DF3C9F672D075B8700CCB65A /* CodeLoungeApp.swift in Sources */,
 				DF28200B2D09499300C1B298 /* MainTabView.swift in Sources */,
+				DF27E91D2D0ACC11002BBF9C /* LoginView.swift in Sources */,
+				DF27E9202D0ACF5F002BBF9C /* Extension+Color.swift in Sources */,
 				DF5042BF2D097D9500D4ABA3 /* FrontendView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

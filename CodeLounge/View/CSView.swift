@@ -54,6 +54,8 @@ struct CSView: View {
                 }
             }
             .navigationTitle("CS")
+//            .scrollContentBackground(.hidden) // 기본 배경색 숨기기
+//            .background(Color.mainBlack2) // 전체 배경색 설정
         }
         
     }

@@ -9,7 +9,24 @@ import SwiftUI
 
 struct AosView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            Color.mainBlack2
+            VStack {
+                
+                Text("\(Color.mainBlack2)")
+                    .foregroundColor(.white)
+                
+                Spacer()
+                    .frame(height: 100)
+                
+                Rectangle()
+                    .frame(width: 200, height: 150)
+                    .foregroundColor(Color.rectangle)
+                    .cornerRadius(10)
+                    .overlay(Text("\(Color.rectangle)"))
+            }
+        }
+        .ignoresSafeArea()
     }
 }
 
