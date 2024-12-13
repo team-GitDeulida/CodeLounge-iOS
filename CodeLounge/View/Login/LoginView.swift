@@ -11,7 +11,7 @@ import AuthenticationServices
 struct LoginView: View {
     var body: some View {
         ZStack {
-            Color.mainBlack2
+            Color.mainBlack
             VStack {
                 Spacer()
                 

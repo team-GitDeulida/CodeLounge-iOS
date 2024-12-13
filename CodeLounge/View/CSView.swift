@@ -23,41 +23,47 @@ struct CSView: View {
                 .navigationTitle("\("CS")")
             }
              */
-            
+          
             List {
-                Section(header: Text("운영체제")) {
+                Section(header: Text("운영체제")
+                    .foregroundColor(Color.mainGreen)
+                    .font(.system(size: 17, weight: .bold))
+                    .padding(.leading, -10)
+                
+                ) {
                     ForEach(viewModel.posts) { post in
                         NavigationLink(destination: DetailView(post: post)) {
                             VStack(alignment: .leading) {
                                 Text(post.title)
                                     .font(.headline)
-//                                Text(post.author)
-//                                    .font(.subheadline)
-//                                    .foregroundColor(.gray)
                             }
                         }
+                        .listRowBackground(Color.subBlack) // 행 배경색
                     }
                 }
                 
-                Section(header: Text("알고리즘")) {
+                Section(header: Text("알고리즘")
+                    .foregroundColor(Color.mainGreen)
+                    .font(.system(size: 17, weight: .bold))
+                    .padding(.leading, -10)
+                ) {
                     ForEach(viewModel.posts) { post in
                         NavigationLink(destination: DetailView(post: post)) {
                             VStack(alignment: .leading) {
                                 Text(post.title)
                                     .font(.headline)
-//                                Text(post.author)
-//                                    .font(.subheadline)
-//                                    .foregroundColor(.gray)
                             }
                         }
                     }
+                    .listRowBackground(Color.subBlack) // 행 배경색
                 }
             }
             .navigationTitle("CS")
-//            .scrollContentBackground(.hidden) // 기본 배경색 숨기기
-//            .background(Color.mainBlack2) // 전체 배경색 설정
+            .scrollContentBackground(.hidden) // 기본 배경색 숨기기
+            .background(Color.mainBlack) // 전체 배경색 설정
+      
+            
         }
-        
     }
 }
 

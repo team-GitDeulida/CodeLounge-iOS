@@ -72,11 +72,12 @@ extension Color {
 }
 
 extension Color {
-    static let mainBlack = Color(hex: "#38383A")
-    static let mainBlack2 = Color(hex: "#161717")
-    static let rectangle = Color(hex: "#7bd88a")
+    // static let mainBlack = Color(hex: "#38383A")
+    static let mainBlack = Color(hex: "#161717")
+    static let mainWhite = Color(hex: "#f1f1f1")
+    static let subBlack = Color(hex: "#242525")
+    static let mainGreen = Color(hex: "#7bd88a")
     static let mainGray = Color(hex: "#D9D9D9")
-    static let mainPink = Color(hex: "#fbbdba") // 메인 핑크 추가
 }
 
 

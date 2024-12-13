@@ -10,10 +10,10 @@ import SwiftUI
 struct AosView: View {
     var body: some View {
         ZStack {
-            Color.mainBlack2
+            Color.mainBlack
             VStack {
                 
-                Text("\(Color.mainBlack2)")
+                Text("\(Color.mainBlack)")
                     .foregroundColor(.white)
                 
                 Spacer()
@@ -21,9 +21,9 @@ struct AosView: View {
                 
                 Rectangle()
                     .frame(width: 200, height: 150)
-                    .foregroundColor(Color.rectangle)
+                    .foregroundColor(Color.mainGreen)
                     .cornerRadius(10)
-                    .overlay(Text("\(Color.rectangle)"))
+                    .overlay(Text("\(Color.mainGreen)"))
             }
         }
         .ignoresSafeArea()

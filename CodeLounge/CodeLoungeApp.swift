@@ -12,7 +12,7 @@ struct CodeLoungeApp: App {
     var body: some Scene {
         WindowGroup {
             MainTabView()
-//                .background(Color.mainBlack2) // 앱의 기본 배경색 설정
+                 .background(Color.mainBlack) // 앱의 기본 배경색 설정
 
         }
     }

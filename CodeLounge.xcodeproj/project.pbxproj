@@ -18,6 +18,7 @@
 		DF3C9F6B2D075B8800CCB65A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF3C9F6A2D075B8800CCB65A /* Assets.xcassets */; };
 		DF3C9F6E2D075B8800CCB65A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF3C9F6D2D075B8800CCB65A /* Preview Assets.xcassets */; };
 		DF5042BF2D097D9500D4ABA3 /* FrontendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5042BE2D097D9500D4ABA3 /* FrontendView.swift */; };
+		DFDF071A2D0BEDD000124DFA /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDF07192D0BEDD000124DFA /* DetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		DF3C9F6A2D075B8800CCB65A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DF3C9F6D2D075B8800CCB65A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DF5042BE2D097D9500D4ABA3 /* FrontendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrontendView.swift; sourceTree = "<group>"; };
+		DFDF07192D0BEDD000124DFA /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 			children = (
 				DF27E91B2D0ACC07002BBF9C /* Login */,
 				DF3C9F682D075B8700CCB65A /* ContentView.swift */,
+				DFDF07192D0BEDD000124DFA /* DetailView.swift */,
 				DF28200E2D09517E00C1B298 /* iOSView.swift */,
 				DF28200A2D09499300C1B298 /* MainTabView.swift */,
 				DF5042BE2D097D9500D4ABA3 /* FrontendView.swift */,
@@ -185,6 +188,7 @@
 				DF2820112D09518500C1B298 /* AosView.swift in Sources */,
 				DF28200F2D09517E00C1B298 /* iOSView.swift in Sources */,
 				DF28200D2D09517400C1B298 /* CSView.swift in Sources */,
+				DFDF071A2D0BEDD000124DFA /* DetailView.swift in Sources */,
 				DF3C9F692D075B8700CCB65A /* ContentView.swift in Sources */,
 				DF3C9F672D075B8700CCB65A /* CodeLoungeApp.swift in Sources */,
 				DF28200B2D09499300C1B298 /* MainTabView.swift in Sources */,
@@ -327,11 +331,13 @@
 				DEVELOPMENT_TEAM = LGX4B4WC66;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "코드라운지";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -357,11 +363,13 @@
 				DEVELOPMENT_TEAM = LGX4B4WC66;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "코드라운지";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

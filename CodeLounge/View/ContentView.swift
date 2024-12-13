@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 // MARK: - Model
 struct Post: Identifiable {
     let id = UUID()
@@ -40,6 +41,7 @@ final class ViewModel: ObservableObject {
     
 }
 
+/*
 struct ContentView: View {
     @StateObject private var viewModel = ViewModel()
     var body: some View {
@@ -61,20 +63,7 @@ struct ContentView: View {
     }
 }
 
-struct DetailView: View {
-    let post: Post
 
-    var body: some View {
-        VStack {
-            Text("\(post.content)")
-                .font(.title)
-                .padding()
-            Spacer()
-        }
-        .navigationTitle("\(post.title)")
-        .navigationBarTitleDisplayMode(.inline)
-    }
-}
 
 #Preview {
     ContentView()
@@ -87,3 +76,4 @@ struct DetailView: View {
 //        Text("Item \(item)")
 //    }
 //}
+*/
