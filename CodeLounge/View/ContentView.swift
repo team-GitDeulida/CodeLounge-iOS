@@ -32,7 +32,24 @@ final class ViewModel: ObservableObject {
     init() {
         posts = [
             //Post(title: "지원동기", content: "iOS개발자 지원동기", author: "김동현"),
-            Post(title: "타겟과 모듈", content: "SwiftUI는 선언적 방식으로 UI를 작성할 수 있는 프레임워크입니다.", author: "김동현"),
+            Post(
+                title: "타겟과 모듈",
+                content: """
+                **타겟**
+                - xcode에서 앱 빌드를 위해 정의된 설정의 집합입니다
+                 
+                **모듈**
+                - 코드의 재사용성을 높이기 위한 코드묶음입니다
+                
+                - 앱과 라이브러리는 각각 하나의 모듈로 간주되고
+                  import 키워들를 사용해 다른 모듈을 가져옵니다
+                
+                - 모듈은 컴파일 속도를 높이고 코드의 의존성을 분리하는 데 유용합니다
+                
+                """,
+                author: "김동현"),
+            
+            
             Post(title: "SwiftUI의 강점", content: "SwiftUI는 선언적 방식으로 UI를 작성할 수 있는 프레임워크입니다.", author: "김동현"),
             Post(title: "코드 라운지 시작", content: "코드를 공유하고 협업할 수 있는 플랫폼입니다.", author: "이철수"),
             Post(title: "Swift의 미래", content: "Swift는 계속 발전 중이며, 많은 가능성을 제공합니다.", author: "박영희")

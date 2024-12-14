@@ -77,7 +77,8 @@ extension Color {
     static let mainWhite = Color(hex: "#f1f1f1")
     static let subBlack = Color(hex: "#242525")
     static let mainGreen = Color(hex: "#7bd88a")
-    static let mainGray = Color(hex: "#D9D9D9")
+    //static let subBlack2 = Color(hex: "#2D2D2D")
+    //static let mainGray = Color(hex: "#D9D9D9")
 }
 
 

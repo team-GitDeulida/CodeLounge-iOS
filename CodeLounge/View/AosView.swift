@@ -24,6 +24,12 @@ struct AosView: View {
                     .foregroundColor(Color.mainGreen)
                     .cornerRadius(10)
                     .overlay(Text("\(Color.mainGreen)"))
+                
+                Rectangle()
+                    .frame(width: 200, height: 150)
+                    .foregroundColor(Color.subBlack)
+                    .cornerRadius(10)
+                    .overlay(Text("\(Color.subBlack)"))
             }
         }
         .ignoresSafeArea()
