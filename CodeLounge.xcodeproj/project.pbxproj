@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DF0854822D0E0DD500D9BC5F /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = DF0854812D0E0DD500D9BC5F /* .gitignore */; };
+		DF0854842D0E0EF000D9BC5F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF0854832D0E0EF000D9BC5F /* GoogleService-Info.plist */; };
 		DF27E91D2D0ACC11002BBF9C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF27E91C2D0ACC11002BBF9C /* LoginView.swift */; };
 		DF27E9202D0ACF5F002BBF9C /* Extension+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF27E91E2D0ACF5F002BBF9C /* Extension+Color.swift */; };
 		DF28200B2D09499300C1B298 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF28200A2D09499300C1B298 /* MainTabView.swift */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		DF0854812D0E0DD500D9BC5F /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		DF0854832D0E0EF000D9BC5F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DF27E91C2D0ACC11002BBF9C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		DF27E91E2D0ACF5F002BBF9C /* Extension+Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+Color.swift"; sourceTree = "<group>"; };
 		DF28200A2D09499300C1B298 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 		DF3C9F652D075B8700CCB65A /* CodeLounge */ = {
 			isa = PBXGroup;
 			children = (
+				DF0854832D0E0EF000D9BC5F /* GoogleService-Info.plist */,
 				DF3C9F662D075B8700CCB65A /* CodeLoungeApp.swift */,
 				DF0854812D0E0DD500D9BC5F /* .gitignore */,
 				DF27E91F2D0ACF5F002BBF9C /* Extension */,
@@ -177,6 +180,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF3C9F6E2D075B8800CCB65A /* Preview Assets.xcassets in Resources */,
+				DF0854842D0E0EF000D9BC5F /* GoogleService-Info.plist in Resources */,
 				DF0854822D0E0DD500D9BC5F /* .gitignore in Resources */,
 				DF3C9F6B2D075B8800CCB65A /* Assets.xcassets in Resources */,
 			);
