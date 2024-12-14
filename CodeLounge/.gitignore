@@ -1,0 +1,8 @@
+# Property List files
+*.plist
+
+# macOS system files
+*.DS_Store
+
+# Config
+*.xcconfig
