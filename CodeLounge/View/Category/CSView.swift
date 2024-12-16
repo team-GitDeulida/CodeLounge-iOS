@@ -8,22 +8,9 @@
 import SwiftUI
 
 struct CSView: View {
-    @StateObject private var viewModel = ViewModel()
+    @EnvironmentObject var postVM: PostViewModel
     var body: some View {
         NavigationStack {
-            
-            /*
-            List(viewModel.posts) { post in
-                NavigationLink(destination: DetailView(post: post)) {
-                    VStack(alignment: .leading) {
-                        Text(post.title)
-                            .font(.headline)
-                    }
-                }
-                .navigationTitle("\("CS")")
-            }
-             */
-          
             List {
                 Section(header: Text("운영체제")
                     .foregroundColor(Color.mainGreen)
@@ -31,7 +18,7 @@ struct CSView: View {
                     .padding(.leading, -10)
                 
                 ) {
-                    ForEach(viewModel.posts) { post in
+                    ForEach(postVM.posts) { post in
                         NavigationLink(destination: DetailView(post: post)) {
                             VStack(alignment: .leading) {
                                 Text(post.title)
@@ -47,7 +34,7 @@ struct CSView: View {
                     .font(.system(size: 17, weight: .bold))
                     .padding(.leading, -10)
                 ) {
-                    ForEach(viewModel.posts) { post in
+                    ForEach(postVM.posts) { post in
                         NavigationLink(destination: DetailView(post: post)) {
                             VStack(alignment: .leading) {
                                 Text(post.title)
@@ -70,3 +57,17 @@ struct CSView: View {
 #Preview {
     CSView()
 }
+
+
+
+/*
+List(viewModel.posts) { post in
+    NavigationLink(destination: DetailView(post: post)) {
+        VStack(alignment: .leading) {
+            Text(post.title)
+                .font(.headline)
+        }
+    }
+    .navigationTitle("\("CS")")
+}
+ */

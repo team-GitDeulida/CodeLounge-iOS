@@ -28,6 +28,8 @@ struct LoginView: View {
                         Text("Code Lounge")
                             .font(.system(size: 55, weight: .bold)) // 동일한 텍스트를 마스크로 사용
                     )
+                
+                
 
                 Spacer()
                 
@@ -67,7 +69,6 @@ struct LoginView: View {
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(.white, lineWidth: 1)
                     )
-                     
                 }
                 
                 // MARK: - Google 버튼

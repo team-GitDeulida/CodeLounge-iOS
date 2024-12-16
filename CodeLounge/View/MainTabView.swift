@@ -41,6 +41,7 @@ enum MainTabType: CaseIterable {
 }
 
 struct MainTabView: View {
+    @StateObject private var postVM = PostViewModel()
     @State private var selectedTab: MainTabType = .csView
     
     var body: some View {
@@ -50,12 +51,16 @@ struct MainTabView: View {
                 switch selectedTab {
                 case .csView:
                     CSView()
+                        .environmentObject(postVM)
                 case .iosView:
                     iOSView()
+                        .environmentObject(postVM)
                 case .aosView:
                     AosView()
+                        .environmentObject(postVM)
                 case .frontendView:
                     FrontendView()
+                        .environmentObject(postVM)
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
