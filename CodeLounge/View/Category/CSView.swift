@@ -51,6 +51,7 @@ struct CSView: View {
       
             
         }
+        .tint(Color.mainWhite)
     }
 }
 
