@@ -1,6 +1,6 @@
 #  CodeLounge
 
-## Clean Architecture
+### Clean Architecture
 <img src="https://github.com/user-attachments/assets/2b537415-d903-4065-a1b6-430be9403dca" style="width: 700px; height: auto;" />
 
 
