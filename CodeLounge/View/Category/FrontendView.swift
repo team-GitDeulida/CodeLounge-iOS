@@ -9,7 +9,30 @@ import SwiftUI
 
 struct FrontendView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            Color.mainBlack
+            VStack {
+                
+                Text("\(Color.mainBlack)")
+                    .foregroundColor(.white)
+                
+                Spacer()
+                    .frame(height: 100)
+                
+                Rectangle()
+                    .frame(width: 200, height: 150)
+                    .foregroundColor(Color.mainGreen)
+                    .cornerRadius(10)
+                    .overlay(Text("\(Color.mainGreen)"))
+                
+                Rectangle()
+                    .frame(width: 200, height: 150)
+                    .foregroundColor(Color.subBlack)
+                    .cornerRadius(10)
+                    .overlay(Text("\(Color.subBlack)"))
+            }
+        }
+        .ignoresSafeArea()
     }
 }
 
