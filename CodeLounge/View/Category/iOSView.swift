@@ -51,6 +51,10 @@ struct iOSView: View {
                     }
                 }
             }
+            .refreshable {
+                // 새로고침 시 진행할 작업
+                postVM.fetchAllSections()
+            }
             .navigationTitle("iOS")
             .scrollContentBackground(.hidden) // 기본 배경색 숨기기
             .background(Color.mainBlack) // 전체 배경색 설정

@@ -37,6 +37,10 @@ struct AosView: View {
                     }
                 }
             }
+            .refreshable {
+                // 새로고침 시 진행할 작업
+                postVM.fetchAllSections()
+            }
             .navigationTitle("aOS")
             .scrollContentBackground(.hidden) // 리스트 기본 배경 숨가
             .background(Color.mainBlack)

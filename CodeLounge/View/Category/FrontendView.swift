@@ -32,6 +32,10 @@ struct FrontendView: View {
                     .overlay(Text("\(Color.subBlack)"))
             }
         }
+//        .refreshable {
+//            // 새로고침 시 진행할 작업
+//            postVM.fetchAllSections()
+//        }
         .ignoresSafeArea()
     }
 }

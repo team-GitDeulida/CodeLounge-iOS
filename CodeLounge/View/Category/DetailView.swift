@@ -244,13 +244,14 @@ struct DetailView: View {
             // 배경
             Color.mainBlack
                 .ignoresSafeArea()
-
-            // 컨텐츠
-            VStack {
-                formatText(post.content)
-                    .multilineTextAlignment(.leading)
-                    .padding()
-                Spacer()
+            ScrollView(showsIndicators: false) {
+                // 컨텐츠
+                VStack(alignment: .leading) {
+                    formatText(post.content)
+                        .multilineTextAlignment(.leading)
+                        .padding()
+                }
+                .frame(maxWidth: .infinity, alignment: .topLeading) // 좌측 상단 정렬
             }
         }
         .navigationBarTitle("\(post.title)", displayMode: .inline)
