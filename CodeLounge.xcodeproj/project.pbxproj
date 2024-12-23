@@ -28,6 +28,7 @@
 		DF3C9F6E2D075B8800CCB65A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF3C9F6D2D075B8800CCB65A /* Preview Assets.xcassets */; };
 		DF5042BF2D097D9500D4ABA3 /* FrontendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5042BE2D097D9500D4ABA3 /* FrontendView.swift */; };
 		DF84287F2D0E1C220010503D /* CategoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF84287E2D0E1C220010503D /* CategoryService.swift */; };
+		DFDCF73D2D194B7800DDA044 /* Highlightr in Frameworks */ = {isa = PBXBuildFile; productRef = DFDCF73C2D194B7800DDA044 /* Highlightr */; };
 		DFDF071A2D0BEDD000124DFA /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDF07192D0BEDD000124DFA /* DetailView.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFDCF73D2D194B7800DDA044 /* Highlightr in Frameworks */,
 				DF0854892D0E101800D9BC5F /* FirebaseDatabase in Frameworks */,
 				DF0854872D0E101800D9BC5F /* FirebaseAuth in Frameworks */,
 				DF0854952D0E14EE00D9BC5F /* GoogleSignIn in Frameworks */,
@@ -196,6 +198,7 @@
 				DF0854882D0E101800D9BC5F /* FirebaseDatabase */,
 				DF0854942D0E14EE00D9BC5F /* GoogleSignIn */,
 				DF0854962D0E14EE00D9BC5F /* GoogleSignInSwift */,
+				DFDCF73C2D194B7800DDA044 /* Highlightr */,
 			);
 			productName = CodeLounge;
 			productReference = DF3C9F632D075B8700CCB65A /* CodeLounge.app */;
@@ -228,6 +231,7 @@
 			packageReferences = (
 				DF0854852D0E101800D9BC5F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				DF0854932D0E14EE00D9BC5F /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				DFDCF73B2D194B7800DDA044 /* XCRemoteSwiftPackageReference "Highlightr" */,
 			);
 			productRefGroup = DF3C9F642D075B8700CCB65A /* Products */;
 			projectDirPath = "";
@@ -502,6 +506,14 @@
 				minimumVersion = 8.0.0;
 			};
 		};
+		DFDCF73B2D194B7800DDA044 /* XCRemoteSwiftPackageReference "Highlightr" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/raspu/Highlightr.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -524,6 +536,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DF0854932D0E14EE00D9BC5F /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignInSwift;
+		};
+		DFDCF73C2D194B7800DDA044 /* Highlightr */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFDCF73B2D194B7800DDA044 /* XCRemoteSwiftPackageReference "Highlightr" */;
+			productName = Highlightr;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

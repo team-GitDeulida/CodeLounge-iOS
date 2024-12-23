@@ -121,16 +121,3 @@ struct CSView: View {
         .environmentObject(PostViewModel())
 }
 
-
-
-/*
-List(viewModel.posts) { post in
-    NavigationLink(destination: DetailView(post: post)) {
-        VStack(alignment: .leading) {
-            Text(post.title)
-                .font(.headline)
-        }
-    }
-    .navigationTitle("\("CS")")
-}
- */

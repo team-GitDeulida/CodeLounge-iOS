@@ -174,7 +174,11 @@ final class PostViewModel: ObservableObject {
                     tempPosts.append(post)
                 }
             }
-            completion(tempPosts)
+            
+            
+            // `createdAt` 기준 내림차순 정렬
+            let sortedPosts = tempPosts.sorted { $0.createdAt > $1.createdAt }
+            completion(sortedPosts)
         }
     }
 }
