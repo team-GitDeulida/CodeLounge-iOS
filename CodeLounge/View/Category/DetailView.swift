@@ -68,12 +68,13 @@ struct DetailView: View {
         }
     }
     
+
+    /*
     private func formatText(_ content: String) -> AnyView {
         let replacedContent = content.replacingOccurrences(of: "\\n", with: "\n")
         let components = replacedContent.components(separatedBy: "\n```")
         
         var formattedViews: [AnyView] = []
-        var isHighlighted = false
 
         for (index, component) in components.enumerated() {
             if index % 2 == 1 { // 코드 블록 처리
@@ -97,22 +98,21 @@ struct DetailView: View {
                         .padding(.vertical, 8)
                     )
                 )
-            } else { // 일반 텍스트 처리 (하이라이트 포함)
+            } else { // 일반 텍스트 처리
                 let subcomponents = component.components(separatedBy: "**")
                 var formattedText = Text("")
-                for subcomponent in subcomponents {
-                    if isHighlighted {
+                for (index, subcomponent) in subcomponents.enumerated() {
+                    if index % 2 == 1 { // 양쪽이 **로 감싸진 경우
                         formattedText = formattedText
                             + Text(subcomponent)
                                 .font(.title)
                                 .foregroundColor(.mainGreen)
-                    } else {
+                    } else { // 일반 텍스트
                         formattedText = formattedText
                             + Text(subcomponent)
                                 .font(.body)
                                 .foregroundColor(.white)
                     }
-                    isHighlighted.toggle()
                 }
                 formattedViews.append(AnyView(formattedText))
             }
@@ -129,7 +129,77 @@ struct DetailView: View {
             }
         )
     }
-     
+*/
+    private func formatText(_ content: String) -> AnyView {
+        let replacedContent = content.replacingOccurrences(of: "\\n", with: "\n")
+        let components = replacedContent.components(separatedBy: "\n```")
+
+        var formattedViews: [AnyView] = []
+
+        for (index, component) in components.enumerated() {
+            if index % 2 == 1 { // 코드 블록 처리
+                let lines = component.split(separator: "\n", maxSplits: 1)
+                let language = lines.first?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "코드"
+                let codeContent = lines.count > 1 ? lines[1] : ""
+
+                // 코드 블록 스타일 적용
+                formattedViews.append(
+                    AnyView(
+                        VStack(alignment: .leading, spacing: 6) {
+                            Text("\(language.uppercased()) CODE")
+                                .font(.caption)
+                                .foregroundColor(.gray)
+                            Text(codeContent.trimmingCharacters(in: .whitespacesAndNewlines))
+                                .font(.system(.body, design: .monospaced))
+                                .padding()
+                                .background(Color.gray.opacity(0.2)) // 배경색 추가
+                                .cornerRadius(8) // 모서리를 둥글게 처리
+                        }
+                        .padding(.vertical, 8)
+                    )
+                )
+            } else { // 일반 텍스트 처리
+                let subcomponents = component.components(separatedBy: "**")
+                var formattedText = Text("")
+                for (index, subcomponent) in subcomponents.enumerated() {
+                    if index % 2 == 1 { // 양쪽이 **로 감싸진 경우
+                        formattedText = formattedText
+                            + Text(subcomponent)
+                                .font(.title)
+                                .foregroundColor(.mainGreen)
+                    } else { // 일반 텍스트
+                        let underlinedComponents = subcomponent.components(separatedBy: "##")
+                        for (index, part) in underlinedComponents.enumerated() {
+                            if index % 2 == 1 { // 양쪽이 ##로 감싸진 경우
+                                formattedText = formattedText
+                                    + Text(part)
+                                        .underline()
+                                        .font(.body)
+                                        .foregroundColor(.mainGreen)
+                            } else { // 일반 텍스트
+                                formattedText = formattedText
+                                    + Text(part)
+                                        .font(.body)
+                                        .foregroundColor(.white)
+                            }
+                        }
+                    }
+                }
+                formattedViews.append(AnyView(formattedText))
+            }
+        }
+
+        return AnyView(
+            ScrollView {
+                VStack(alignment: .leading, spacing: 12) {
+                    ForEach(0..<formattedViews.count, id: \ .self) { index in
+                        formattedViews[index]
+                    }
+                }
+                .padding()
+            }
+        )
+    }
 }
 
 
@@ -143,10 +213,10 @@ struct DetailView: View {
         - xcode에서 앱 빌드를 위해 정의된 설정의 집합입니다
         
         **모듈**
-        - 코드의 재사용성을 높이기 위한 코드묶음입니다
-        - 앱과 라이브러리는 각각 하나의 모듈로 간주되고
+        - 코드의 ##재사용성##을 높이기 위한 코드묶음입니다
+        - 앱과 라이브러리는 각각 하나의 ##모듈##로 간주되고
           import 키워들를 사용해 다른 모듈을 가져옵니다
-        - 모듈은 컴파일 속도를 높이고 코드의 의존성을 분리하는 데 유용합니다
+        - 모듈은 컴파일 ##속도를 높이고## 코드의 ##의존성을 분리## 하는 데 유용합니다
         
         
         ```swift
@@ -168,6 +238,5 @@ struct DetailView: View {
         """,
         authorID: "김동현", createdAt: Date()))
 }
-
 
 
