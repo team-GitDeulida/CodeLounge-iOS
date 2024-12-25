@@ -58,6 +58,7 @@ struct Post: Identifiable, Hashable {
 final class PostViewModel: ObservableObject {
     @Published var osPosts: [Post] = []
     @Published var algoPosts: [Post] = []
+    @Published var swiftPosts: [Post] = []
     @Published var swiftUIPosts: [Post] = []
     @Published var uiKitPosts: [Post] = []
     @Published var kotlinPosts: [Post] = []
@@ -73,6 +74,7 @@ final class PostViewModel: ObservableObject {
         ref.observeSingleEvent(of: .value) { snapshot in
             var osPosts: [Post] = []
             var algoPosts: [Post] = []
+            var swiftPosts: [Post] = []
             var swiftUIPosts: [Post] = []
             var uiKitPosts: [Post] = []
             var kotlinPosts: [Post] = []
@@ -95,6 +97,7 @@ final class PostViewModel: ObservableObject {
                         switch sectionName {
                         case "OperatingSystems": osPosts = posts
                         case "Algorithms": algoPosts = posts
+                        case "Swift": swiftPosts = posts
                         case "SwiftUI": swiftUIPosts = posts
                         case "UIKit": uiKitPosts = posts
                         case "Kotlin": kotlinPosts = posts
@@ -108,6 +111,7 @@ final class PostViewModel: ObservableObject {
             DispatchQueue.main.async {
                 self.osPosts = osPosts
                 self.algoPosts = algoPosts
+                self.swiftPosts = swiftPosts
                 self.swiftUIPosts = swiftUIPosts
                 self.uiKitPosts = uiKitPosts
                 self.kotlinPosts = kotlinPosts
@@ -126,6 +130,11 @@ final class PostViewModel: ObservableObject {
         fetchSection("Algorithms") { posts in
             DispatchQueue.main.async {
                 self.algoPosts = posts
+            }
+        }
+        fetchSection("Swift") { posts in
+            DispatchQueue.main.async {
+                self.swiftPosts = posts
             }
         }
         fetchSection("SwiftUI") { posts in

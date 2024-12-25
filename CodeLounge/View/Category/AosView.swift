@@ -25,9 +25,15 @@ struct AosView: View {
                             Button {
                                 selectedPost = post // 게시물을 선택
                             } label: {
-                                VStack(alignment: .leading) {
-                                    Text(post.title)
-                                        .font(.headline)
+                                HStack {
+                                    VStack(alignment: .leading) {
+                                        Text(post.title)
+                                            .font(.headline)
+                                    }
+                                    Spacer()
+                                    Image(systemName: "chevron.right")
+                                        .font(.system(size: 15))
+                                        .foregroundColor(.gray)
                                 }
                                 .frame(maxWidth: .infinity, alignment: .leading)
                             }

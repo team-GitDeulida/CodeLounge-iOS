@@ -150,12 +150,14 @@ struct DetailView: View {
                                 .font(.caption)
                                 .foregroundColor(.gray)
                             Text(codeContent.trimmingCharacters(in: .whitespacesAndNewlines))
-                                .font(.system(.body, design: .monospaced))
+                                //.font(.system(.body, design: .monospaced))
+                                .font(.system(size: 13, design: .monospaced))
                                 .padding()
                                 .background(Color.gray.opacity(0.2)) // 배경색 추가
                                 .cornerRadius(8) // 모서리를 둥글게 처리
                         }
-                        .padding(.vertical, 8)
+                        .padding(.top, -10)
+                        //.padding(.vertical, 8)
                     )
                 )
             } else { // 일반 텍스트 처리
@@ -165,9 +167,10 @@ struct DetailView: View {
                     if index % 2 == 1 { // 양쪽이 **로 감싸진 경우
                         formattedText = formattedText
                             + Text(subcomponent)
-                                .font(.title)
+                                //.font(.title)
+                                .font(.system(size: 20, weight: .bold))
                                 .foregroundColor(.mainGreen)
-                    } else { // 일반 텍스트
+                    } else { // 일반 텍스트r
                         let underlinedComponents = subcomponent.components(separatedBy: "##")
                         for (index, part) in underlinedComponents.enumerated() {
                             if index % 2 == 1 { // 양쪽이 ##로 감싸진 경우
@@ -185,7 +188,10 @@ struct DetailView: View {
                         }
                     }
                 }
-                formattedViews.append(AnyView(formattedText))
+                formattedViews.append(
+                    AnyView(formattedText.lineSpacing(8))
+                        
+                )
             }
         }
 
@@ -196,7 +202,7 @@ struct DetailView: View {
                         formattedViews[index]
                     }
                 }
-                .padding()
+                //.padding()
             }
         )
     }
@@ -217,7 +223,6 @@ struct DetailView: View {
         - 앱과 라이브러리는 각각 하나의 ##모듈##로 간주되고
           import 키워들를 사용해 다른 모듈을 가져옵니다
         - 모듈은 컴파일 ##속도를 높이고## 코드의 ##의존성을 분리## 하는 데 유용합니다
-        
         
         ```swift
         import SwiftUI

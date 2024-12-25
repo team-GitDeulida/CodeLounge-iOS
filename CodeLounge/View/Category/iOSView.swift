@@ -13,6 +13,26 @@ struct iOSView: View {
     var body: some View {
         NavigationStack {
             List {
+                if !postVM.swiftPosts.isEmpty {
+                    Section(header: Text("Swift")
+                        .foregroundColor(Color.mainGreen)
+                        .font(.system(size: 17, weight: .bold))
+                        .padding(.leading, -10)
+                        .textCase(nil) // 대문자 변환 비활성화
+                    ) {
+                        ForEach(postVM.swiftPosts) { post in
+                            NavigationLink(destination: DetailView(post: post)) {
+                                VStack(alignment: .leading) {
+                                    Text(post.title)
+                                        .font(.headline)
+                                }
+                            }
+                            .listRowBackground(Color.subBlack) // 행 배경색
+                        }
+                    }
+                }
+                
+                
                 if !postVM.uiKitPosts.isEmpty {
                     Section(header: Text("Uikit")
                         .foregroundColor(Color.mainGreen)
