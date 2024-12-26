@@ -9,6 +9,7 @@ import SwiftUI
 
 struct iOSView: View {
     @EnvironmentObject var postVM: PostViewModel
+    @State private var selectedPost: Post? // 선택된 게시물을 저장
     
     var body: some View {
         NavigationStack {
@@ -18,36 +19,55 @@ struct iOSView: View {
                         .foregroundColor(Color.mainGreen)
                         .font(.system(size: 17, weight: .bold))
                         .padding(.leading, -10)
-                        .textCase(nil) // 대문자 변환 비활성화
+                        .textCase(nil)
                     ) {
                         ForEach(postVM.swiftPosts) { post in
-                            NavigationLink(destination: DetailView(post: post)) {
-                                VStack(alignment: .leading) {
-                                    Text(post.title)
-                                        .font(.headline)
+                            Button {
+                                selectedPost = post // 게시물을 선택
+                            } label: {
+                                HStack {
+                                    VStack(alignment: .leading) {
+                                        Text(post.title)
+                                            .font(.headline)
+                                    }
+                                    Spacer()
+                                    Image(systemName: "chevron.right")
+                                        .font(.system(size: 15))
+                                        .foregroundColor(.gray)
                                 }
+                                .frame(maxWidth: .infinity, alignment: .leading)
                             }
-                            .listRowBackground(Color.subBlack) // 행 배경색
+                            .buttonStyle(ListRowButton()) // 커스텀 버튼 스타일 적용
+                            .listRowBackground(Color.subBlack)
                         }
                     }
                 }
-                
                 
                 if !postVM.uiKitPosts.isEmpty {
                     Section(header: Text("Uikit")
                         .foregroundColor(Color.mainGreen)
                         .font(.system(size: 17, weight: .bold))
                         .padding(.leading, -10)
-                        .textCase(nil) // 대문자 변환 비활성화
+                        .textCase(nil)
                     ) {
                         ForEach(postVM.uiKitPosts) { post in
-                            NavigationLink(destination: DetailView(post: post)) {
-                                VStack(alignment: .leading) {
-                                    Text(post.title)
-                                        .font(.headline)
+                            Button {
+                                selectedPost = post // 게시물을 선택
+                            } label: {
+                                HStack {
+                                    VStack(alignment: .leading) {
+                                        Text(post.title)
+                                            .font(.headline)
+                                    }
+                                    Spacer()
+                                    Image(systemName: "chevron.right")
+                                        .font(.system(size: 15))
+                                        .foregroundColor(.gray)
                                 }
+                                .frame(maxWidth: .infinity, alignment: .leading)
                             }
-                            .listRowBackground(Color.subBlack) // 행 배경색
+                            .buttonStyle(ListRowButton()) // 커스텀 버튼 스타일 적용
+                            .listRowBackground(Color.subBlack)
                         }
                     }
                 }
@@ -57,17 +77,27 @@ struct iOSView: View {
                         .foregroundColor(Color.mainGreen)
                         .font(.system(size: 17, weight: .bold))
                         .padding(.leading, -10)
-                        .textCase(nil) // 대문자 변환 비활성화
+                        .textCase(nil)
                     ) {
                         ForEach(postVM.swiftUIPosts) { post in
-                            NavigationLink(destination: DetailView(post: post)) {
-                                VStack(alignment: .leading) {
-                                    Text(post.title)
-                                        .font(.headline)
+                            Button {
+                                selectedPost = post // 게시물을 선택
+                            } label: {
+                                HStack {
+                                    VStack(alignment: .leading) {
+                                        Text(post.title)
+                                            .font(.headline)
+                                    }
+                                    Spacer()
+                                    Image(systemName: "chevron.right")
+                                        .font(.system(size: 15))
+                                        .foregroundColor(.gray)
                                 }
+                                .frame(maxWidth: .infinity, alignment: .leading)
                             }
+                            .buttonStyle(ListRowButton()) // 커스텀 버튼 스타일 적용
+                            .listRowBackground(Color.subBlack)
                         }
-                        .listRowBackground(Color.subBlack) // 행 배경색
                     }
                 }
             }
@@ -79,7 +109,10 @@ struct iOSView: View {
             .scrollContentBackground(.hidden) // 기본 배경색 숨기기
             .background(Color.mainBlack) // 전체 배경색 설정
       
-            
+            // 화면 전환
+            .navigationDestination(item: $selectedPost) { post in
+                DetailView(post: post) // 선택된 게시물의 상세 뷰
+            }
         }
         .tint(Color.mainWhite)
     }

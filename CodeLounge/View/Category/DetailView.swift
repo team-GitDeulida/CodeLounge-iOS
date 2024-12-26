@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Highlightr
+//import Highlightr
 
 // UINavigationController 확장: 스와이프 제스처 활성화
 extension UINavigationController: UIGestureRecognizerDelegate {
