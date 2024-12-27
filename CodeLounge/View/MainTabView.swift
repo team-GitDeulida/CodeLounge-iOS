@@ -45,29 +45,26 @@ struct MainTabView: View {
     @State private var selectedTab: MainTabType = .csView
     
     var body: some View {
-        
         VStack(spacing: 0) {
             VStack {
                 switch selectedTab {
                 case .csView:
                     CSView()
-                        //.environmentObject(postVM)
+                    //.environmentObject(postVM)
                 case .iosView:
                     iOSView()
-                        //.environmentObject(postVM)
+                    //.environmentObject(postVM)
                 case .aosView:
                     AosView()
-                        //.environmentObject(postVM)
+                    //.environmentObject(postVM)
                 case .frontendView:
                     FrontendView()
-                       // .environmentObject(postVM)
+                    // .environmentObject(postVM)
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             
             VStack(spacing: 0) {
-                
-                
                 Divider()
                     .background(Color.gray.opacity(0.3))
                     .padding(.bottom, 15)
@@ -101,15 +98,16 @@ struct MainTabView: View {
                     }
                     .frame(height: 50) // 고정 높이
                 }
-//                .overlay(
-//                    RoundedRectangle(cornerRadius: 10)
-//                        .stroke(.white, lineWidth: 1)
-//                        .frame(height: 100)
-//                )
+                //                .overlay(
+                //                    RoundedRectangle(cornerRadius: 10)
+                //                        .stroke(.white, lineWidth: 1)
+                //                        .frame(height: 100)
+                //                )
                 
             }
             .background(.black)
         }
+        .ignoresSafeArea(.keyboard, edges: .all)
     }
 }
 

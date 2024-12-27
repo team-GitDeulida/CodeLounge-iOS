@@ -69,67 +69,7 @@ struct DetailView: View {
     }
     
 
-    /*
-    private func formatText(_ content: String) -> AnyView {
-        let replacedContent = content.replacingOccurrences(of: "\\n", with: "\n")
-        let components = replacedContent.components(separatedBy: "\n```")
-        
-        var formattedViews: [AnyView] = []
 
-        for (index, component) in components.enumerated() {
-            if index % 2 == 1 { // 코드 블록 처리
-                let lines = component.split(separator: "\n", maxSplits: 1)
-                let language = lines.first?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "코드"
-                let codeContent = lines.count > 1 ? lines[1] : ""
-
-                // 코드 블록 스타일 적용
-                formattedViews.append(
-                    AnyView(
-                        VStack(alignment: .leading, spacing: 6) {
-                            Text("\(language.uppercased()) CODE")
-                                .font(.caption)
-                                .foregroundColor(.gray)
-                            Text(codeContent.trimmingCharacters(in: .whitespacesAndNewlines))
-                                .font(.system(.body, design: .monospaced))
-                                .padding()
-                                .background(Color.gray.opacity(0.2)) // 배경색 추가
-                                .cornerRadius(8) // 모서리를 둥글게 처리
-                        }
-                        .padding(.vertical, 8)
-                    )
-                )
-            } else { // 일반 텍스트 처리
-                let subcomponents = component.components(separatedBy: "**")
-                var formattedText = Text("")
-                for (index, subcomponent) in subcomponents.enumerated() {
-                    if index % 2 == 1 { // 양쪽이 **로 감싸진 경우
-                        formattedText = formattedText
-                            + Text(subcomponent)
-                                .font(.title)
-                                .foregroundColor(.mainGreen)
-                    } else { // 일반 텍스트
-                        formattedText = formattedText
-                            + Text(subcomponent)
-                                .font(.body)
-                                .foregroundColor(.white)
-                    }
-                }
-                formattedViews.append(AnyView(formattedText))
-            }
-        }
-
-        return AnyView(
-            ScrollView {
-                VStack(alignment: .leading, spacing: 12) {
-                    ForEach(0..<formattedViews.count, id: \.self) { index in
-                        formattedViews[index]
-                    }
-                }
-                .padding()
-            }
-        )
-    }
-*/
     private func formatText(_ content: String) -> AnyView {
         let replacedContent = content.replacingOccurrences(of: "\\n", with: "\n")
         let components = replacedContent.components(separatedBy: "\n```")

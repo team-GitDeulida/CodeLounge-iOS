@@ -55,6 +55,7 @@ struct Post: Identifiable, Hashable {
      */
 }
 
+// MARK: - viewModel
 final class PostViewModel: ObservableObject {
     @Published var osPosts: [Post] = []
     @Published var algoPosts: [Post] = []
@@ -62,6 +63,12 @@ final class PostViewModel: ObservableObject {
     @Published var swiftUIPosts: [Post] = []
     @Published var uiKitPosts: [Post] = []
     @Published var kotlinPosts: [Post] = []
+    @Published var JetpackComposeUIPosts: [Post] = []
+    
+    @Published var searchQuery: String = ""             // 검색
+    @Published var selectedSections: Set<String> = []   // 선택된 섹션
+    // @Published var filteredPosts: [Post] = []           // 필터링된 게시물
+    @Published var filteredPosts: [String: [Post]] = [:] // 섹션별 필터링된 게시물
 
     private var ref: DatabaseReference!
 
@@ -70,6 +77,65 @@ final class PostViewModel: ObservableObject {
         fetchAllSections()
     }
 
+    // 선택된 섹션에 맞게 필터링된 게시물 업데이트
+    func filterPosts() {
+        
+        // 검색어가 없으면 선택된 섹션에 해당하는 모든 게시물을 필터링
+        if searchQuery.isEmpty {
+            selectedSections.forEach { section in
+                switch section {
+                case "Swift":
+                    filteredPosts["Swift"] = swiftPosts
+                case "OperatingSystems":
+                    filteredPosts["OperatingSystems"] = osPosts
+                case "Algorithms":
+                    filteredPosts["Algorithms"] = algoPosts
+                case "SwiftUI":
+                    filteredPosts["SwiftUI"] = swiftUIPosts
+                case "UIKit":
+                    filteredPosts["UIKit"] = uiKitPosts
+                case "Kotlin":
+                    filteredPosts["Kotlin"] = kotlinPosts
+                case "Jetpack Compose UI":
+                    filteredPosts["Jetpack Compose UI"] = JetpackComposeUIPosts
+                default:
+                    break
+                }
+            }
+        } else {
+            // 검색어가 있으면 각 섹션을 필터링 (대소문자 구분 없이)
+            selectedSections.forEach { section in
+                var tempPosts: [Post] = []
+                switch section {
+                case "Swift":
+                    tempPosts = swiftPosts.filter { $0.title.lowercased().contains(searchQuery.lowercased()) }
+                    filteredPosts["Swift"] = tempPosts
+                case "OperatingSystems":
+                    tempPosts = osPosts.filter { $0.title.lowercased().contains(searchQuery.lowercased()) }
+                    filteredPosts["OperatingSystems"] = tempPosts
+                case "Algorithms":
+                    tempPosts = algoPosts.filter { $0.title.lowercased().contains(searchQuery.lowercased()) }
+                    filteredPosts["Algorithms"] = tempPosts
+                case "SwiftUI":
+                    tempPosts = swiftUIPosts.filter { $0.title.lowercased().contains(searchQuery.lowercased()) }
+                    filteredPosts["SwiftUI"] = tempPosts
+                case "UIKit":
+                    tempPosts = uiKitPosts.filter { $0.title.lowercased().contains(searchQuery.lowercased()) }
+                    filteredPosts["UIKit"] = tempPosts
+                case "Kotlin":
+                    tempPosts = kotlinPosts.filter { $0.title.lowercased().contains(searchQuery.lowercased()) }
+                    filteredPosts["Kotlin"] = tempPosts
+                case "Jetpack Compose UI":
+                    tempPosts = JetpackComposeUIPosts.filter { $0.title.lowercased().contains(searchQuery.lowercased()) }
+                    filteredPosts["Jetpack Compose UI"] = tempPosts
+                default:
+                    break
+                }
+            }
+        }
+    }
+
+    /*
     func fetchAllSections_() {
         ref.observeSingleEvent(of: .value) { snapshot in
             var osPosts: [Post] = []
@@ -78,6 +144,7 @@ final class PostViewModel: ObservableObject {
             var swiftUIPosts: [Post] = []
             var uiKitPosts: [Post] = []
             var kotlinPosts: [Post] = []
+            var JetpackComposeUI: [Post] = []
             
             if let rootDict = snapshot.value as? [String: Any] {
                 for (sectionName, sectionData) in rootDict {
@@ -101,6 +168,7 @@ final class PostViewModel: ObservableObject {
                         case "SwiftUI": swiftUIPosts = posts
                         case "UIKit": uiKitPosts = posts
                         case "Kotlin": kotlinPosts = posts
+                        case "Kotlin": kotlinPosts = posts
                         default: break
                         }
                     }
@@ -118,38 +186,50 @@ final class PostViewModel: ObservableObject {
             }
         }
     }
-
+*/
     
     // 섹션별 데이터를 가져오는 함수
     func fetchAllSections() {
         fetchSection("OperatingSystems") { posts in
             DispatchQueue.main.async {
                 self.osPosts = posts
+                self.filterPosts()
             }
         }
         fetchSection("Algorithms") { posts in
             DispatchQueue.main.async {
                 self.algoPosts = posts
+                self.filterPosts()
             }
         }
         fetchSection("Swift") { posts in
             DispatchQueue.main.async {
                 self.swiftPosts = posts
+                self.filterPosts()
             }
         }
         fetchSection("SwiftUI") { posts in
             DispatchQueue.main.async {
                 self.swiftUIPosts = posts
+                self.filterPosts()
             }
         }
         fetchSection("UIKit") { posts in
             DispatchQueue.main.async {
                 self.uiKitPosts = posts
+                self.filterPosts()
             }
         }
         fetchSection("Kotlin") { posts in
             DispatchQueue.main.async {
                 self.kotlinPosts = posts
+                self.filterPosts()
+            }
+        }
+        fetchSection("Jetpack Compose UI") { posts in
+            DispatchQueue.main.async {
+                self.JetpackComposeUIPosts = posts
+                self.filterPosts()
             }
         }
     }
