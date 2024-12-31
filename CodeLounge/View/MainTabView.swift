@@ -111,10 +111,6 @@ struct MainTabView: View {
     }
 }
 
-//#Preview {
-//    MainTabView()
-//}
-
 #Preview {
     MainTabView()
         .environmentObject(PostViewModel()) // 필요한 객체 주입
