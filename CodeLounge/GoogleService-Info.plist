@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>195155133453-m6oq82ptq3de8d40i1vvefvq6084i1gt.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.195155133453-m6oq82ptq3de8d40i1vvefvq6084i1gt</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>195155133453-gk65c62raabkq5m78a913q25rk2ome2c.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAyFZmaXyBucxeyB6yPOS2s1RjxTnCtwes</string>
+	<key>GCM_SENDER_ID</key>
+	<string>195155133453</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.indextrown.CodeLounge</string>
+	<key>PROJECT_ID</key>
+	<string>codelounge-d7a9d</string>
+	<key>STORAGE_BUCKET</key>
+	<string>codelounge-d7a9d.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:195155133453:ios:f3e9f6224c17e50f114144</string>
+	<key>DATABASE_URL</key>
+	<string>https://codelounge-d7a9d-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>
