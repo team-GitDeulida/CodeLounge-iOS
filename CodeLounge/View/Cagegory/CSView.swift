@@ -12,16 +12,9 @@ struct CSView: View {
         ZStack {
             Color.mainBlack
                 .ignoresSafeArea()
-            
             VStack {
-                Button {
-                    
-                } label: {
-                    Text("123")
-                        .textRectangle()
-                }
+
             }
-            
         }
     }
 }
