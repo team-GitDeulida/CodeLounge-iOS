@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DF4CD40C2D3A2D0800A9251D /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = DF4CD40B2D3A2D0800A9251D /* .gitignore */; };
 		DF770FDD2D393DDC00E00216 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF770FDC2D393DDC00E00216 /* Constant.swift */; };
 		DF770FDF2D393EA400E00216 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF770FDE2D393EA400E00216 /* UserService.swift */; };
 		DF770FE22D39416900E00216 /* NicknameSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF770FE12D39416900E00216 /* NicknameSettingView.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DF4CD40B2D3A2D0800A9251D /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		DF770FDC2D393DDC00E00216 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		DF770FDE2D393EA400E00216 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		DF770FE12D39416900E00216 /* NicknameSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameSettingView.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 		DFD31FCF2D36175F0076DD16 = {
 			isa = PBXGroup;
 			children = (
+				DF4CD40B2D3A2D0800A9251D /* .gitignore */,
 				DFD31FDA2D36175F0076DD16 /* CodeLounge */,
 				DFD31FD92D36175F0076DD16 /* Products */,
 			);
@@ -335,6 +338,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF4CD40C2D3A2D0800A9251D /* .gitignore in Resources */,
 				DFD31FE32D3617600076DD16 /* Preview Assets.xcassets in Resources */,
 				DFEFED2D2D38FAE300F18B90 /* GoogleService-Info.plist in Resources */,
 				DFD31FE02D3617600076DD16 /* Assets.xcassets in Resources */,

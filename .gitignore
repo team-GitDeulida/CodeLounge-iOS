@@ -1,0 +1,9 @@
+# Property List files
+GoogleService-Info.plist
+
+# macOS system files
+*.DS_Store
+
+# Config
+*.xcconfig
+
