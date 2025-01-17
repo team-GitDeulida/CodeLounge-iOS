@@ -18,7 +18,6 @@ struct LoginView: View {
             HeaderView()
         }
         .background(.black.gradient)
-        //.navigationBarBackButtonHidden(true) // 기본 뒤로 가기 버튼 숨김
         .navigationBarBackButtonHidden()
     }
     
@@ -43,9 +42,9 @@ struct LoginView: View {
             ZStack {
                 // MARK: - 실제 Apple 로그인 버튼
                 SignInWithAppleButton { result in
-                    //authViewModel.send(action: .appleLogin(result))
+                    authViewModel.send(action: .appleLogin(result))
                 } onCompletion: { result in
-                    //authViewModel.send(action: .appleLoginCompletion(result))
+                    authViewModel.send(action: .appleLoginCompletion(result))
                 }
                 .frame(maxWidth: .infinity, maxHeight: 60)
                 .accessibilityIdentifier("appleLoginButton") // 식별자 추가
@@ -54,7 +53,7 @@ struct LoginView: View {
                 
                 // MARK: - 애플 커스텀 Ui
                 Button {
-                    //triggerAppleLoginButtonTap()
+                    triggerAppleLoginButtonTap()
                 } label: {
                     HStack {
                         Image(systemName: "applelogo")
@@ -99,6 +98,35 @@ struct LoginView: View {
         .padding(.horizontal, 30)
         
     }
+    
+    // MARK: - 커스텀 애플 버튼을 누르면 실제 애플 로그인 버튼을 누르도록 트리거 하는 함수
+    // Apple 로그인 버튼을 찾고 동작 트리거
+    func triggerAppleLoginButtonTap() {
+        guard let keyWindow = UIApplication.shared.connectedScenes
+                .compactMap({ $0 as? UIWindowScene })
+                .flatMap({ $0.windows })
+                .first(where: { $0.isKeyWindow }),
+              let appleButton = findAppleSignInButton(in: keyWindow) else {
+            print("Apple 로그인 버튼을 찾을 수 없습니다.")
+            return
+        }
+
+        // 버튼 액션 강제 실행
+        appleButton.sendActions(for: .touchUpInside)
+    }
+    
+    func findAppleSignInButton(in view: UIView) -> ASAuthorizationAppleIDButton? {
+        for subview in view.subviews {
+            if let appleButton = subview as? ASAuthorizationAppleIDButton {
+                return appleButton
+            }
+            if let found = findAppleSignInButton(in: subview) {
+                return found
+            }
+        }
+        return nil
+    }
+        
 }
 
 // 로그인 버튼 스타일

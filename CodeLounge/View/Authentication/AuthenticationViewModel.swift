@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import AuthenticationServices
 
 enum AuthenticationState {
     case unauthenticated
@@ -19,6 +20,8 @@ final class AuthenticationViewModel: ObservableObject {
     enum Action {
         case checkAuthenticationState
         case googleLogin
+        case appleLogin(ASAuthorizationRequest)
+        case appleLoginCompletion(Result<ASAuthorization, Error>)
         case checkNickname(User)
         case checkNicknameDuplicate(String, (Bool) -> Void)
         case updateUserInfo(String, String, String)
@@ -89,11 +92,47 @@ final class AuthenticationViewModel: ObservableObject {
                     self?.send(action: .checkNickname(user))
                 }.store(in: &subscriptions)
             
+        case let .appleLogin(request):
+            let nonce = container.services.authService.handleSignInWithAppleRequest(request as! ASAuthorizationAppleIDRequest)
+            currentNonce = nonce
+            
         case .checkNickname(let user):
             if user.nickname.trimmingCharacters(in: .whitespaces).isEmpty {
                 self.authenticationState = .firstTimeLogin
             } else {
                 self.authenticationState = .authenticated
+            }
+            
+        case let .appleLoginCompletion(result):
+            if case let .success(authorization) = result {
+                guard let nonce = self.currentNonce else {
+                    print("Error: Missing nonce")
+                    return
+                }
+                
+                container.services.authService.handleSignInWithAppleCompletion(authorization, nonce: nonce)
+                    .flatMap { user in
+                        self.container.services.userService.getUser(userId: user.id)
+                            .catch { error -> AnyPublisher<User, ServiceError> in
+                                return self.container.services.userService.addUser(user)
+                            }
+                    }
+                    .sink { [weak self] completion in
+                        if case let .failure(error) = completion {
+                            self?.isLoading = false
+                            // 구체적인 에러 정보 출력
+                            print("애플 로그인 실패: \(error.localizedDescription)")
+                            
+                            
+                        }
+                    } receiveValue: { [weak self] user in
+                        self?.isLoading = false
+                        self?.userId = user.id
+                        
+                        // MARK: - 닉네임 유무를 확인하는 구간
+                        self?.send(action: .checkNickname(user))
+                        
+                    }.store(in: &subscriptions)
             }
             
         case .checkNicknameDuplicate(let nickname, let completion):
