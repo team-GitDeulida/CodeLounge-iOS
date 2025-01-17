@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DF4CD40C2D3A2D0800A9251D /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = DF4CD40B2D3A2D0800A9251D /* .gitignore */; };
+		DF4CD40E2D3A3AC500A9251D /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4CD40D2D3A3AC500A9251D /* CategoryView.swift */; };
 		DF770FDD2D393DDC00E00216 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF770FDC2D393DDC00E00216 /* Constant.swift */; };
 		DF770FDF2D393EA400E00216 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF770FDE2D393EA400E00216 /* UserService.swift */; };
 		DF770FE22D39416900E00216 /* NicknameSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF770FE12D39416900E00216 /* NicknameSettingView.swift */; };
@@ -46,6 +47,7 @@
 
 /* Begin PBXFileReference section */
 		DF4CD40B2D3A2D0800A9251D /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		DF4CD40D2D3A3AC500A9251D /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		DF770FDC2D393DDC00E00216 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		DF770FDE2D393EA400E00216 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		DF770FE12D39416900E00216 /* NicknameSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameSettingView.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 		DFEFED542D3900A200F18B90 /* UserObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserObject.swift; sourceTree = "<group>"; };
 		DFEFED562D3900A900F18B90 /* DBError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBError.swift; sourceTree = "<group>"; };
 		DFEFED592D3900F400F18B90 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		DFFAC7C02D3A46DA008C69F6 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +109,7 @@
 		DFD31FCF2D36175F0076DD16 = {
 			isa = PBXGroup;
 			children = (
+				DFFAC7C02D3A46DA008C69F6 /* README.md */,
 				DF4CD40B2D3A2D0800A9251D /* .gitignore */,
 				DFD31FDA2D36175F0076DD16 /* CodeLounge */,
 				DFD31FD92D36175F0076DD16 /* Products */,
@@ -125,14 +129,14 @@
 			children = (
 				DFEFED2C2D38FAE300F18B90 /* GoogleService-Info.plist */,
 				DFEFED2E2D38FB0000F18B90 /* Info.plist */,
-				DFD31FDB2D36175F0076DD16 /* CodeLoungeApp.swift */,
 				DFEFED3F2D38FF2E00F18B90 /* AppDelegate.swift */,
+				DFD31FDB2D36175F0076DD16 /* CodeLoungeApp.swift */,
 				DFD31FDD2D36175F0076DD16 /* ContentView.swift */,
-				DFEFED582D3900E700F18B90 /* Model */,
-				DFEFED3E2D38FE5900F18B90 /* Repository */,
 				DFD31FEA2D3617EE0076DD16 /* Extension */,
 				DFD31FE92D36178D0076DD16 /* General */,
+				DFEFED582D3900E700F18B90 /* Model */,
 				DFD31FE12D3617600076DD16 /* Preview Content */,
+				DFEFED3E2D38FE5900F18B90 /* Repository */,
 				DFEFED3D2D38FDB800F18B90 /* Resources */,
 				DFD31FEF2D3618940076DD16 /* Service */,
 				DFD31FF62D3619BB0076DD16 /* View */,
@@ -223,6 +227,7 @@
 				DFEFED332D38FC2D00F18B90 /* CSView.swift */,
 				DFEFED372D38FC4400F18B90 /* AosView.swift */,
 				DFEFED352D38FC3600F18B90 /* iOSView.swift */,
+				DF4CD40D2D3A3AC500A9251D /* CategoryView.swift */,
 			);
 			path = Cagegory;
 			sourceTree = "<group>";
@@ -378,6 +383,7 @@
 				DFEFED312D38FBC200F18B90 /* MainTabView.swift in Sources */,
 				DFEFED552D3900A200F18B90 /* UserObject.swift in Sources */,
 				DFEFED5A2D3900F400F18B90 /* User.swift in Sources */,
+				DF4CD40E2D3A3AC500A9251D /* CategoryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,6 +521,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CodeLounge/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "코드라운지";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -546,6 +553,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CodeLounge/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "코드라운지";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

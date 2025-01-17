@@ -9,10 +9,27 @@ import SwiftUI
 
 struct CSView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            Color.mainBlack
+                .ignoresSafeArea()
+            
+            VStack {
+                Button {
+                    
+                } label: {
+                    Text("123")
+                        .textRectangle()
+                }
+            }
+            
+        }
     }
 }
 
 #Preview {
     CSView()
 }
+
+
+
+
