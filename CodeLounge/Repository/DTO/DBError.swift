@@ -8,6 +8,7 @@
 import Foundation
 
 enum DBError: Error {
+    // MARK: - UserDBRepository
     case addUserError(Error)
     case getUserError(Error)
     case loadUsersError(Error)
@@ -15,6 +16,10 @@ enum DBError: Error {
     case emptyValue
     case invalidatedType
     
+    // MARK: - OtherDBRepository
+    // ...
+    
+    // MARK: - 에러 상세 설명
     var errorDescription: String {
         switch self {
         case .addUserError(let error):
