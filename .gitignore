@@ -1,5 +1,5 @@
 # Property List files
-GoogleService-Info.plist
+*.plist
 
 # macOS system files
 *.DS_Store
