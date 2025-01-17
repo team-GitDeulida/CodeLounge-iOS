@@ -26,9 +26,9 @@ enum DBError: Error {
         case .updateUserError(let error):
             return "❌ 에러 [updateUserError]: \(error.localizedDescription)"
         case .emptyValue:
-            return "❌ 에러 [emptyValue] 값이 없습니다"
+            return "❌ 에러 [emptyValue]: 값이 없습니다"
         case .invalidatedType:
-            return "❌ 에러 [invalidatedType] 유효하지 않은 타입입니다"
+            return "❌ 에러 [invalidatedType]: 유효하지 않은 타입입니다"
         }
     }
 }
