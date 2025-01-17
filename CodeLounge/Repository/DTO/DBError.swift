@@ -27,7 +27,7 @@ enum DBError: Error {
         case .getUserError(let error):
             return "❌ 에러 [getUserError]: \(error.localizedDescription)"
         case .loadUsersError(let error):
-            return "❌ 에러 [loadUsersError]"
+            return "❌ 에러 [loadUsersError] \(error.localizedDescription)"
         case .updateUserError(let error):
             return "❌ 에러 [updateUserError]: \(error.localizedDescription)"
         case .emptyValue:
