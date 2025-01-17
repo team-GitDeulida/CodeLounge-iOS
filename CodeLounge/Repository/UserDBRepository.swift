@@ -113,10 +113,10 @@ final class UserDBRepository: UserDBRepositoryType {
 
                     .eraseToAnyPublisher()
             } else if value == nil {
-                print("불러온 데이터가 nil입니다.") // nil 데이터 출력
+                // print("불러온 데이터가 nil입니다.") // nil 데이터 출력
                 return Just([]).setFailureType(to: DBError.self).eraseToAnyPublisher()
             } else {
-                print("유효하지 않은 데이터 타입입니다.") // 유효하지 않은 타입 출력
+                // print("유효하지 않은 데이터 타입입니다.") // 유효하지 않은 타입 출력
                 return Fail(error: .invalidatedType).eraseToAnyPublisher()
             }
         }
