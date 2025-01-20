@@ -26,8 +26,14 @@ struct CodeLoungeApp: App {
         WindowGroup {
 //            AuthenticationView(authViewModel: AuthenticationViewModel(container: container))
 //                .environmentObject(postViewModel)
+//                .onAppear {
+//                    postViewModel.fetchAllPosts()
+//                }
             MainTabView()
                 .environmentObject(postViewModel)
+                .onAppear {
+                    postViewModel.fetchAllPosts()
+                }
         }
     }
 }
