@@ -32,6 +32,7 @@ final class AuthenticationViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     
     var userId: String?
+    var user: User?
     private var container: DIContainer
     private var subscriptions = Set<AnyCancellable>()
     private var currentNonce: String?
@@ -88,6 +89,7 @@ final class AuthenticationViewModel: ObservableObject {
                     self?.isLoading = false
                     self?.userId = user.id
                     
+                    
                     // MARK: - 닉네임 유무를 확인하는 구간
                     self?.send(action: .checkNickname(user))
                 }.store(in: &subscriptions)
@@ -101,6 +103,7 @@ final class AuthenticationViewModel: ObservableObject {
                 self.authenticationState = .firstTimeLogin
             } else {
                 self.authenticationState = .authenticated
+                self.user = user
             }
             
         case let .appleLoginCompletion(result):
@@ -128,6 +131,7 @@ final class AuthenticationViewModel: ObservableObject {
                     } receiveValue: { [weak self] user in
                         self?.isLoading = false
                         self?.userId = user.id
+                        
                         
                         // MARK: - 닉네임 유무를 확인하는 구간
                         self?.send(action: .checkNickname(user))

@@ -40,14 +40,16 @@ struct iOSView: View {
                     List {
                         ForEach(categories, id: \.self) { category in
                             if let posts = postViewModel.filteredPostsByCategory[category], !posts.isEmpty {
-                                Section(header: Text(postViewModel.categoryNames[category] ?? category)
+                                Section(header: Text(postViewModel.categoryNames[category] ?? category.capitalizeFirstLetter())
                                     .foregroundColor(Color.mainGreen)
                                     .font(.system(size: 17, weight: .bold))
                                     .padding(.leading, -10)
+                                    .textCase(nil) // 대문자 변환 비활성화
                                 ) {
                                     ForEach(posts) { post in
                                         Button {
                                             selectedPost = post
+                                            
                                         } label: {
                                             HStack {
                                                 Text(post.title)
