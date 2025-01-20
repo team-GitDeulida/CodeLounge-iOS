@@ -17,20 +17,14 @@ struct ProfileView: View {
             
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 20) {
-                    /*
-                    RectView(width: .infinity, height: 50, color: .subBlack, radius: 20)
-                        .overlay {
-                            Button {
-                                
-                            } label: {
-                                HStack {
-                                    Text(authViewModel.user?.nickname ?? "닉네임")
-                                        .foregroundColor(.white)
-                                    Spacer()
-                                }.padding(.leading)
-                            }
-                        }
-                     */
+                    HStack {
+                        Text("My Page")
+                            .font(.system(size: 35, weight: .bold))
+                            .padding(.leading, 20)
+                        
+                        Spacer()
+                    }
+                    .padding(.top, 20)
                     
                     Button {
                         
@@ -38,20 +32,28 @@ struct ProfileView: View {
                         HStack {
                             VStack(alignment: .leading) {
                                 Text(authViewModel.user?.nickname ?? "닉네임")
-                                    .font(.system(size: 30, weight: .bold))
-//                                Text(formatDate(authViewModel.user?.registerDate) ?? "가입일")
-                                Text("\(String(describing: authViewModel.user!.registerDate))")
-                                Text("CodeLounge 100일 째")
+                                    .font(.system(size: 25, weight: .bold))
+                                
+                                if let registerDate = authViewModel.user?.registerDate {
+                                    Text("CodeLounge \(calculateDaySince(registerDate))일 째")
+                                }
                             }
                             .padding(.leading, 20)
                             .foregroundColor(.white)
                             Spacer()
+                            
+                            Image(systemName: "person.circle")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 50, height: 50)
+                                .foregroundColor(Color.mainWhite)
+                                .padding(.trailing, 20)
                         }
                         .frame(maxWidth: .infinity)
                         .frame(height: 100)
                         .overlay {
                             RoundedRectangle(cornerRadius: 20)
-                                .stroke(.white, lineWidth: 1)
+                                .stroke(.white, lineWidth: 0.5)
                         }
                     }
                         
@@ -115,17 +117,30 @@ struct ProfileView: View {
         }
     }
     
-    // 날짜 포맷 함수
-    func formatDate(_ dateString: String?) -> String? {
-        guard let dateString = dateString else { return nil }
+    // MARK: - 날짜 비교 함수
+    func calculateDaySince_legacy(_ registerDate: Date) -> Int {
+        let currentDate = Date()
+        let calendar = Calendar(identifier: .gregorian)
+        var calendarInKorea = calendar
+        calendarInKorea.timeZone = TimeZone(identifier: "Asia/Seoul")! // 한국 시간대 설정
         
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd" // 날짜 문자열 포맷에 맞게 설정
-        guard let date = formatter.date(from: dateString) else { return nil }
+        let days = calendarInKorea.dateComponents([.day], from: registerDate, to: currentDate).day ?? 0
+        return days
+    }
+    
+    // MARK: - 날짜 비교 함수
+    func calculateDaySince(_ registerDate: Date) -> Int {
+        let currentDate = Date()
+        let calendar = Calendar(identifier: .gregorian)
+        var calendarInKorea = calendar
+        calendarInKorea.timeZone = TimeZone(identifier: "Asia/Seoul")! // 한국 시간대 설정
         
-        // 표시할 형식 지정
-        formatter.dateFormat = "yyyy년 MM월 dd일"
-        return formatter.string(from: date)
+        // 날짜 단위로 비교하여 차이를 계산
+        let startOfRegisterDate = calendarInKorea.startOfDay(for: registerDate)
+        let startOfCurrentDate = calendarInKorea.startOfDay(for: currentDate)
+        
+        let days = calendarInKorea.dateComponents([.day], from: startOfRegisterDate, to: startOfCurrentDate).day ?? 0
+        return days
     }
 }
 
