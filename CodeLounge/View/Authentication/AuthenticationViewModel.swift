@@ -72,7 +72,7 @@ final class AuthenticationViewModel: ObservableObject {
                 .sink { [weak self] completion in
                     switch completion {
                     case .finished:
-                        print("✅ 유저가 성공적으로 추가되었습니다!")
+                        print("✅ 유저가 성공적으로 추가/로그인 되었습니다!")
                         
                     case .failure(let error):
                         if case .dbError(let dbError) = error {

@@ -9,9 +9,12 @@ import SwiftUI
 
 struct AosView: View {
     var body: some View {
-        ZStack {
-            Color.mainBlack
-                .ignoresSafeArea()
+//        ZStack {
+//            Color.mainBlack
+//                .ignoresSafeArea()
+//        }
+        VStack {
+            
         }
     }
 }

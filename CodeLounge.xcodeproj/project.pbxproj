@@ -24,6 +24,11 @@
 		DFD31FFC2D361A930076DD16 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD31FFB2D361A930076DD16 /* Model.swift */; };
 		DFD31FFE2D3622350076DD16 /* MorphingSymbolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD31FFD2D3622350076DD16 /* MorphingSymbolView.swift */; };
 		DFD320042D3629770076DD16 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD320032D3629770076DD16 /* IntroView.swift */; };
+		DFE1ACE72D3E0EB2008624D7 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE1ACE62D3E0EB2008624D7 /* Post.swift */; };
+		DFE1ACEC2D3E0F69008624D7 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE1ACEB2D3E0F69008624D7 /* DetailView.swift */; };
+		DFE1ACEF2D3E0FF2008624D7 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE1ACEE2D3E0FF2008624D7 /* PostViewModel.swift */; };
+		DFE1ACF22D3E182E008624D7 /* ButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE1ACF12D3E182E008624D7 /* ButtonStyle.swift */; };
+		DFE1ACF42D3E2058008624D7 /* Navigation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE1ACF32D3E2058008624D7 /* Navigation+Extension.swift */; };
 		DFEFED2B2D38F78300F18B90 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEFED2A2D38F78300F18B90 /* LoginView.swift */; };
 		DFEFED2D2D38FAE300F18B90 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DFEFED2C2D38FAE300F18B90 /* GoogleService-Info.plist */; };
 		DFEFED312D38FBC200F18B90 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEFED302D38FBC200F18B90 /* MainTabView.swift */; };
@@ -65,6 +70,11 @@
 		DFD31FFB2D361A930076DD16 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		DFD31FFD2D3622350076DD16 /* MorphingSymbolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorphingSymbolView.swift; sourceTree = "<group>"; };
 		DFD320032D3629770076DD16 /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
+		DFE1ACE62D3E0EB2008624D7 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		DFE1ACEB2D3E0F69008624D7 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		DFE1ACEE2D3E0FF2008624D7 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
+		DFE1ACF12D3E182E008624D7 /* ButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyle.swift; sourceTree = "<group>"; };
+		DFE1ACF32D3E2058008624D7 /* Navigation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation+Extension.swift"; sourceTree = "<group>"; };
 		DFEFED2A2D38F78300F18B90 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		DFEFED2C2D38FAE300F18B90 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DFEFED2E2D38FB0000F18B90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -128,20 +138,23 @@
 		DFD31FDA2D36175F0076DD16 /* CodeLounge */ = {
 			isa = PBXGroup;
 			children = (
-				DF2834C32D3A6B79009AF58A /* CodeLounge.entitlements */,
-				DFEFED2C2D38FAE300F18B90 /* GoogleService-Info.plist */,
-				DFEFED2E2D38FB0000F18B90 /* Info.plist */,
 				DFEFED3F2D38FF2E00F18B90 /* AppDelegate.swift */,
+				DF2834C32D3A6B79009AF58A /* CodeLounge.entitlements */,
 				DFD31FDB2D36175F0076DD16 /* CodeLoungeApp.swift */,
 				DFD31FDD2D36175F0076DD16 /* ContentView.swift */,
 				DFD31FEA2D3617EE0076DD16 /* Extension */,
 				DFD31FE92D36178D0076DD16 /* General */,
+				DFEFED2C2D38FAE300F18B90 /* GoogleService-Info.plist */,
+				DFEFED2E2D38FB0000F18B90 /* Info.plist */,
 				DFEFED582D3900E700F18B90 /* Model */,
+				DFE1ACE52D3E0EA4008624D7 /* New Group */,
 				DFD31FE12D3617600076DD16 /* Preview Content */,
 				DFEFED3E2D38FE5900F18B90 /* Repository */,
 				DFEFED3D2D38FDB800F18B90 /* Resources */,
 				DFD31FEF2D3618940076DD16 /* Service */,
+				DFE1ACF02D3E1819008624D7 /* Style */,
 				DFD31FF62D3619BB0076DD16 /* View */,
+				DFE1ACED2D3E0FCC008624D7 /* ViewModel */,
 			);
 			path = CodeLounge;
 			sourceTree = "<group>";
@@ -167,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				DFD31FEB2D3617FE0076DD16 /* Color+Extension.swift */,
+				DFE1ACF32D3E2058008624D7 /* Navigation+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -185,6 +199,7 @@
 		DFD31FF62D3619BB0076DD16 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DFE1ACE82D3E0F4A008624D7 /* Detail */,
 				DF770FE02D39415D00E00216 /* Nickname */,
 				DFEFED392D38FC5900F18B90 /* Profile */,
 				DFEFED322D38FC1F00F18B90 /* Cagegory */,
@@ -221,6 +236,37 @@
 				DFEFED302D38FBC200F18B90 /* MainTabView.swift */,
 			);
 			path = MainTabView;
+			sourceTree = "<group>";
+		};
+		DFE1ACE52D3E0EA4008624D7 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		DFE1ACE82D3E0F4A008624D7 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				DFE1ACEB2D3E0F69008624D7 /* DetailView.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		DFE1ACED2D3E0FCC008624D7 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				DFE1ACEE2D3E0FF2008624D7 /* PostViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		DFE1ACF02D3E1819008624D7 /* Style */ = {
+			isa = PBXGroup;
+			children = (
+				DFE1ACF12D3E182E008624D7 /* ButtonStyle.swift */,
+			);
+			path = Style;
 			sourceTree = "<group>";
 		};
 		DFEFED322D38FC1F00F18B90 /* Cagegory */ = {
@@ -272,6 +318,7 @@
 			isa = PBXGroup;
 			children = (
 				DFEFED592D3900F400F18B90 /* User.swift */,
+				DFE1ACE62D3E0EB2008624D7 /* Post.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -359,6 +406,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFE1ACEF2D3E0FF2008624D7 /* PostViewModel.swift in Sources */,
 				DFEFED382D38FC4400F18B90 /* AosView.swift in Sources */,
 				DF770FDF2D393EA400E00216 /* UserService.swift in Sources */,
 				DFD31FF32D3618A70076DD16 /* ServiceError.swift in Sources */,
@@ -371,18 +419,22 @@
 				DFEFED4E2D38FFCC00F18B90 /* AuthenticationViewModel.swift in Sources */,
 				DFD31FEE2D36188B0076DD16 /* DIContainer.swift in Sources */,
 				DFD31FDE2D36175F0076DD16 /* ContentView.swift in Sources */,
+				DFE1ACF42D3E2058008624D7 /* Navigation+Extension.swift in Sources */,
 				DFEFED3B2D38FC6200F18B90 /* ProfileView.swift in Sources */,
 				DF770FDD2D393DDC00E00216 /* Constant.swift in Sources */,
 				DFD31FEC2D3617FE0076DD16 /* Color+Extension.swift in Sources */,
+				DFE1ACEC2D3E0F69008624D7 /* DetailView.swift in Sources */,
 				DFD31FDC2D36175F0076DD16 /* CodeLoungeApp.swift in Sources */,
 				DFEFED502D38FFD900F18B90 /* AuthenticationView.swift in Sources */,
 				DFD320042D3629770076DD16 /* IntroView.swift in Sources */,
 				DFEFED532D39009400F18B90 /* UserDBRepository.swift in Sources */,
+				DFE1ACE72D3E0EB2008624D7 /* Post.swift in Sources */,
 				DFEFED2B2D38F78300F18B90 /* LoginView.swift in Sources */,
 				DFD31FF52D3618D70076DD16 /* AuthenticationService.swift in Sources */,
 				DFD31FFC2D361A930076DD16 /* Model.swift in Sources */,
 				DFEFED402D38FF2E00F18B90 /* AppDelegate.swift in Sources */,
 				DFEFED312D38FBC200F18B90 /* MainTabView.swift in Sources */,
+				DFE1ACF22D3E182E008624D7 /* ButtonStyle.swift in Sources */,
 				DFEFED552D3900A200F18B90 /* UserObject.swift in Sources */,
 				DFEFED5A2D3900F400F18B90 /* User.swift in Sources */,
 				DF4CD40E2D3A3AC500A9251D /* CategoryView.swift in Sources */,
@@ -530,6 +582,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -563,6 +616,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
