@@ -12,6 +12,8 @@ struct iOSView: View {
     @State private var selectedPost: Post?
     
     var body: some View {
+        Text("123")
+        /*
         NavigationStack {
             List {
                 if let posts = postViewModel.postsByCategory["OperatingSystems"], !posts.isEmpty {
@@ -84,10 +86,11 @@ struct iOSView: View {
             }
         }
         .tint(Color.mainWhite)
+         */
     }
 }
 
-#Preview {
-    iOSView()
-        .environmentObject(PostViewModel())
-}
+//#Preview {
+//    iOSView()
+//        .environmentObject(PostViewModel())
+//}

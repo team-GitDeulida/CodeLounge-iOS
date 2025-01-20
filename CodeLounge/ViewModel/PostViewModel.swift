@@ -9,18 +9,20 @@ import Foundation
 import FirebaseDatabase
 
 final class PostViewModel: ObservableObject {
-    // MARK: - Stub Data
-    @Published var stubPosts: [Post] = [
-        .init(id: "1", title: "제목1", content: "내용1", authorID: "인덱스", createdAt: .now),
-        .init(id: "2", title: "제목2", content: "내용2", authorID: "인덱스", createdAt: .now),
-        .init(id: "3", title: "제목3", content: "내용3", authorID: "인덱스", createdAt: .now)
-    ]
-    
-    @Published var postsByCategory: [String: [Post]] = [:] // 카테고리별 posts 저장
+    @Published var postsByCategory: [String: [Post]] = [:] // 전체 카테고리별 posts 저장
+    @Published var filteredPostsByCategory: [String: [Post]] = [:] // 검색 결과
+    @Published var searchText: String = "" // 검색어
     
     private var databaseRef: DatabaseReference = Database.database().reference()
     
-    // MARK: - Posts 데이터 가져오기
+    // 카테고리 키와 한글 이름 매핑
+    let categoryNames: [String: String] = [
+        "OperatingSystems": "운영체제",
+        "Algorithms": "알고리즘"
+    ]
+
+ 
+    // MARK: - 전체 Posts 가져오기
     func fetchAllPosts() {
         databaseRef.child("Posts").observeSingleEvent(of: .value) { snapshot in
             var categoryPosts: [String: [Post]] = [:]
@@ -30,7 +32,7 @@ final class PostViewModel: ObservableObject {
                 return
             }
             
-            for (category, posts) in value { // 카테고리별 데이터 순회
+            for (category, posts) in value {
                 var postsArray: [Post] = []
                 
                 for (postId, postData) in posts {
@@ -51,52 +53,39 @@ final class PostViewModel: ObservableObject {
                         postsArray.append(post)
                     }
                 }
-                categoryPosts[category] = postsArray // 카테고리별로 배열 저장
+                
+                postsArray.sort {
+                    if $0.createdAt != $1.createdAt {
+                        return $0.createdAt < $1.createdAt
+                    } else {
+                        return $0.title < $1.title
+                    }
+                }
+                categoryPosts[category] = postsArray
             }
             
             DispatchQueue.main.async {
                 self.postsByCategory = categoryPosts
+                self.filteredPostsByCategory = categoryPosts // 초기화
             }
         } withCancel: { error in
             print("Error fetching data: \(error.localizedDescription)")
         }
     }
-}
-
-
-
-
-
-/*
-func fetchPosts() {
-    databaseRef.child("Posts").observeSingleEvent(of: .value) { [weak self] snapshot in
-        guard let self = self else { return }
-        
-        guard let value = snapshot.value as? [String: Any] else {
-            print("posts 데이터를 가져올 수 없습니다.")
-            return
+    
+    // MARK: - 특정 카테고리와 검색어를 기준으로 필터링
+    func filterPosts(for categories: [String]) {
+        if searchText.isEmpty {
+            filteredPostsByCategory = postsByCategory.filter { categories.contains($0.key) }
+        } else {
+            filteredPostsByCategory = postsByCategory.filter { categories.contains($0.key) }
+                .mapValues { posts in
+                    posts.filter {
+                        $0.title.contains(searchText) || $0.content.contains(searchText)
+                    }
+                }
+                .filter { !$0.value.isEmpty }
         }
-        
-        
-        
-//            // Posts 데이터를 Post 모델 배열로 변환
-//            self.posts = value.compactMap { (key, data) -> Post? in
-//                guard let postDict = data as? [String: Any],
-//                      let title = postDict["title"] as? String,
-//                      let content = postDict["content"] as? String,
-//                      let authorID = postDict["authorID"] as? String,
-//                      let timestamp = postDict["createdAt"] as? Double else {
-//                    return nil
-//                }
-//                return Post(
-//                    id: key,
-//                    title: title,
-//                    content: content,
-//                    authorID: authorID,
-//                    createdAt: Date(timeIntervalSince1970: timestamp))
-//            }
-        
-        print(self.posts)
     }
 }
- */
+
