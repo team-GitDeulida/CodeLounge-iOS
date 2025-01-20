@@ -24,16 +24,16 @@ struct CodeLoungeApp: App {
     
     var body: some Scene {
         WindowGroup {
-//            AuthenticationView(authViewModel: AuthenticationViewModel(container: container))
-//                .environmentObject(postViewModel)
-//                .onAppear {
-//                    postViewModel.fetchAllPosts()
-//                }
-            MainTabView()
+            AuthenticationView(authViewModel: AuthenticationViewModel(container: container))
                 .environmentObject(postViewModel)
                 .onAppear {
                     postViewModel.fetchAllPosts()
                 }
+//            MainTabView()
+//                .environmentObject(postViewModel)
+//                .onAppear {
+//                    postViewModel.fetchAllPosts()
+//                }
         }
     }
 }
