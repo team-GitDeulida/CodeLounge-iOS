@@ -18,10 +18,11 @@ final class PostViewModel: ObservableObject {
     // 카테고리 키와 한글 이름 매핑
     let categoryNames: [String: String] = [
         "OperatingSystems": "운영체제",
-        "Algorithms": "알고리즘"
+        "Algorithms": "알고리즘",
+        "Swift": "Swift",
+        "SwiftUI": "SwiftUI"
     ]
 
- 
     // MARK: - 전체 Posts 가져오기
     func fetchAllPosts() {
         databaseRef.child("Posts").observeSingleEvent(of: .value) { snapshot in
@@ -72,20 +73,23 @@ final class PostViewModel: ObservableObject {
             print("Error fetching data: \(error.localizedDescription)")
         }
     }
-    
+
     // MARK: - 특정 카테고리와 검색어를 기준으로 필터링
-    func filterPosts(for categories: [String]) {
-        if searchText.isEmpty {
-            filteredPostsByCategory = postsByCategory.filter { categories.contains($0.key) }
-        } else {
-            filteredPostsByCategory = postsByCategory.filter { categories.contains($0.key) }
-                .mapValues { posts in
-                    posts.filter {
-                        $0.title.contains(searchText) || $0.content.contains(searchText)
+        func filterPosts(for categories: [String]) {
+            let lowercasedSearchText = searchText.lowercased() // 검색어를 소문자로 변환
+            
+            if searchText.isEmpty {
+                filteredPostsByCategory = postsByCategory.filter { categories.contains($0.key) }
+            } else {
+                filteredPostsByCategory = postsByCategory.filter { categories.contains($0.key) }
+                    .mapValues { posts in
+                        posts.filter {
+                            $0.title.lowercased().contains(lowercasedSearchText) || // 제목에서 검색
+                            $0.content.lowercased().contains(lowercasedSearchText) // 내용에서 검색
+                        }
                     }
-                }
-                .filter { !$0.value.isEmpty }
+                    .filter { !$0.value.isEmpty }
+            }
         }
-    }
 }
 

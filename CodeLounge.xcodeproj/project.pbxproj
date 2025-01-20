@@ -213,7 +213,6 @@
 		DFD31FF72D3619C00076DD16 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				DFEFED4D2D38FFCC00F18B90 /* AuthenticationViewModel.swift */,
 				DFEFED4F2D38FFD900F18B90 /* AuthenticationView.swift */,
 			);
 			path = Authentication;
@@ -256,6 +255,7 @@
 		DFE1ACED2D3E0FCC008624D7 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				DFEFED4D2D38FFCC00F18B90 /* AuthenticationViewModel.swift */,
 				DFE1ACEE2D3E0FF2008624D7 /* PostViewModel.swift */,
 			);
 			path = ViewModel;

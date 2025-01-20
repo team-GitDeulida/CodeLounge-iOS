@@ -36,4 +36,5 @@ struct ProfileView: View {
 
 #Preview {
     ProfileView()
+        .environmentObject(AuthenticationViewModel(container: DIContainer(services: Services())))
 }
