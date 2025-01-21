@@ -174,7 +174,9 @@ final class AuthenticationViewModel: ObservableObject {
                    case .failure(let error):
                        print("닉네임 업데이트 실패: \(error)") // 오류 처리
                    }
-               }, receiveValue: { _ in })
+               }, receiveValue: { [weak self] user in
+                   self?.user = user
+               })
                .store(in: &subscriptions)
             
         case .logout:

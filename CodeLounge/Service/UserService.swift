@@ -12,7 +12,7 @@ protocol UserServiceType {
     func addUser(_ user: User) -> AnyPublisher<User, ServiceError>
     func getUser(userId: String) -> AnyPublisher<User, ServiceError>
     func checkNicknameDuplicate(_ nickname: String) -> AnyPublisher<Bool, ServiceError>
-    func updateUserInfo(userId: String, nickname: String, birthday: String, gender: String) -> AnyPublisher<Void, ServiceError>
+    func updateUserInfo(userId: String, nickname: String, birthday: String, gender: String) -> AnyPublisher<User, ServiceError>
 }
 
 final class UserService: UserServiceType {
@@ -46,6 +46,29 @@ final class UserService: UserServiceType {
             .eraseToAnyPublisher()
     }
     
+    func updateUserInfo(userId: String, nickname: String, birthday: String, gender: String) -> AnyPublisher<User, ServiceError> {
+        dbRepository.getUser(userId: userId)
+            .mapError { ServiceError.error($0) } // Map DBError to ServiceError
+            .flatMap { userObject -> AnyPublisher<User, ServiceError> in
+                var updatedUserObject = userObject
+                updatedUserObject.nickname = nickname
+                updatedUserObject.birthdayDate = birthday
+                updatedUserObject.gender = gender
+                
+                // Update the user and fetch the updated user object
+                return self.dbRepository.updateUser(updatedUserObject)
+                    .mapError { ServiceError.error($0) } // Map DBError to ServiceError
+                    .flatMap { _ in
+                        self.dbRepository.getUser(userId: userId)
+                            .map { $0.toModel() }
+                            .mapError { ServiceError.error($0) }
+                    }
+                    .eraseToAnyPublisher()
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    /*
     func updateUserInfo(userId: String, nickname: String, birthday: String, gender: String) -> AnyPublisher<Void, ServiceError> {
         dbRepository.getUser(userId: userId)
             .mapError { ServiceError.error($0) }
@@ -61,7 +84,7 @@ final class UserService: UserServiceType {
                     .eraseToAnyPublisher()
             }
             .eraseToAnyPublisher()
-    }
+    }*/
 }
 
 final class StubUserService: UserServiceType {
@@ -78,7 +101,7 @@ final class StubUserService: UserServiceType {
         Empty().eraseToAnyPublisher()
     }
     
-    func updateUserInfo(userId: String, nickname: String, birthday: String, gender: String) -> AnyPublisher<Void, ServiceError> {
+    func updateUserInfo(userId: String, nickname: String, birthday: String, gender: String) -> AnyPublisher<User, ServiceError> {
         Empty().eraseToAnyPublisher()
     }
 }
