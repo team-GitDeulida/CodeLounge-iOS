@@ -15,6 +15,7 @@ enum DBError: Error {
     case updateUserError(Error)
     case emptyValue
     case invalidatedType
+    case userNotFound
     
     // MARK: - OtherDBRepository
     // ...
@@ -35,8 +36,11 @@ enum DBError: Error {
             return "❌ 에러 [emptyValue]: 값이 없습니다"
         case .invalidatedType:
             return "❌ 에러 [invalidatedType]: 유효하지 않은 타입입니다"
+        case .userNotFound:
+            return "❌ 에러 [userNotFound]: 유저가 존재하지 않습니다"
         case .error:
-            return "❌ 에러 [invalidatedType]: error"
+            return "❌ 에러 [error]: error"
+            
         }
     }
 }

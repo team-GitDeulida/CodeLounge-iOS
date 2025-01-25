@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProfileView: View {
     @EnvironmentObject private var authViewModel: AuthenticationViewModel
+    @State private var showDeleteUserAlarm: Bool = false
     
     var body: some View {
         ZStack {
@@ -93,7 +94,7 @@ struct ProfileView: View {
                     RectView(height: 50, color: .subBlack, radius: 20)
                         .overlay {
                             Button {
-                                
+                                showDeleteUserAlarm.toggle()
                             } label: {
                                 HStack {
                                     Text("계정탈퇴")
@@ -112,7 +113,16 @@ struct ProfileView: View {
                     }
                 }
                 .padding()
-                //.frame(maxWidth: .infinity)
+                .alert(isPresented: $showDeleteUserAlarm) {
+                    Alert(
+                        title: Text("계정 삭제"),
+                        message: Text("정말로 계정을 삭제하시겠습니가?"),
+                        primaryButton: .destructive(Text("삭제")) {
+                            authViewModel.send(action: .deleteUser)
+                        },
+                        secondaryButton: .cancel()
+                    )
+                }
             }
         }
     }
