@@ -42,10 +42,10 @@ struct ProfileView: View {
                             .foregroundColor(.white)
                             Spacer()
                             
-                            Image(systemName: "person.circle")
+                            Image(systemName: "chevron.right")
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
-                                .frame(width: 50, height: 50)
+                                .frame(width: 10, height: 10)
                                 .foregroundColor(Color.mainWhite)
                                 .padding(.trailing, 20)
                         }
