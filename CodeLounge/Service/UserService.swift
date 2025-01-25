@@ -13,6 +13,7 @@ protocol UserServiceType {
     func getUser(userId: String) -> AnyPublisher<User, ServiceError>
     func checkNicknameDuplicate(_ nickname: String) -> AnyPublisher<Bool, ServiceError>
     func updateUserInfo(userId: String, nickname: String, birthday: String, gender: String) -> AnyPublisher<User, ServiceError>
+    func deleteUser(userId: String) -> AnyPublisher<Void, ServiceError>
 }
 
 final class UserService: UserServiceType {
@@ -68,23 +69,11 @@ final class UserService: UserServiceType {
             .eraseToAnyPublisher()
     }
     
-    /*
-    func updateUserInfo(userId: String, nickname: String, birthday: String, gender: String) -> AnyPublisher<Void, ServiceError> {
-        dbRepository.getUser(userId: userId)
-            .mapError { ServiceError.error($0) }
-            .flatMap { userObject -> AnyPublisher<Void, ServiceError> in
-                var updatedUserObject = userObject
-                updatedUserObject.nickname = nickname  // 닉네임 업데이트
-                updatedUserObject.birthdayDate = birthday // 생일 업데이트
-                updatedUserObject.gender = gender      // 성별 업데이트
-                
-                // 업데이트
-                return self.dbRepository.updateUser(updatedUserObject)
-                    .mapError { ServiceError.error($0) } // 반환된 AnyPublisher의 에러도 변환
-                    .eraseToAnyPublisher()
-            }
+    func deleteUser(userId: String) -> AnyPublisher<Void, ServiceError> {
+        dbRepository.deleteUser(userId: userId)
+            .mapError { ServiceError.error($0) } // DBError를 ServiceError로 매핑
             .eraseToAnyPublisher()
-    }*/
+    }
 }
 
 final class StubUserService: UserServiceType {
@@ -102,6 +91,10 @@ final class StubUserService: UserServiceType {
     }
     
     func updateUserInfo(userId: String, nickname: String, birthday: String, gender: String) -> AnyPublisher<User, ServiceError> {
+        Empty().eraseToAnyPublisher()
+    }
+    
+    func deleteUser(userId: String) -> AnyPublisher<Void, ServiceError> {
         Empty().eraseToAnyPublisher()
     }
 }
