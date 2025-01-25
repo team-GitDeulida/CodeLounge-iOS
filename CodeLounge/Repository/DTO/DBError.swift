@@ -18,6 +18,7 @@ enum DBError: Error {
     
     // MARK: - OtherDBRepository
     // ...
+    case error(Error)
     
     // MARK: - 에러 상세 설명
     var errorDescription: String {
@@ -34,6 +35,8 @@ enum DBError: Error {
             return "❌ 에러 [emptyValue]: 값이 없습니다"
         case .invalidatedType:
             return "❌ 에러 [invalidatedType]: 유효하지 않은 타입입니다"
+        case .error:
+            return "❌ 에러 [invalidatedType]: error"
         }
     }
 }

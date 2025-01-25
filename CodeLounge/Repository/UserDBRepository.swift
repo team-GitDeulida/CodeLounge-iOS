@@ -14,6 +14,7 @@ protocol UserDBRepositoryType {
     func getUser(userId: String) -> AnyPublisher<UserObject, DBError>
     func loadUsers() -> AnyPublisher<[UserObject], DBError>
     func updateUser(_ object: UserObject) -> AnyPublisher<Void, DBError>
+    func deleteUser(userId: String) -> AnyPublisher<Void, DBError>
 }
 
 final class UserDBRepository: UserDBRepositoryType {
@@ -146,6 +147,20 @@ final class UserDBRepository: UserDBRepositoryType {
                 }
             }
             .eraseToAnyPublisher()
+    }
+    
+    // MARK: - 회원 탈퇴
+    func deleteUser(userId: String) -> AnyPublisher<Void, DBError> {
+        Future { promise in
+            self.db.child(DBKey.Users).child(userId).removeValue { error, _ in
+                if let error = error {
+                    promise(.failure(.error(error)))
+                } else {
+                    promise(.success(()))
+                }
+            }
+        }
+        .eraseToAnyPublisher()
     }
 }
 
