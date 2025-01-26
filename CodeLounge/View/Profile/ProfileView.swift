@@ -12,6 +12,8 @@ struct ProfileView: View {
     @State private var showDeleteUserAlarm: Bool = false
     @State private var showContactView: Bool = false
     
+    private let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown"
+    
     var body: some View {
         
         NavigationStack {
@@ -72,9 +74,16 @@ struct ProfileView: View {
                                     .fill(Color.mainGray)
                                     .frame(height: 1)
                                     .padding(.horizontal, 20)
-                                Text("버전정보")
-                                    .padding(.leading, 20)
-                                    .padding(.top, 5)
+                                
+                                HStack {
+                                    Text("버전정보")
+                                        .padding(.leading, 20)
+                                        .padding(.top, 5)
+                                    Spacer()
+                                    Text(version)
+                                        .padding(.trailing, 20)
+                                        .padding(.top, 5)
+                                }
                             }
                         }
                     
@@ -112,9 +121,10 @@ struct ProfileView: View {
                     )
                 }
                 .fullScreenCover(isPresented: $showContactView) {
-                    SafriWebView(url: URL(string: "https://www.naver.com")!)
+                    let urlString = Bundle.main.infoDictionary?["KAKAO_URL"] as? String ?? ""
+                    
+                    SafriWebView(url: URL(string: "https://" + urlString)!)
                         .ignoresSafeArea()
-
                 }
                 
             }
@@ -139,8 +149,9 @@ private struct TitleView: View {
 private struct NicknameView: View {
     @EnvironmentObject private var authViewModel: AuthenticationViewModel
     fileprivate var body: some View {
-        Button {
-            
+        NavigationLink {
+            ProfileSettingView()
+            // NicknameSettingView()
         } label: {
             HStack {
                 VStack(alignment: .leading) {

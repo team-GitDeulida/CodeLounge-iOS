@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		DF1EA5272D466004005CE05E /* SafriWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1EA5262D465FF4005CE05E /* SafriWebView.swift */; };
+		DF1EA5362D466AE2005CE05E /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = DF1EA5352D466AE2005CE05E /* Config.xcconfig */; };
+		DF1EA5382D4670C5005CE05E /* ProfileSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1EA5372D4670BD005CE05E /* ProfileSettingView.swift */; };
 		DF4CD40C2D3A2D0800A9251D /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = DF4CD40B2D3A2D0800A9251D /* .gitignore */; };
 		DF4CD40E2D3A3AC500A9251D /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4CD40D2D3A3AC500A9251D /* CategoryView.swift */; };
 		DF770FDD2D393DDC00E00216 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF770FDC2D393DDC00E00216 /* Constant.swift */; };
@@ -54,6 +56,8 @@
 
 /* Begin PBXFileReference section */
 		DF1EA5262D465FF4005CE05E /* SafriWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafriWebView.swift; sourceTree = "<group>"; };
+		DF1EA5352D466AE2005CE05E /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		DF1EA5372D4670BD005CE05E /* ProfileSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingView.swift; sourceTree = "<group>"; };
 		DF2834C32D3A6B79009AF58A /* CodeLounge.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CodeLounge.entitlements; sourceTree = "<group>"; };
 		DF4CD40B2D3A2D0800A9251D /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		DF4CD40D2D3A3AC500A9251D /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
@@ -166,6 +170,7 @@
 				DFE1ACF02D3E1819008624D7 /* Style */,
 				DFD31FF62D3619BB0076DD16 /* View */,
 				DFE1ACED2D3E0FCC008624D7 /* ViewModel */,
+				DF1EA5352D466AE2005CE05E /* Config.xcconfig */,
 			);
 			path = CodeLounge;
 			sourceTree = "<group>";
@@ -288,6 +293,7 @@
 		DFEFED392D38FC5900F18B90 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				DF1EA5372D4670BD005CE05E /* ProfileSettingView.swift */,
 				DF1EA5232D465FD0005CE05E /* SafariWeb */,
 				DFEFED3A2D38FC6200F18B90 /* ProfileView.swift */,
 			);
@@ -399,6 +405,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF4CD40C2D3A2D0800A9251D /* .gitignore in Resources */,
+				DF1EA5362D466AE2005CE05E /* Config.xcconfig in Resources */,
 				DFD31FE32D3617600076DD16 /* Preview Assets.xcassets in Resources */,
 				DFEFED2D2D38FAE300F18B90 /* GoogleService-Info.plist in Resources */,
 				DFD31FE02D3617600076DD16 /* Assets.xcassets in Resources */,
@@ -421,6 +428,7 @@
 				DFEFED342D38FC2D00F18B90 /* CSView.swift in Sources */,
 				DF770FE22D39416900E00216 /* NicknameSettingView.swift in Sources */,
 				DFEFED362D38FC3600F18B90 /* iOSView.swift in Sources */,
+				DF1EA5382D4670C5005CE05E /* ProfileSettingView.swift in Sources */,
 				DFD31FF12D36189F0076DD16 /* Services.swift in Sources */,
 				DFD31FFE2D3622350076DD16 /* MorphingSymbolView.swift in Sources */,
 				DFEFED4E2D38FFCC00F18B90 /* AuthenticationViewModel.swift in Sources */,
@@ -454,6 +462,7 @@
 /* Begin XCBuildConfiguration section */
 		DFD31FE42D3617600076DD16 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF1EA5352D466AE2005CE05E /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -517,6 +526,7 @@
 		};
 		DFD31FE52D3617600076DD16 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF1EA5352D466AE2005CE05E /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -573,6 +583,7 @@
 		};
 		DFD31FE72D3617600076DD16 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF1EA5352D466AE2005CE05E /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -596,7 +607,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.indextrown.CodeLounge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -607,6 +618,7 @@
 		};
 		DFD31FE82D3617600076DD16 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF1EA5352D466AE2005CE05E /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -630,7 +642,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.indextrown.CodeLounge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

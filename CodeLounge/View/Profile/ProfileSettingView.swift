@@ -1,17 +1,17 @@
 //
-//  NicknameSettingView.swift
+//  ProfileSettingView.swift
 //  CodeLounge
 //
-//  Created by 김동현 on 1/16/25.
+//  Created by 김동현 on 1/26/25.
 //
 
 import SwiftUI
 
-struct NicknameSettingView: View {
+struct ProfileSettingView: View {
+    @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var authViewModel: AuthenticationViewModel
     @State private var nickname: String = ""                             // 닉네임입력
     @State private var nicknameMessage: String? = nil                    // 닉네임 오류 메시지
-    @State private var slideOffset: CGFloat = UIScreen.main.bounds.width // 화면 너비만큼 오프셋 시작
     @State private var birthdate: Date = Date()                          // 기본값: 2000년 1월 1일
     @State private var isDatePickerActive: Bool = false                  // 생일입력
     @State private var selectedGender: Gender = .male                    // 성별입력
@@ -41,11 +41,6 @@ struct NicknameSettingView: View {
             Text("CodeLounge")
                 .font(.system(size: 30, weight: .bold))
                 .padding(.bottom, 10)
-                .foregroundColor(Color.mainWhite)
-                
-            Text("회원가입에 필요한 정보를 입력해주세요")
-                .font(.system(size: 22, weight: .bold))
-                .frame(maxWidth: .infinity, alignment: .leading)
                 .foregroundColor(Color.mainWhite)
             
             Spacer()
@@ -117,12 +112,10 @@ struct NicknameSettingView: View {
                         } else {
                             // 업데이트 성공
                             nicknameMessage = nil
-                            //authViewModel.send(action: .updateUserNickname(nickname))
-                            
                             let birthdayString = isoDateFormatter.string(from: birthdate)
-                            print("디버깅: \(birthdayString)")
                             let genderString = selectedGender.rawValue
                             authViewModel.send(action: .updateUserInfo(nickname, birthdayString, genderString))
+                            dismiss()
                         }
                     })
                 }
@@ -137,27 +130,22 @@ struct NicknameSettingView: View {
                     .cornerRadius(20)
             }
             .disabled(nickname.isEmpty)
+            .padding(.bottom, 50)
             
             
         }
         .padding(.horizontal, 25)
-        .offset(x: slideOffset) // x축 오프셋 적용
-        .onAppear {
-//            withAnimation(.easeOut(duration: 0.4)) { // 0.3초 동안 easeOut 애니메이션
-                slideOffset = 0 // 오프셋을 0으로 만들어 화면 중앙으로 이동
-//            }
-        }
         .sheet(isPresented: $isDatePickerActive) {
             BirthdayPickerView(birthdate: $birthdate)
                 .presentationDetents([.fraction(0.5)])
         }
-        .background(.black.gradient)
+        .background(Color.mainBlack)
     }
     
 }
 
 #Preview {
-    NicknameSettingView()
+    ProfileSettingView()
 }
 
 
