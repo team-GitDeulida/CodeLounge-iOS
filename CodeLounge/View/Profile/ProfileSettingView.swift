@@ -38,7 +38,7 @@ struct ProfileSettingView: View {
     
     var body: some View {
         VStack(spacing: 10) {
-            Text("CodeLounge")
+            Text("프로필 수정")
                 .font(.system(size: 30, weight: .bold))
                 .padding(.bottom, 10)
                 .foregroundColor(Color.mainWhite)
@@ -140,6 +140,17 @@ struct ProfileSettingView: View {
                 .presentationDetents([.fraction(0.5)])
         }
         .background(Color.mainBlack)
+        .navigationBarBackButtonHidden()
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "chevron.left")
+                }
+                .foregroundColor(Color.mainGreen)
+            }
+        }
     }
     
 }
