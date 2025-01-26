@@ -22,7 +22,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         unsetenv("GRPC_TRACE")
         
         // Firebase 디버그 로그 활성화
-        FirebaseConfiguration.shared.setLoggerLevel(.debug)
+        // FirebaseConfiguration.shared.setLoggerLevel(.debug)
         
         return true
     }
