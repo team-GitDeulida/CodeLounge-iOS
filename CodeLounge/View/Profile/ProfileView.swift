@@ -11,6 +11,7 @@ struct ProfileView: View {
     @EnvironmentObject private var authViewModel: AuthenticationViewModel
     @State private var showDeleteUserAlarm: Bool = false
     @State private var showContactView: Bool = false
+    @State private var showAnnounceView: Bool = false
     
     private let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown"
     
@@ -31,8 +32,21 @@ struct ProfileView: View {
                     RectView(height: 100, color: .subBlack, radius: 20)
                         .overlay {
                             VStack(alignment: .leading) {
+                                /*
                                 NavigationLink {
-                                    NoticeView()
+                                    // NoticeView()
+                                } label: {
+                                    HStack {
+                                        Text("공지사항")
+                                            .foregroundStyle(Color.mainWhite)
+                                            .padding(.leading, 20)
+                                            .padding(.bottom, 5)
+                                        Spacer()
+                                    }
+                                }
+                                 */
+                                Button {
+                                    showAnnounceView.toggle()
                                 } label: {
                                     HStack {
                                         Text("공지사항")
@@ -122,6 +136,12 @@ struct ProfileView: View {
                 }
                 .fullScreenCover(isPresented: $showContactView) {
                     let urlString = Bundle.main.infoDictionary?["KAKAO_URL"] as? String ?? ""
+                    
+                    SafriWebView(url: URL(string: "https://" + urlString)!)
+                        .ignoresSafeArea()
+                }
+                .fullScreenCover(isPresented: $showAnnounceView) {
+                    let urlString = Bundle.main.infoDictionary?["NOTION_URL"] as? String ?? ""
                     
                     SafriWebView(url: URL(string: "https://" + urlString)!)
                         .ignoresSafeArea()
