@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DF1EA5272D466004005CE05E /* SafriWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1EA5262D465FF4005CE05E /* SafriWebView.swift */; };
 		DF4CD40C2D3A2D0800A9251D /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = DF4CD40B2D3A2D0800A9251D /* .gitignore */; };
 		DF4CD40E2D3A3AC500A9251D /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4CD40D2D3A3AC500A9251D /* CategoryView.swift */; };
 		DF770FDD2D393DDC00E00216 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF770FDC2D393DDC00E00216 /* Constant.swift */; };
@@ -52,6 +53,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DF1EA5262D465FF4005CE05E /* SafriWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafriWebView.swift; sourceTree = "<group>"; };
 		DF2834C32D3A6B79009AF58A /* CodeLounge.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CodeLounge.entitlements; sourceTree = "<group>"; };
 		DF4CD40B2D3A2D0800A9251D /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		DF4CD40D2D3A3AC500A9251D /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
@@ -111,6 +113,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DF1EA5232D465FD0005CE05E /* SafariWeb */ = {
+			isa = PBXGroup;
+			children = (
+				DF1EA5262D465FF4005CE05E /* SafriWebView.swift */,
+			);
+			path = SafariWeb;
+			sourceTree = "<group>";
+		};
 		DF770FE02D39415D00E00216 /* Nickname */ = {
 			isa = PBXGroup;
 			children = (
@@ -278,6 +288,7 @@
 		DFEFED392D38FC5900F18B90 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				DF1EA5232D465FD0005CE05E /* SafariWeb */,
 				DFEFED3A2D38FC6200F18B90 /* ProfileView.swift */,
 			);
 			path = Profile;
@@ -414,6 +425,7 @@
 				DFD31FFE2D3622350076DD16 /* MorphingSymbolView.swift in Sources */,
 				DFEFED4E2D38FFCC00F18B90 /* AuthenticationViewModel.swift in Sources */,
 				DFD31FEE2D36188B0076DD16 /* DIContainer.swift in Sources */,
+				DF1EA5272D466004005CE05E /* SafriWebView.swift in Sources */,
 				DFD31FDE2D36175F0076DD16 /* ContentView.swift in Sources */,
 				DFE1ACF42D3E2058008624D7 /* Navigation+Extension.swift in Sources */,
 				DFEFED3B2D38FC6200F18B90 /* ProfileView.swift in Sources */,

@@ -10,35 +10,58 @@ import SwiftUI
 struct ProfileView: View {
     @EnvironmentObject private var authViewModel: AuthenticationViewModel
     @State private var showDeleteUserAlarm: Bool = false
+    @State private var showContactView: Bool = false
     
     var body: some View {
-        ZStack {
-            Color.mainBlack
-                .ignoresSafeArea()
-            
+        
+        NavigationStack {
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 20) {
-                    TitleView()
-                    .padding(.top, 20)
                     
+                    // MARK: - 타이틀
+                    TitleView()
+                        .padding(.top, 20)
+                    
+                    // MARK: - 닉네임
                     NicknameView()
-                        
+                    
+                    // MARK: - 공지사항, 문의하기
                     RectView(height: 100, color: .subBlack, radius: 20)
                         .overlay {
                             VStack(alignment: .leading) {
-                                Text("공지사항")
-                                    .padding(.leading, 20)
-                                    .padding(.bottom, 5)
+                                NavigationLink {
+                                    NoticeView()
+                                } label: {
+                                    HStack {
+                                        Text("공지사항")
+                                            .foregroundStyle(Color.mainWhite)
+                                            .padding(.leading, 20)
+                                            .padding(.bottom, 5)
+                                        Spacer()
+                                    }
+                                }
+
                                 Rectangle()
                                     .fill(Color.mainGray)
                                     .frame(height: 1)
                                     .padding(.horizontal, 20)
-                                Text("문의하기")
-                                    .padding(.leading, 20)
-                                    .padding(.top, 5)
+                                
+                                Button {
+                                    showContactView.toggle()
+                                } label: {
+                                    HStack {
+                                        Text("문의하기")
+                                            .foregroundStyle(Color.mainWhite)
+                                            .padding(.leading, 20)
+                                            .padding(.top, 5)
+                                        Spacer()
+                                    }
+                                }
+                                
                             }
                         }
                     
+                    // MARK: - 개인정보처리방침, 버전정보
                     RectView(height: 100, color: .subBlack, radius: 20)
                         .overlay {
                             VStack(alignment: .leading) {
@@ -55,6 +78,7 @@ struct ProfileView: View {
                             }
                         }
                     
+                    // MARK: - 계정탈퇴
                     RectView(height: 50, color: .subBlack, radius: 20)
                         .overlay {
                             Button {
@@ -68,6 +92,7 @@ struct ProfileView: View {
                             }
                         }
                     
+                    // MARK: - 로그아웃
                     Button {
                         authViewModel.send(action: .logout)
                     } label: {
@@ -86,7 +111,14 @@ struct ProfileView: View {
                         secondaryButton: .cancel()
                     )
                 }
+                .fullScreenCover(isPresented: $showContactView) {
+                    SafriWebView(url: URL(string: "https://www.naver.com")!)
+                        .ignoresSafeArea()
+
+                }
+                
             }
+            .background(Color.mainBlack)
         }
     }
 }
@@ -163,6 +195,15 @@ private struct NicknameView: View {
         
         let days = calendarInKorea.dateComponents([.day], from: startOfRegisterDate, to: startOfCurrentDate).day ?? 0
         return days
+    }
+}
+
+// MARK: - 공지사항 뷰
+private struct NoticeView: View {
+    fileprivate var body: some View {
+        VStack {
+            Text("공지사항")
+        }
     }
 }
 
