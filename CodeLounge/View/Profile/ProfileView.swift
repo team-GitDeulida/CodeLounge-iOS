@@ -18,45 +18,10 @@ struct ProfileView: View {
             
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 20) {
-                    HStack {
-                        Text("My Page")
-                            .font(.system(size: 35, weight: .bold))
-                            .padding(.leading, 20)
-                        
-                        Spacer()
-                    }
+                    TitleView()
                     .padding(.top, 20)
                     
-                    Button {
-                        
-                    } label: {
-                        HStack {
-                            VStack(alignment: .leading) {
-                                Text(authViewModel.user?.nickname ?? "닉네임")
-                                    .font(.system(size: 25, weight: .bold))
-                                
-                                if let registerDate = authViewModel.user?.registerDate {
-                                    Text("CodeLounge \(calculateDaySince(registerDate))일 째")
-                                }
-                            }
-                            .padding(.leading, 20)
-                            .foregroundColor(.white)
-                            Spacer()
-                            
-                            Image(systemName: "chevron.right")
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 10, height: 10)
-                                .foregroundColor(Color.mainWhite)
-                                .padding(.trailing, 20)
-                        }
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 100)
-                        .overlay {
-                            RoundedRectangle(cornerRadius: 20)
-                                .stroke(.white, lineWidth: 0.5)
-                        }
-                    }
+                    NicknameView()
                         
                     RectView(height: 100, color: .subBlack, radius: 20)
                         .overlay {
@@ -90,7 +55,6 @@ struct ProfileView: View {
                             }
                         }
                     
-                    
                     RectView(height: 50, color: .subBlack, radius: 20)
                         .overlay {
                             Button {
@@ -103,7 +67,6 @@ struct ProfileView: View {
                                 }.padding(.leading)
                             }
                         }
-                     
                     
                     Button {
                         authViewModel.send(action: .logout)
@@ -123,6 +86,55 @@ struct ProfileView: View {
                         secondaryButton: .cancel()
                     )
                 }
+            }
+        }
+    }
+}
+
+// MARK: - 타이틀 뷰
+private struct TitleView: View {
+    fileprivate var body: some View {
+        HStack {
+            Text("Profile")
+                .font(.system(size: 30, weight: .bold))
+                .padding(.leading, 10)
+            Spacer()
+        }
+    }
+}
+
+// MARK: - 닉네임 뷰
+private struct NicknameView: View {
+    @EnvironmentObject private var authViewModel: AuthenticationViewModel
+    fileprivate var body: some View {
+        Button {
+            
+        } label: {
+            HStack {
+                VStack(alignment: .leading) {
+                    Text(authViewModel.user?.nickname ?? "닉네임")
+                        .font(.system(size: 25, weight: .bold))
+                    
+                    if let registerDate = authViewModel.user?.registerDate {
+                        Text("CodeLounge \(calculateDaySince(registerDate))일 째")
+                    }
+                }
+                .padding(.leading, 20)
+                .foregroundColor(.white)
+                Spacer()
+                
+                Image(systemName: "chevron.right")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 10, height: 10)
+                    .foregroundColor(Color.mainWhite)
+                    .padding(.trailing, 20)
+            }
+            .frame(maxWidth: .infinity)
+            .frame(height: 100)
+            .overlay {
+                RoundedRectangle(cornerRadius: 20)
+                    .stroke(.white, lineWidth: 0.5)
             }
         }
     }
