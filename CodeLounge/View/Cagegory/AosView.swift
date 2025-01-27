@@ -83,7 +83,11 @@ struct AosView: View {
         .onAppear {
             postViewModel.searchText = "" // 검색어 초기화
             postViewModel.filterPosts(for: categories) // 현재 탭에 맞는 데이터 필터링
-        
+        }
+        .refreshable {
+            postViewModel.fetchAllPosts()
+            postViewModel.searchText = "" // 검색어 초기화
+            postViewModel.filterPosts(for: categories) // 현재 탭에 맞는 데이터 필터링
         }
     }
 }

@@ -75,21 +75,21 @@ final class PostViewModel: ObservableObject {
     }
 
     // MARK: - 특정 카테고리와 검색어를 기준으로 필터링
-        func filterPosts(for categories: [String]) {
-            let lowercasedSearchText = searchText.lowercased() // 검색어를 소문자로 변환
-            
-            if searchText.isEmpty {
-                filteredPostsByCategory = postsByCategory.filter { categories.contains($0.key) }
-            } else {
-                filteredPostsByCategory = postsByCategory.filter { categories.contains($0.key) }
-                    .mapValues { posts in
-                        posts.filter {
-                            $0.title.lowercased().contains(lowercasedSearchText) || // 제목에서 검색
-                            $0.content.lowercased().contains(lowercasedSearchText) // 내용에서 검색
-                        }
+    func filterPosts(for categories: [String]) {
+        let lowercasedSearchText = searchText.lowercased() // 검색어를 소문자로 변환
+        
+        if searchText.isEmpty {
+            filteredPostsByCategory = postsByCategory.filter { categories.contains($0.key) }
+        } else {
+            filteredPostsByCategory = postsByCategory.filter { categories.contains($0.key) }
+                .mapValues { posts in
+                    posts.filter {
+                        $0.title.lowercased().contains(lowercasedSearchText) || // 제목에서 검색
+                        $0.content.lowercased().contains(lowercasedSearchText) // 내용에서 검색
                     }
-                    .filter { !$0.value.isEmpty }
-            }
+                }
+                .filter { !$0.value.isEmpty }
         }
+    }
 }
 
