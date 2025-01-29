@@ -25,7 +25,6 @@ struct DetailView: View {
                 }
                 .frame(maxWidth: .infinity, alignment: .topLeading) // 좌측 상단 정렬
             }
-            
         }
         .navigationBarTitle("\(post.title)", displayMode: .inline)
         .navigationBarBackButtonHidden(true) // 기본 뒤로가기 버튼 숨김

@@ -32,11 +32,11 @@ struct CSView: View {
                         
                         // ✅ UIKit 기반 입력 필드로 변경
                         CustomTextField(text: $postViewModel.searchText, placeholder: "검색")
-                                .frame(width: 200, height: 40)
-                                .padding(.horizontal)
-                                .onChange(of: postViewModel.searchText) { _, _ in
-                                    postViewModel.filterPosts(for: categories)
-                                }
+                            .frame(width: 200, height: 40)
+                            .padding(.horizontal)
+                            .onChange(of: postViewModel.searchText) { _, _ in
+                                postViewModel.filterPosts(for: categories)
+                            }
                     }
                     .padding(.top, 30)
                     .padding(.vertical, 10)
@@ -50,6 +50,7 @@ struct CSView: View {
                                     .foregroundColor(Color.mainGreen)
                                     .font(.system(size: 17, weight: .bold))
                                     .padding(.leading, -10)
+                                    .textCase(.none) // ✅ 대소문자 자동 변환 방지
                                 ) {
                                     ForEach(posts) { post in
                                         Button {
@@ -75,11 +76,16 @@ struct CSView: View {
                             }
                         }
                     }
+                    .padding(.bottom, 70) // ✅ 하단 패딩 추가
                     .scrollContentBackground(.hidden) // ✅ 리스트 배경 제거
                     .background(Color.clear) // ✅ 리스트 배경을 완전히 투명하게 설정
+                    .scrollIndicators(.hidden) // ✅ 스크롤 인디케이터 숨기기
                     .navigationDestination(item: $selectedPost) { post in
                         DetailView(post: post)
                     }
+                }
+                .onTapGesture {
+                    CustomTextField.hideKeyboard() // ✅ 외부 터치 시 키보드 닫기
                 }
             }
             .tint(Color.mainWhite)
@@ -102,63 +108,6 @@ struct CSView: View {
     // CSView()
     MainTabView()
         .environmentObject(PostViewModel())
-}
-
-import UIKit
-
-struct CustomTextField: UIViewRepresentable {
-    @Binding var text: String
-    var placeholder: String
-    var horizontalPadding: CGFloat = 15 // ✅ 좌우 패딩 값을 하나의 변수로 추가
-
-    final class Coordinator: NSObject, UITextFieldDelegate {
-        var parent: CustomTextField
-
-        init(parent: CustomTextField) {
-            self.parent = parent
-        }
-
-        func textFieldDidChangeSelection(_ textField: UITextField) {
-            parent.text = textField.text ?? ""
-        }
-
-        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-            textField.resignFirstResponder() // ✅ 엔터 누르면 키보드 닫기
-            return true
-        }
-    }
-
-    func makeCoordinator() -> Coordinator {
-        return Coordinator(parent: self)
-    }
-
-    func makeUIView(context: Context) -> UITextField {
-        let textField = UITextField()
-        textField.delegate = context.coordinator
-        textField.placeholder = placeholder
-        textField.backgroundColor = UIColor(Color.subBlack)
-        textField.layer.cornerRadius = 10
-        textField.textColor = .white
-        textField.returnKeyType = .done
-
-        // ✅ 좌측 패딩 추가
-        let leftPaddingView = UIView(frame: CGRect(x: 0, y: 0, width: horizontalPadding, height: textField.frame.height))
-        textField.leftView = leftPaddingView
-        textField.leftViewMode = .always
-
-        // ✅ 우측 패딩 추가
-        let rightPaddingView = UIView(frame: CGRect(x: 0, y: 0, width: horizontalPadding, height: textField.frame.height))
-        textField.rightView = rightPaddingView
-        textField.rightViewMode = .always
-
-        textField.addTarget(context.coordinator, action: #selector(Coordinator.textFieldDidChangeSelection(_:)), for: .editingChanged)
-        return textField
-    }
-
-    func updateUIView(_ uiView: UITextField, context: Context) {
-        uiView.text = text
-        uiView.placeholder = placeholder
-    }
 }
 
 //.modifier(KeyboardAvoidanceModifier()) // ✅ 키보드 올라올 때 배경 깜빡임 제거

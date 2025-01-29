@@ -12,6 +12,7 @@
 		DF1EA5382D4670C5005CE05E /* ProfileSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1EA5372D4670BD005CE05E /* ProfileSettingView.swift */; };
 		DF4CD40C2D3A2D0800A9251D /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = DF4CD40B2D3A2D0800A9251D /* .gitignore */; };
 		DF4CD40E2D3A3AC500A9251D /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4CD40D2D3A3AC500A9251D /* CategoryView.swift */; };
+		DF4FE3262D4A727400C0598D /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4FE3252D4A726D00C0598D /* CustomTextField.swift */; };
 		DF770FDD2D393DDC00E00216 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF770FDC2D393DDC00E00216 /* Constant.swift */; };
 		DF770FDF2D393EA400E00216 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF770FDE2D393EA400E00216 /* UserService.swift */; };
 		DF770FE22D39416900E00216 /* NicknameSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF770FE12D39416900E00216 /* NicknameSettingView.swift */; };
@@ -61,6 +62,7 @@
 		DF2834C32D3A6B79009AF58A /* CodeLounge.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CodeLounge.entitlements; sourceTree = "<group>"; };
 		DF4CD40B2D3A2D0800A9251D /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		DF4CD40D2D3A3AC500A9251D /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
+		DF4FE3252D4A726D00C0598D /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		DF770FDC2D393DDC00E00216 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		DF770FDE2D393EA400E00216 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		DF770FE12D39416900E00216 /* NicknameSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameSettingView.swift; sourceTree = "<group>"; };
@@ -125,6 +127,14 @@
 			path = SafariWeb;
 			sourceTree = "<group>";
 		};
+		DF4FE3242D4A726900C0598D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DF4FE3252D4A726D00C0598D /* CustomTextField.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		DF770FE02D39415D00E00216 /* Nickname */ = {
 			isa = PBXGroup;
 			children = (
@@ -186,6 +196,7 @@
 		DFD31FE92D36178D0076DD16 /* General */ = {
 			isa = PBXGroup;
 			children = (
+				DF4FE3242D4A726900C0598D /* View */,
 				DFD31FED2D36188B0076DD16 /* DIContainer.swift */,
 				DF770FDC2D393DDC00E00216 /* Constant.swift */,
 			);
@@ -421,6 +432,7 @@
 			files = (
 				DFE1ACEF2D3E0FF2008624D7 /* PostViewModel.swift in Sources */,
 				DFBB8AB92D3E79EC00A09CCD /* String+Extension.swift in Sources */,
+				DF4FE3262D4A727400C0598D /* CustomTextField.swift in Sources */,
 				DFEFED382D38FC4400F18B90 /* AosView.swift in Sources */,
 				DF770FDF2D393EA400E00216 /* UserService.swift in Sources */,
 				DFD31FF32D3618A70076DD16 /* ServiceError.swift in Sources */,

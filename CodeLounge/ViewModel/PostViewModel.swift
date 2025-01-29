@@ -19,8 +19,8 @@ final class PostViewModel: ObservableObject {
     let categoryNames: [String: String] = [
         "OperatingSystems": "운영체제",
         "Algorithms": "알고리즘",
-        "Swift": "Swift",
-        "SwiftUI": "SwiftUI"
+//        "Swift": "Swift",
+//        "SwiftUI": "SwiftUI"
     ]
 
     // MARK: - 전체 Posts 가져오기

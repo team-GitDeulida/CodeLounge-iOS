@@ -13,21 +13,26 @@ struct iOSView: View {
     private let categories: [String] = ["Swift", "SwiftUI"]
     
     var body: some View {
-        VStack {
-            NavigationStack {
+        
+        NavigationStack {
+            ZStack {
+                Color.mainBlack
+                    .ignoresSafeArea() // ✅ 배경이 네비게이션 바까지 덮이도록
+                
                 VStack(spacing: 0) {
+                    
+                    // MARK: - 타이틀뷰 & 검색바
                     HStack {
+                        
                         Text("iOS")
                             .font(.system(size: 35, weight: .bold))
                             .padding(.leading, 20)
                         
                         Spacer()
                         
-                        TextField("검색", text: $postViewModel.searchText)
-                            .padding()
+                        // ✅ UIKit 기반 입력 필드로 변경
+                        CustomTextField(text: $postViewModel.searchText, placeholder: "검색")
                             .frame(width: 200, height: 40)
-                            .background(Color.subBlack)
-                            .cornerRadius(10)
                             .padding(.horizontal)
                             .onChange(of: postViewModel.searchText) { _, _ in
                                 postViewModel.filterPosts(for: categories)
@@ -37,6 +42,7 @@ struct iOSView: View {
                     .padding(.vertical, 10)
                     .background(Color.mainBlack)
                     
+                    // MARK: - 리스트
                     List {
                         ForEach(categories, id: \.self) { category in
                             if let posts = postViewModel.filteredPostsByCategory[category], !posts.isEmpty {
@@ -44,12 +50,11 @@ struct iOSView: View {
                                     .foregroundColor(Color.mainGreen)
                                     .font(.system(size: 17, weight: .bold))
                                     .padding(.leading, -10)
-                                    .textCase(nil) // 대문자 변환 비활성화
+                                    .textCase(.none) // ✅ 대소문자 자동 변환 방지
                                 ) {
                                     ForEach(posts) { post in
                                         Button {
                                             selectedPost = post
-                                            
                                         } label: {
                                             HStack {
                                                 Text(post.title)
@@ -71,12 +76,16 @@ struct iOSView: View {
                             }
                         }
                     }
-                    .scrollContentBackground(.hidden)
-                    .scrollIndicators(.hidden)
-                    .background(Color.mainBlack)
+                    .padding(.bottom, 70) // ✅ 하단 패딩 추가
+                    .scrollContentBackground(.hidden) // ✅ 리스트 배경 제거
+                    .background(Color.clear) // ✅ 리스트 배경을 완전히 투명하게 설정
+                    .scrollIndicators(.hidden) // ✅ 스크롤 인디케이터 숨기기
                     .navigationDestination(item: $selectedPost) { post in
                         DetailView(post: post)
                     }
+                }
+                .onTapGesture {
+                    CustomTextField.hideKeyboard() // ✅ 외부 터치 시 키보드 닫기
                 }
             }
             .tint(Color.mainWhite)
