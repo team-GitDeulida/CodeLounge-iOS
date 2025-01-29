@@ -76,7 +76,6 @@ struct iOSView: View {
                             }
                         }
                     }
-                    .padding(.bottom, 70) // ✅ 하단 패딩 추가
                     .scrollContentBackground(.hidden) // ✅ 리스트 배경 제거
                     .background(Color.clear) // ✅ 리스트 배경을 완전히 투명하게 설정
                     .scrollIndicators(.hidden) // ✅ 스크롤 인디케이터 숨기기

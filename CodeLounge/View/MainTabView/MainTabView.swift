@@ -117,6 +117,7 @@ struct MainTabView: View {
                     ProfileView()
                 }
             }
+            .padding(.bottom, 100)
             
             VStack(spacing: 0) {
                 Spacer()
@@ -166,5 +167,6 @@ struct MainTabView: View {
 #Preview {
     MainTabView()
         .environmentObject(PostViewModel()) // 필요한 객체 주입
+        .environmentObject(AuthenticationViewModel(container: DIContainer(services: Services())))
 }
 
