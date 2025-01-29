@@ -108,9 +108,10 @@ import UIKit
 
 struct CustomTextField: UIViewRepresentable {
     @Binding var text: String
-    var placeholder: String // ✅ 플레이스홀더 추가
+    var placeholder: String
+    var horizontalPadding: CGFloat = 15 // ✅ 좌우 패딩 값을 하나의 변수로 추가
 
-    class Coordinator: NSObject, UITextFieldDelegate {
+    final class Coordinator: NSObject, UITextFieldDelegate {
         var parent: CustomTextField
 
         init(parent: CustomTextField) {
@@ -134,16 +135,21 @@ struct CustomTextField: UIViewRepresentable {
     func makeUIView(context: Context) -> UITextField {
         let textField = UITextField()
         textField.delegate = context.coordinator
-        textField.placeholder = placeholder // ✅ 플레이스홀더 적용
-        textField.backgroundColor = UIColor(Color.subBlack) // ✅ 배경색
+        textField.placeholder = placeholder
+        textField.backgroundColor = UIColor(Color.subBlack)
         textField.layer.cornerRadius = 10
-        textField.textColor = .white // ✅ 입력된 텍스트 색상
-        textField.returnKeyType = .done // ✅ 완료 버튼 스타일
-        
-        // ✅ 왼쪽 패딩 추가
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: textField.frame.height))
-        textField.leftView = paddingView
+        textField.textColor = .white
+        textField.returnKeyType = .done
+
+        // ✅ 좌측 패딩 추가
+        let leftPaddingView = UIView(frame: CGRect(x: 0, y: 0, width: horizontalPadding, height: textField.frame.height))
+        textField.leftView = leftPaddingView
         textField.leftViewMode = .always
+
+        // ✅ 우측 패딩 추가
+        let rightPaddingView = UIView(frame: CGRect(x: 0, y: 0, width: horizontalPadding, height: textField.frame.height))
+        textField.rightView = rightPaddingView
+        textField.rightViewMode = .always
 
         textField.addTarget(context.coordinator, action: #selector(Coordinator.textFieldDidChangeSelection(_:)), for: .editingChanged)
         return textField
@@ -151,7 +157,7 @@ struct CustomTextField: UIViewRepresentable {
 
     func updateUIView(_ uiView: UITextField, context: Context) {
         uiView.text = text
-        uiView.placeholder = placeholder // ✅ 업데이트 시 플레이스홀더 적용
+        uiView.placeholder = placeholder
     }
 }
 
