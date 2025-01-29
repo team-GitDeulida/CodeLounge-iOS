@@ -183,7 +183,7 @@ private struct BirthdayPickerView: View {
             .padding()
             .overlay(
                 RoundedRectangle(cornerRadius: 20)
-                    .stroke(.black, lineWidth: 2)
+                    .stroke(Color.mainWhite, lineWidth: 1.5)
             )
             .environment(\.locale, Locale(identifier: "ko_KR"))
             
@@ -196,8 +196,8 @@ private struct BirthdayPickerView: View {
                 Text("완료")
                     .padding()
                     .frame(maxWidth: .infinity)
-                    .foregroundColor(Color.white)
-                    .background(Color.mainBlack)
+                    .foregroundColor(Color.mainBlack)
+                    .background(Color.mainWhite)
                     .cornerRadius(20)
             }
             .padding(.horizontal, 40)
