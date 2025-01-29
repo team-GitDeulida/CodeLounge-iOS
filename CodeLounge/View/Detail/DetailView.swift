@@ -92,7 +92,8 @@ struct DetailView: View {
                             } else { // 일반 텍스트
                                 formattedText = formattedText
                                     + Text(part)
-                                        .font(.body)
+                                        //.font(.body)
+                                        .font(.system(size: 15))
                                         .foregroundColor(.white)
                             }
                         }

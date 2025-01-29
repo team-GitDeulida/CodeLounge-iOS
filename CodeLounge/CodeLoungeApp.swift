@@ -29,11 +29,6 @@ struct CodeLoungeApp: App {
                 .onAppear {
                     postViewModel.fetchAllPosts()
                 }
-//            MainTabView()
-//                .environmentObject(postViewModel)
-//                .onAppear {
-//                    postViewModel.fetchAllPosts()
-//                }
         }
     }
 }

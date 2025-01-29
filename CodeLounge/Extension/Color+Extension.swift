@@ -35,7 +35,7 @@ extension Color {
             .sRGB,
             red: red,
             green: green,
-            blue: blue, 
+            blue: blue,
             opacity: opacity
         )
     }
