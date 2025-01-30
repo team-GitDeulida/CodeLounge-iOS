@@ -197,8 +197,8 @@ private struct BirthdayPickerView: View {
                 Text("완료")
                     .padding()
                     .frame(maxWidth: .infinity)
-                    .foregroundColor(Color.white)
-                    .background(Color.mainBlack)
+                    .foregroundColor(Color.mainBlack)
+                    .background(Color.mainWhite)
                     .cornerRadius(20)
             }
             .padding(.horizontal, 40)
