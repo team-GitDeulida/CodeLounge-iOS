@@ -9,6 +9,7 @@ import Foundation
 import Combine
 import AuthenticationServices
 import FirebaseAuth
+import SwiftUI
 
 enum AuthenticationState {
     case unauthenticated
@@ -30,11 +31,15 @@ final class AuthenticationViewModel: ObservableObject {
         case deleteUser
     }
     
+    @AppStorage("nickname") private var storedNickname: String = ""
+    @AppStorage("registerDate") private var storedRegisterDate: Int = 0
+    
     @Published var authenticationState: AuthenticationState = .unauthenticated
     @Published var isLoading: Bool = false
     
     var userId: String?
     var user: User?
+
     private var container: DIContainer
     private var subscriptions = Set<AnyCancellable>()
     private var currentNonce: String?
@@ -106,6 +111,10 @@ final class AuthenticationViewModel: ObservableObject {
             } else {
                 self.authenticationState = .authenticated
                 self.user = user
+                
+                // 추가
+                self.storedNickname = user.nickname
+                self.storedRegisterDate = calculateDaySince(user.registerDate ?? Date())
             }
             
         case let .appleLoginCompletion(result):
@@ -178,6 +187,10 @@ final class AuthenticationViewModel: ObservableObject {
                    }
                }, receiveValue: { [weak self] user in
                    self?.user = user
+                   
+                   // 추가
+                   self?.storedNickname = user.nickname
+                   self?.storedRegisterDate = calculateDaySince(user.registerDate ?? Date())
                })
                .store(in: &subscriptions)
             

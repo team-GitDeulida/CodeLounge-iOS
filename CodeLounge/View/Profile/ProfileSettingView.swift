@@ -15,6 +15,9 @@ struct ProfileSettingView: View {
     @State private var birthdate: Date = Date()                          // 기본값: 2000년 1월 1일
     @State private var isDatePickerActive: Bool = false                  // 생일입력
     @State private var selectedGender: Gender = .male                    // 성별입력
+    
+    @AppStorage("nickname") private var storedNickname: String = ""
+    @AppStorage("registerDate") private var storedRegisterDate: Int = 0
 
     
     // 닉네임이 유효한지 검사하는 프로퍼티
@@ -116,6 +119,8 @@ struct ProfileSettingView: View {
                             let genderString = selectedGender.rawValue
                             authViewModel.send(action: .updateUserInfo(nickname, birthdayString, genderString))
                             dismiss()
+                            
+                            
                         }
                     })
                 }

@@ -228,21 +228,6 @@ private struct NicknameView: View {
         let days = calendarInKorea.dateComponents([.day], from: registerDate, to: currentDate).day ?? 0
         return days
     }
-    
-    // MARK: - 날짜 비교 함수
-    func calculateDaySince(_ registerDate: Date) -> Int {
-        let currentDate = Date()
-        let calendar = Calendar(identifier: .gregorian)
-        var calendarInKorea = calendar
-        calendarInKorea.timeZone = TimeZone(identifier: "Asia/Seoul")! // 한국 시간대 설정
-        
-        // 날짜 단위로 비교하여 차이를 계산
-        let startOfRegisterDate = calendarInKorea.startOfDay(for: registerDate)
-        let startOfCurrentDate = calendarInKorea.startOfDay(for: currentDate)
-        
-        let days = calendarInKorea.dateComponents([.day], from: startOfRegisterDate, to: startOfCurrentDate).day ?? 0
-        return days
-    }
 }
 
 // MARK: - 공지사항 뷰
@@ -258,3 +243,4 @@ private struct NoticeView: View {
     ProfileView()
         .environmentObject(AuthenticationViewModel(container: DIContainer(services: Services())))
 }
+

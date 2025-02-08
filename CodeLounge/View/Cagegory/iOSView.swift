@@ -8,87 +8,99 @@
 import SwiftUI
 
 struct iOSView: View {
+    @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var postViewModel: PostViewModel
     @State private var selectedPost: Post?
     private let categories: [String] = ["Swift", "SwiftUI"]
     
     var body: some View {
         
-        NavigationStack {
-            ZStack {
-                Color.mainBlack
-                    .ignoresSafeArea() // ✅ 배경이 네비게이션 바까지 덮이도록
+        ZStack {
+            Color.mainBlack
+                .ignoresSafeArea() // ✅ 배경이 네비게이션 바까지 덮이도록
+            
+            VStack(spacing: 0) {
                 
-                VStack(spacing: 0) {
+                // MARK: - 타이틀뷰 & 검색바
+                HStack {
                     
-                    // MARK: - 타이틀뷰 & 검색바
-                    HStack {
-                        
-                        Text("iOS")
-                            .font(.system(size: 35, weight: .bold))
-                            .padding(.leading, 20)
-                        
-                        Spacer()
-                        
-                        // ✅ UIKit 기반 입력 필드로 변경
-                        CustomTextField(text: $postViewModel.searchText, placeholder: "검색")
-                            .frame(width: 200, height: 40)
-                            .padding(.horizontal)
-                            .onChange(of: postViewModel.searchText) { _, _ in
-                                postViewModel.filterPosts(for: categories)
-                            }
-                    }
-                    .padding(.top, 30)
-                    .padding(.vertical, 10)
-                    .background(Color.mainBlack)
+                    Text("iOS")
+                        .font(.system(size: 35, weight: .bold))
+                        .padding(.leading, 20)
                     
-                    // MARK: - 리스트
-                    List {
-                        ForEach(categories, id: \.self) { category in
-                            if let posts = postViewModel.filteredPostsByCategory[category], !posts.isEmpty {
-                                Section(header: Text(postViewModel.categoryNames[category] ?? category.capitalizeFirstLetter())
-                                    .foregroundColor(Color.mainGreen)
-                                    .font(.system(size: 17, weight: .bold))
-                                    .padding(.leading, -10)
-                                    .textCase(.none) // ✅ 대소문자 자동 변환 방지
-                                ) {
-                                    ForEach(posts) { post in
-                                        Button {
-                                            selectedPost = post
-                                        } label: {
-                                            HStack {
-                                                Text(post.title)
-                                                    .font(.headline)
-                                                    .foregroundStyle(.white)
-                                                
-                                                Spacer()
-                                                
-                                                Image(systemName: "chevron.right")
-                                                    .font(.system(size: 15))
-                                                    .foregroundColor(.gray)
-                                            }
+                    Spacer()
+                    
+                    // ✅ UIKit 기반 입력 필드로 변경
+                    CustomTextField(text: $postViewModel.searchText, placeholder: "검색")
+                        .frame(width: 200, height: 40)
+                        .padding(.horizontal)
+                        .onChange(of: postViewModel.searchText) { _, _ in
+                            postViewModel.filterPosts(for: categories)
+                        }
+                }
+                .padding(.top, 5)
+                .padding(.vertical, 10)
+                .background(Color.mainBlack)
+                
+                // MARK: - 리스트
+                List {
+                    ForEach(categories, id: \.self) { category in
+                        if let posts = postViewModel.filteredPostsByCategory[category], !posts.isEmpty {
+                            Section(header: Text(postViewModel.categoryNames[category] ?? category.capitalizeFirstLetter())
+                                .foregroundColor(Color.mainGreen)
+                                .font(.system(size: 17, weight: .bold))
+                                .padding(.leading, -10)
+                                .textCase(.none) // ✅ 대소문자 자동 변환 방지
+                            ) {
+                                ForEach(posts) { post in
+                                    Button {
+                                        selectedPost = post
+                                    } label: {
+                                        HStack {
+                                            Text(post.title)
+                                                .font(.headline)
+                                                .foregroundStyle(.white)
+                                            
+                                            Spacer()
+                                            
+                                            Image(systemName: "chevron.right")
+                                                .font(.system(size: 15))
+                                                .foregroundColor(.gray)
                                         }
-                                        .buttonStyle(ListRowButton())
-                                        .listRowBackground(Color.subBlack)
-                                        .listRowSeparatorTint(Color.gray.opacity(0.4), edges: .bottom)
                                     }
+                                    .buttonStyle(ListRowButton())
+                                    .listRowBackground(Color.subBlack)
+                                    .listRowSeparatorTint(Color.gray.opacity(0.4), edges: .bottom)
                                 }
                             }
                         }
                     }
-                    .scrollContentBackground(.hidden) // ✅ 리스트 배경 제거
-                    .background(Color.clear) // ✅ 리스트 배경을 완전히 투명하게 설정
-                    .scrollIndicators(.hidden) // ✅ 스크롤 인디케이터 숨기기
-                    .navigationDestination(item: $selectedPost) { post in
-                        DetailView(post: post)
-                    }
                 }
-                .onTapGesture {
-                    CustomTextField.hideKeyboard() // ✅ 외부 터치 시 키보드 닫기
+                .scrollContentBackground(.hidden) // ✅ 리스트 배경 제거
+                .background(Color.clear) // ✅ 리스트 배경을 완전히 투명하게 설정
+                .scrollIndicators(.hidden) // ✅ 스크롤 인디케이터 숨기기
+                .navigationDestination(item: $selectedPost) { post in
+                    DetailView(post: post)
                 }
+                .padding(.bottom, 20)
             }
-            .tint(Color.mainWhite)
+            .onTapGesture {
+                CustomTextField.hideKeyboard() // ✅ 외부 터치 시 키보드 닫기
+            }
         }
+        .tint(Color.mainWhite)
+        .navigationBarBackButtonHidden(true) // 기본 뒤로가기 버튼 숨김
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "chevron.left")
+                }
+                .foregroundColor(Color.mainGreen)
+            }
+        }
+
         .onAppear {
             postViewModel.searchText = "" // 검색어 초기화
             postViewModel.filterPosts(for: categories) // 현재 탭에 맞는 데이터 필터링

@@ -8,19 +8,13 @@
 import SwiftUI
 
 enum MainTabType: CaseIterable {
-    case csView
-    case iosView
-    case aosView
+    case homeView
     case profileView
     
     var title: String {
         switch self {
-        case .csView:
-            return "CS"
-        case .iosView:
-            return "iOS"
-        case .aosView:
-            return "aOS"
+        case .homeView:
+            return "Home"
         case .profileView:
             return "profile"
         }
@@ -28,78 +22,16 @@ enum MainTabType: CaseIterable {
     
     func imageName(isSelected: Bool) -> String {
         switch self {
-        case .csView:
-            return isSelected ? "desktopcomputer" : "desktopcomputer"
-        case .iosView:
-            return isSelected ? "apple.logo" : "apple.logo"
-        case .aosView:
-            return isSelected ? "smartphone" : "smartphone"
+        case .homeView:
+            return isSelected ? "folder.fill" : "folder.fill"
         case .profileView:
             return isSelected ? "person.fill" : "person"
         }
     }
 }
 
-struct MainTabView_save: View {
-    @State private var selectedTab: MainTabType = .csView
-    
-    var body: some View {
-        VStack(spacing: 0) {
-            VStack {
-                switch selectedTab {
-                case .csView:
-                    CSView()
-                case .iosView:
-                    iOSView()
-                case .aosView:
-                    AosView()
-                case .profileView:
-                    ProfileView()
-                }
-            }
-
-            VStack(spacing: 0) {
-                Divider()
-                    .background(Color.gray.opacity(0.3))
-                    .padding(.bottom, 15)
-                
-                HStack {
-                    ForEach(MainTabType.allCases, id: \.self) { tab in
-                        Spacer()
-                            .frame(width: 10)
-                        
-                        VStack(spacing: 4) {
-                            Image(systemName: tab.imageName(isSelected: selectedTab == tab))
-                                .font(.system(size: 24))
-                                .foregroundColor(selectedTab == tab ? .white : .gray)
-                            Text(tab.title)
-                                .font(.caption2)
-                                .lineLimit(1)    // 한 줄로 고정해 잘리지 않도록 설정
-                                .foregroundColor(selectedTab == tab ? .white : .gray)
-                        }
-                        .padding(.horizontal, 20) // 좌우 터치 영역 추가
-                        .frame(maxWidth: .infinity)
-                        .onTapGesture {
-                            // 진동 발생
-                            let generator = UIImpactFeedbackGenerator(style: .medium)
-                            generator.impactOccurred()
-                            selectedTab = tab
-                        }
-                        Spacer()
-                            .frame(width: 10)
-                    }
-                    .frame(height: 50) // 고정 높이
-                }
-            }
-            .background(.black)
-        }
-        .ignoresSafeArea(.keyboard, edges: .bottom)
-    }
-}
-
 struct MainTabView: View {
-    
-    @State private var selectedTab: MainTabType = .csView
+    @State private var selectedTab: MainTabType = .homeView
     
     var body: some View {
         ZStack {
@@ -107,17 +39,13 @@ struct MainTabView: View {
             
             VStack(spacing: 0) {
                 switch selectedTab {
-                case .csView:
-                    CSView()
-                case .iosView:
-                    iOSView()
-                case .aosView:
-                    AosView()
+                case .homeView:
+                    HomeView()
                 case .profileView:
                     ProfileView()
                 }
             }
-            .padding(.bottom, 100)
+            .padding(.bottom, 80)
             
             VStack(spacing: 0) {
                 Spacer()
@@ -126,6 +54,7 @@ struct MainTabView: View {
                     .fill(Color.gray.opacity(0.3))
                     .frame(height: 1)
                 
+                // MARK: - 탭바
                 HStack {
                     ForEach(MainTabType.allCases, id: \.self) { tab in
                         
@@ -164,6 +93,7 @@ struct MainTabView: View {
         .ignoresSafeArea(edges: .all)
     }
 }
+
 #Preview {
     MainTabView()
         .environmentObject(PostViewModel()) // 필요한 객체 주입
