@@ -1,11 +1,42 @@
 # This workflow will build a Swift project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-swift
 
-name: Build and Deploy
+# name: Build and Deploy
+
+# on:
+#   push:
+#     branches: [ "release" ]
+
+# jobs:
+#   build:
+#     runs-on: macos-latest
+#     env:
+#       APP_STORE_CONNECT_API_KEY_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_KEY_ID }}
+#       APP_STORE_CONNECT_API_KEY_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ISSUER_ID }}
+#       APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_CONTENT }}
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v2
+
+#       - name: Set up Ruby
+#         uses: ruby/setup-ruby@v1
+#         with:
+#           ruby-version: 3.1.2
+
+#       - name: Install dependencies
+#         run: bundle install
+
+#       - name: Run fastlane beta
+#         run: bundle exec fastlane beta
+
+
+
+name: Build and Deploy iOS App
 
 on:
   push:
-    branches: [ "release" ]
+    branches:
+      - main
 
 jobs:
   build:
@@ -15,15 +46,22 @@ jobs:
       APP_STORE_CONNECT_API_KEY_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ISSUER_ID }}
       APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_CONTENT }}
     steps:
-      - name: Checkout code
+      - name: Checkout Code
         uses: actions/checkout@v2
+
+      # SSH 키를 설치하여 match repo에 접근하도록 설정
+      - name: Install SSH Key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_KEY }}
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.1.2
+          ruby-version: '3.1.2'
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: bundle install
 
       - name: Run fastlane beta
