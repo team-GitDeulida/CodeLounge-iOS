@@ -45,16 +45,25 @@ jobs:
       APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_CONTENT }}
       MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
     steps:
-      # 프로젝트 레포 클론 (일반 인증 방식 사용)
-      - name: Checkout Project Repo
+      - name: Checkout Code
         uses: actions/checkout@v2
 
-      # SSH 키 설치 (Deploy Key는 private 레포 접근에 사용)
-      - name: Install SSH Key for Private Repo
+      - name: Install SSH Key
         uses: shimataro/ssh-key-action@v2
         with:
-          key: ${{ secrets.SSH_KEY }}         # Deploy Key로 사용
+          key: ${{ secrets.SSH_KEY }}
           known_hosts: ${{ secrets.KNOWN_HOSTS }}
+
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "Host github.com
+                IdentityFile ~/.ssh/id_rsa_deploy
+                IdentitiesOnly yes" >> ~/.ssh/config
+          chmod 600 ~/.ssh/config
+
+      - name: List SSH Keys
+        run: ssh-add -l
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
