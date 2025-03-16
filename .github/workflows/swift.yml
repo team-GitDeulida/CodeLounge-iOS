@@ -29,7 +29,55 @@
 #       - name: Run fastlane beta
 #         run: bundle exec fastlane beta
 
-name: Build and Deploy iOS App
+# name: Build and Deploy iOS App
+
+# on:
+#   push:
+#     branches:
+#       - release
+
+# jobs:
+#   build:
+#     runs-on: macos-latest
+#     env:
+#       APP_STORE_CONNECT_API_KEY_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_KEY_ID }}
+#       APP_STORE_CONNECT_API_KEY_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ISSUER_ID }}
+#       APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_CONTENT }}
+#       MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+#     steps:
+#       - name: Checkout Code
+#         uses: actions/checkout@v2
+
+#       - name: Install SSH Key
+#         uses: shimataro/ssh-key-action@v2
+#         with:
+#           key: ${{ secrets.SSH_KEY }}
+#           known_hosts: ${{ secrets.KNOWN_HOSTS }}
+#           name: id_rsa_deploy
+
+#       - name: Configure SSH
+#         run: |
+#           mkdir -p ~/.ssh
+#           echo "Host github.com
+#                 IdentityFile ~/.ssh/id_rsa_deploy
+#                 IdentitiesOnly yes" >> ~/.ssh/config
+#           chmod 600 ~/.ssh/config
+
+#       - name: List SSH Keys
+#         run: ssh-add -l
+
+#       - name: Set up Ruby
+#         uses: ruby/setup-ruby@v1
+#         with:
+#           ruby-version: '3.1.2'
+
+#       - name: Install Dependencies
+#         run: bundle install
+
+#       - name: Run fastlane beta
+#         run: bundle exec fastlane beta
+
+name: Release Beta Build
 
 on:
   push:
@@ -37,41 +85,26 @@ on:
       - release
 
 jobs:
-  build:
+  beta:
     runs-on: macos-latest
-    env:
-      APP_STORE_CONNECT_API_KEY_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_KEY_ID }}
-      APP_STORE_CONNECT_API_KEY_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ISSUER_ID }}
-      APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_CONTENT }}
-      MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
     steps:
-      - name: Checkout Code
+      - name: Checkout Repository
         uses: actions/checkout@v2
-
-      - name: Install SSH Key
-        uses: shimataro/ssh-key-action@v2
-        with:
-          key: ${{ secrets.SSH_KEY }}
-          known_hosts: ${{ secrets.KNOWN_HOSTS }}
-
-      - name: Configure SSH
-        run: |
-          mkdir -p ~/.ssh
-          echo "Host github.com
-                IdentityFile ~/.ssh/id_rsa_deploy
-                IdentitiesOnly yes" >> ~/.ssh/config
-          chmod 600 ~/.ssh/config
-
-      - name: List SSH Keys
-        run: ssh-add -l
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.1.2'
+          ruby-version: '2.7'  # 프로젝트에 맞는 Ruby 버전을 지정하세요.
 
       - name: Install Dependencies
-        run: bundle install
+        run: |
+          gem install bundler
+          bundle install
 
-      - name: Run fastlane beta
-        run: bundle exec fastlane beta
+      - name: Run Fastlane Beta Lane
+        env:
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          APP_STORE_CONNECT_API_KEY_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_KEY_ID }}
+          APP_STORE_CONNECT_API_KEY_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ISSUER_ID }}
+          APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_CONTENT }}
+        run: fastlane beta
