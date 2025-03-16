@@ -21,6 +21,9 @@ default_platform(:ios)
 platform :ios do
   desc "Push a new beta build to TestFlight using API key authentication"
   lane :beta do
+    # 테스트
+    UI.message("MATCH_PASSWORD is set: #{ENV['MATCH_PASSWORD'] ? 'YES' : 'NO'}")
+
     # 프로비저닝 및 인증서 다운로드
     match(type: "appstore")
 
