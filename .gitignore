@@ -7,3 +7,5 @@
 # Config
 *.xcconfig
 
+.env
+*.ipa

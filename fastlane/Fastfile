@@ -1,0 +1,55 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+require 'dotenv'
+Dotenv.load
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Push a new beta build to TestFlight using API key authentication"
+  lane :beta do
+    # 프로비저닝 및 인증서 다운로드
+    match(type: "appstore")
+
+    # CFBundleShortVersionString 업데이트 (버전 번호 증가)
+    increment_version_number(bump_type: "patch")
+    
+    # 빌드 전 기존 파생 데이터 삭제
+    clear_derived_data
+
+    # 최신 TestFlight 빌드 번호에 +1 하여 새로운 빌드 번호 설정
+    increment_build_number(
+      build_number: latest_testflight_build_number + 1
+    )
+    
+    # ipa 파일 생성 (clean build, export_method: app-store)
+    gym(
+      clean: true,
+      export_method: "app-store"
+    )
+    
+    # App Store Connect API 키 생성 (환경변수로부터 값 불러오기)
+    api_key = app_store_connect_api_key(
+      key_id: ENV["APP_STORE_CONNECT_API_KEY_KEY_ID"],
+      issuer_id: ENV["APP_STORE_CONNECT_API_KEY_ISSUER_ID"],
+      key_content: ENV["APP_STORE_CONNECT_API_KEY_CONTENT"],
+      in_house: false
+    )
+    
+    # API 키 인증을 사용하여 TestFlight에 업로드
+    upload_to_testflight(api_key: api_key)
+  end
+end
