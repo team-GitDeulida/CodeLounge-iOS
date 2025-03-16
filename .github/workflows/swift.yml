@@ -29,7 +29,6 @@
 #       - name: Run fastlane beta
 #         run: bundle exec fastlane beta
 
-
 name: Build and Deploy iOS App
 
 on:
@@ -46,13 +45,15 @@ jobs:
       APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_CONTENT }}
       MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
     steps:
-      - name: Checkout Code
+      # 프로젝트 레포 클론 (일반 인증 방식 사용)
+      - name: Checkout Project Repo
         uses: actions/checkout@v2
 
-      - name: Install SSH Key
+      # SSH 키 설치 (Deploy Key는 private 레포 접근에 사용)
+      - name: Install SSH Key for Private Repo
         uses: shimataro/ssh-key-action@v2
         with:
-          key: ${{ secrets.SSH_KEY }}
+          key: ${{ secrets.SSH_KEY }}         # Deploy Key로 사용
           known_hosts: ${{ secrets.KNOWN_HOSTS }}
 
       - name: Set up Ruby
