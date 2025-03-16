@@ -1,4 +1,4 @@
-git_url("git@github.com:team-GitDeulida/CodeLounge-Private.git")
+git_url("https://github.com/team-GitDeulida/CodeLounge-Private.git")
 
 storage_mode("git")
 
