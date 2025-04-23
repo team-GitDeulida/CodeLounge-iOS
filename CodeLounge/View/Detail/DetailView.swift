@@ -62,7 +62,7 @@ struct DetailView: View {
                                 .font(.caption)
                                 .foregroundColor(.gray)
                             Text(codeContent.trimmingCharacters(in: .whitespacesAndNewlines))
-                                .font(.system(size: 13, design: .monospaced))
+                                .font(.system(size: 13.scaled, design: .monospaced))
                                 .padding()
                                 .background(Color.gray.opacity(0.2))
                                 .cornerRadius(8)
@@ -77,7 +77,7 @@ struct DetailView: View {
                     if index % 2 == 1 { // `**`로 감싸진 텍스트
                         formattedText = formattedText
                             + Text(subcomponent)
-                                .font(.system(size: 20, weight: .bold))
+                            .font(.system(size: 20.scaled, weight: .bold))
                                 .foregroundColor(.mainGreen)
                     } else { // 일반 텍스트
                         let underlinedComponents = subcomponent.components(separatedBy: "##")
@@ -86,27 +86,28 @@ struct DetailView: View {
                                 formattedText = formattedText
                                     + Text(part)
                                         .underline()
-                                        .font(.body)
+                                        //.font(.body)
+                                        .font(.system(size: 17.scaled))
                                         .foregroundColor(.mainGreen)
                             } else { // 일반 텍스트
                                 formattedText = formattedText
                                     + Text(part)
                                         //.font(.body)
-                                        .font(.system(size: 15))
+                                    .font(.system(size: 15.scaled))
                                         .foregroundColor(.white)
                             }
                         }
                     }
                 }
                 formattedViews.append(
-                    AnyView(formattedText.lineSpacing(8))
+                    AnyView(formattedText.lineSpacing(8.scaled))
                 )
             }
         }
 
         return AnyView(
             ScrollView {
-                VStack(alignment: .leading, spacing: 12) {
+                VStack(alignment: .leading, spacing: 12.scaled) {
                     ForEach(0..<formattedViews.count, id: \.self) { index in
                         formattedViews[index]
                     }

@@ -16,6 +16,7 @@
 		DF770FDD2D393DDC00E00216 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF770FDC2D393DDC00E00216 /* Constant.swift */; };
 		DF770FDF2D393EA400E00216 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF770FDE2D393EA400E00216 /* UserService.swift */; };
 		DF770FE22D39416900E00216 /* NicknameSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF770FE12D39416900E00216 /* NicknameSettingView.swift */; };
+		DFA616E72DB8A1DA0004A063 /* ScaleKit in Frameworks */ = {isa = PBXBuildFile; productRef = DFA616E62DB8A1DA0004A063 /* ScaleKit */; };
 		DFBB8AB92D3E79EC00A09CCD /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBB8AB82D3E79EC00A09CCD /* String+Extension.swift */; };
 		DFD31FDC2D36175F0076DD16 /* CodeLoungeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD31FDB2D36175F0076DD16 /* CodeLoungeApp.swift */; };
 		DFD31FDE2D36175F0076DD16 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD31FDD2D36175F0076DD16 /* ContentView.swift */; };
@@ -110,6 +111,7 @@
 			files = (
 				DFEFED4C2D38FF9400F18B90 /* GoogleSignInSwift in Frameworks */,
 				DFEFED472D38FF8200F18B90 /* FirebaseDatabase in Frameworks */,
+				DFA616E72DB8A1DA0004A063 /* ScaleKit in Frameworks */,
 				DFEFED4A2D38FF9400F18B90 /* GoogleSignIn in Frameworks */,
 				DFEFED452D38FF8200F18B90 /* FirebaseCore in Frameworks */,
 				DFEFED432D38FF8200F18B90 /* FirebaseAuth in Frameworks */,
@@ -368,6 +370,7 @@
 				DFEFED462D38FF8200F18B90 /* FirebaseDatabase */,
 				DFEFED492D38FF9400F18B90 /* GoogleSignIn */,
 				DFEFED4B2D38FF9400F18B90 /* GoogleSignInSwift */,
+				DFA616E62DB8A1DA0004A063 /* ScaleKit */,
 			);
 			productName = CodeLounge;
 			productReference = DFD31FD82D36175F0076DD16 /* CodeLounge.app */;
@@ -400,6 +403,7 @@
 			packageReferences = (
 				DFEFED412D38FF8200F18B90 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				DFEFED482D38FF9400F18B90 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				DFA616E52DB8A1DA0004A063 /* XCRemoteSwiftPackageReference "ScaleKit" */,
 			);
 			productRefGroup = DFD31FD92D36175F0076DD16 /* Products */;
 			projectDirPath = "";
@@ -697,6 +701,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		DFA616E52DB8A1DA0004A063 /* XCRemoteSwiftPackageReference "ScaleKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/indextrown/ScaleKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.1;
+			};
+		};
 		DFEFED412D38FF8200F18B90 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -716,6 +728,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		DFA616E62DB8A1DA0004A063 /* ScaleKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFA616E52DB8A1DA0004A063 /* XCRemoteSwiftPackageReference "ScaleKit" */;
+			productName = ScaleKit;
+		};
 		DFEFED422D38FF8200F18B90 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DFEFED412D38FF8200F18B90 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

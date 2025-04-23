@@ -46,7 +46,7 @@ struct LoginView: View {
                 } onCompletion: { result in
                     authViewModel.send(action: .appleLoginCompletion(result))
                 }
-                .frame(maxWidth: .infinity, maxHeight: 60)
+                .frame(maxWidth: .infinity, maxHeight: 60.scaled)
                 .accessibilityIdentifier("appleLoginButton") // 식별자 추가
                 .opacity(0) // 버튼 숨김 대신 투명도 적용 (배경처럼 동작)
                 
@@ -59,7 +59,7 @@ struct LoginView: View {
                         Image(systemName: "applelogo")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .frame(width: 24, height: 24)
+                            .frame(width: 24.scaled, height: 24.scaled)
                         
                         
                         Spacer()
@@ -68,9 +68,8 @@ struct LoginView: View {
                             .frame(maxWidth: .infinity, alignment: .center)
                         
                     }
-                    .padding(.horizontal, 45)
+                    .padding(.horizontal, 45.scaled)
                 }.buttonStyle(SocialButtonStyle(buttonType: "Apple"))
-                 
             }
             
             // MARK: - Google 버튼
@@ -81,21 +80,21 @@ struct LoginView: View {
                     Image("Google")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 30, height: 30)
+                        .frame(width: 30.scaled, height: 30.scaled)
                         
                     Spacer()
                     
                     Text("Google로 계속하기")
                         .frame(maxWidth: .infinity, alignment: .center)
                 }
-                .padding(.horizontal, 45)
+                .padding(.horizontal, 45.scaled)
             }.buttonStyle(SocialButtonStyle(buttonType: "Google"))
             
             
             Spacer()
-                .frame(height:130)
+                .frame(height:130.scaled)
         }
-        .padding(.horizontal, 30)
+        .padding(.horizontal, 30.scaled)
         
     }
     
@@ -135,13 +134,13 @@ struct SocialButtonStyle: ButtonStyle {
     
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .font(.system(size: 16, weight: .semibold))
+            .font(.system(size: 16.scaled, weight: .semibold))
             .foregroundColor(
                 buttonType == "Google" ? Color.black :
                     buttonType == "Kakao" ? Color.black.opacity(0.85) :
                 Color.white // 애플 버튼 레이블 색상
             )
-            .frame(maxWidth: .infinity, maxHeight: 60)
+            .frame(maxWidth: .infinity, maxHeight: 60.scaled)
             .background(
                 RoundedRectangle(cornerRadius: 10)
                     .fill(
