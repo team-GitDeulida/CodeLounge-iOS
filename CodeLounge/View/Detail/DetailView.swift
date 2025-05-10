@@ -20,8 +20,10 @@ struct DetailView: View {
             
             ScrollView(showsIndicators: false) {
                 VStack {
-                    formatText(post.content)
+                    MarkdownView(markdown: post.content)
                         .padding()
+//                    formatText(post.content)
+//                        .padding()
                 }
                 .frame(maxWidth: .infinity, alignment: .topLeading) // 좌측 상단 정렬
             }
@@ -41,6 +43,7 @@ struct DetailView: View {
             }
         }
     }
+    
     
     private func formatText(_ content: String) -> AnyView {
         let replacedContent = content.replacingOccurrences(of: "\\n", with: "\n")
@@ -123,6 +126,9 @@ struct DetailView: View {
         id: "테스트",
         title: "타겟과 모듈",
         content: """
+        
+        **타겟과 모듈이 무엇인가요?**\n\n##타겟##\n- Xcode에서 앱 빌드를 위해 정의된 설정의 집합입니다.\n\n##모듈##\n- 코드의 ##재사용성##을 높이기 위한 코드 묶음입니다.\n- 앱과 라이브러리는 각각 하나의 모듈로 간주되고 `import` 키워드를 사용해 다른 모듈을 가져옵니다.\n- 모듈은 ##컴파일 속도##를 높이고 코드의 ##의존성을 분리##하는 데 유용합니다.
+        ---------------------------------------
         **타겟**
         - xcode에서 앱 빌드를 위해 정의된 설정의 집합입니다
         
@@ -140,6 +146,7 @@ struct DetailView: View {
             }
         }
         ```
+        
         ```kotlin
         import SwiftUI
         struct ContentView: View {
@@ -151,5 +158,3 @@ struct DetailView: View {
         """,
         authorID: "김동현", createdAt: Date()))
 }
-
-
