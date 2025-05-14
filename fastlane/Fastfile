@@ -38,7 +38,7 @@ platform :ios do
       scheme: "CodeLounge",
       export_options: {
         provisioningProfiles: {
-          "com.indextrown.CodeLounge" => "com.indextrown.CodeLounge"
+          "com.indextrown.CodeLounge" => "match AppStore com.indextrown.CodeLounge"
         }
       }
     )

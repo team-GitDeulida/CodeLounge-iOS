@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		DF1EA5272D466004005CE05E /* SafriWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1EA5262D465FF4005CE05E /* SafriWebView.swift */; };
-		DF1EA5362D466AE2005CE05E /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = DF1EA5352D466AE2005CE05E /* Config.xcconfig */; };
 		DF1EA5382D4670C5005CE05E /* ProfileSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1EA5372D4670BD005CE05E /* ProfileSettingView.swift */; };
+		DF1FD5B92DD4D08B00D57F58 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = DF1FD5B82DD4D08B00D57F58 /* GoogleMobileAds */; };
+		DF1FD5BD2DD4DF3600D57F58 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1FD5BC2DD4DF3600D57F58 /* BannerView.swift */; };
 		DF4CD40C2D3A2D0800A9251D /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = DF4CD40B2D3A2D0800A9251D /* .gitignore */; };
 		DF4CD40E2D3A3AC500A9251D /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4CD40D2D3A3AC500A9251D /* CategoryView.swift */; };
 		DF4FE3262D4A727400C0598D /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4FE3252D4A726D00C0598D /* CustomTextField.swift */; };
@@ -19,6 +20,7 @@
 		DF770FE22D39416900E00216 /* NicknameSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF770FE12D39416900E00216 /* NicknameSettingView.swift */; };
 		DFA616E72DB8A1DA0004A063 /* ScaleKit in Frameworks */ = {isa = PBXBuildFile; productRef = DFA616E62DB8A1DA0004A063 /* ScaleKit */; };
 		DFBB8AB92D3E79EC00A09CCD /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBB8AB82D3E79EC00A09CCD /* String+Extension.swift */; };
+		DFD1082A2DD50E7B003F4DD5 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = DFD108292DD50E7B003F4DD5 /* Config.xcconfig */; };
 		DFD31FDC2D36175F0076DD16 /* CodeLoungeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD31FDB2D36175F0076DD16 /* CodeLoungeApp.swift */; };
 		DFD31FDE2D36175F0076DD16 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD31FDD2D36175F0076DD16 /* ContentView.swift */; };
 		DFD31FE02D3617600076DD16 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFD31FDF2D3617600076DD16 /* Assets.xcassets */; };
@@ -59,8 +61,8 @@
 
 /* Begin PBXFileReference section */
 		DF1EA5262D465FF4005CE05E /* SafriWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafriWebView.swift; sourceTree = "<group>"; };
-		DF1EA5352D466AE2005CE05E /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		DF1EA5372D4670BD005CE05E /* ProfileSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingView.swift; sourceTree = "<group>"; };
+		DF1FD5BC2DD4DF3600D57F58 /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		DF2834C32D3A6B79009AF58A /* CodeLounge.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CodeLounge.entitlements; sourceTree = "<group>"; };
 		DF4CD40B2D3A2D0800A9251D /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		DF4CD40D2D3A3AC500A9251D /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 		DF770FDE2D393EA400E00216 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		DF770FE12D39416900E00216 /* NicknameSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameSettingView.swift; sourceTree = "<group>"; };
 		DFBB8AB82D3E79EC00A09CCD /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		DFD108292DD50E7B003F4DD5 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		DFD31FD82D36175F0076DD16 /* CodeLounge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CodeLounge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFD31FDB2D36175F0076DD16 /* CodeLoungeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeLoungeApp.swift; sourceTree = "<group>"; };
 		DFD31FDD2D36175F0076DD16 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -117,6 +120,7 @@
 				DFEFED4A2D38FF9400F18B90 /* GoogleSignIn in Frameworks */,
 				DFEFED452D38FF8200F18B90 /* FirebaseCore in Frameworks */,
 				DFEFED432D38FF8200F18B90 /* FirebaseAuth in Frameworks */,
+				DF1FD5B92DD4D08B00D57F58 /* GoogleMobileAds in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,6 +133,14 @@
 				DF1EA5262D465FF4005CE05E /* SafriWebView.swift */,
 			);
 			path = SafariWeb;
+			sourceTree = "<group>";
+		};
+		DF1FD5BB2DD4DF2F00D57F58 /* Banner */ = {
+			isa = PBXGroup;
+			children = (
+				DF1FD5BC2DD4DF3600D57F58 /* BannerView.swift */,
+			);
+			path = Banner;
 			sourceTree = "<group>";
 		};
 		DF4FE3242D4A726900C0598D /* View */ = {
@@ -152,6 +164,7 @@
 			children = (
 				DFFAC7C02D3A46DA008C69F6 /* README.md */,
 				DF4CD40B2D3A2D0800A9251D /* .gitignore */,
+				DFD108292DD50E7B003F4DD5 /* Config.xcconfig */,
 				DFD31FDA2D36175F0076DD16 /* CodeLounge */,
 				DFD31FD92D36175F0076DD16 /* Products */,
 			);
@@ -184,7 +197,6 @@
 				DFE1ACF02D3E1819008624D7 /* Style */,
 				DFD31FF62D3619BB0076DD16 /* View */,
 				DFE1ACED2D3E0FCC008624D7 /* ViewModel */,
-				DF1EA5352D466AE2005CE05E /* Config.xcconfig */,
 			);
 			path = CodeLounge;
 			sourceTree = "<group>";
@@ -231,6 +243,7 @@
 		DFD31FF62D3619BB0076DD16 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DF1FD5BB2DD4DF2F00D57F58 /* Banner */,
 				DFE1ACE82D3E0F4A008624D7 /* Detail */,
 				DF770FE02D39415D00E00216 /* Nickname */,
 				DFEFED392D38FC5900F18B90 /* Profile */,
@@ -374,6 +387,7 @@
 				DFEFED492D38FF9400F18B90 /* GoogleSignIn */,
 				DFEFED4B2D38FF9400F18B90 /* GoogleSignInSwift */,
 				DFA616E62DB8A1DA0004A063 /* ScaleKit */,
+				DF1FD5B82DD4D08B00D57F58 /* GoogleMobileAds */,
 			);
 			productName = CodeLounge;
 			productReference = DFD31FD82D36175F0076DD16 /* CodeLounge.app */;
@@ -407,6 +421,7 @@
 				DFEFED412D38FF8200F18B90 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				DFEFED482D38FF9400F18B90 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				DFA616E52DB8A1DA0004A063 /* XCRemoteSwiftPackageReference "ScaleKit" */,
+				DF1FD5B72DD4D08B00D57F58 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			productRefGroup = DFD31FD92D36175F0076DD16 /* Products */;
 			projectDirPath = "";
@@ -423,7 +438,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF4CD40C2D3A2D0800A9251D /* .gitignore in Resources */,
-				DF1EA5362D466AE2005CE05E /* Config.xcconfig in Resources */,
+				DFD1082A2DD50E7B003F4DD5 /* Config.xcconfig in Resources */,
 				DFD31FE32D3617600076DD16 /* Preview Assets.xcassets in Resources */,
 				DFEFED2D2D38FAE300F18B90 /* GoogleService-Info.plist in Resources */,
 				DFD31FE02D3617600076DD16 /* Assets.xcassets in Resources */,
@@ -439,6 +454,7 @@
 			files = (
 				DFE1ACEF2D3E0FF2008624D7 /* PostViewModel.swift in Sources */,
 				DFBB8AB92D3E79EC00A09CCD /* String+Extension.swift in Sources */,
+				DF1FD5BD2DD4DF3600D57F58 /* BannerView.swift in Sources */,
 				DF4FE3262D4A727400C0598D /* CustomTextField.swift in Sources */,
 				DFEFED382D38FC4400F18B90 /* AosView.swift in Sources */,
 				DF770FDF2D393EA400E00216 /* UserService.swift in Sources */,
@@ -482,7 +498,6 @@
 /* Begin XCBuildConfiguration section */
 		DFD31FE42D3617600076DD16 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DF1EA5352D466AE2005CE05E /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -546,7 +561,6 @@
 		};
 		DFD31FE52D3617600076DD16 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DF1EA5352D466AE2005CE05E /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -603,15 +617,16 @@
 		};
 		DFD31FE72D3617600076DD16 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DF1EA5352D466AE2005CE05E /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CodeLounge/CodeLounge.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"CodeLounge/Preview Content\"";
-				DEVELOPMENT_TEAM = LGX4B4WC66;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = LGX4B4WC66;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CodeLounge/Info.plist;
@@ -628,9 +643,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.indextrown.CodeLounge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore com.indextrown.CodeLounge";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -643,15 +660,16 @@
 		};
 		DFD31FE82D3617600076DD16 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DF1EA5352D466AE2005CE05E /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CodeLounge/CodeLounge.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"CodeLounge/Preview Content\"";
-				DEVELOPMENT_TEAM = LGX4B4WC66;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = LGX4B4WC66;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CodeLounge/Info.plist;
@@ -668,9 +686,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.indextrown.CodeLounge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore com.indextrown.CodeLounge";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -705,6 +725,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		DF1FD5B72DD4D08B00D57F58 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.4.0;
+			};
+		};
 		DFA616E52DB8A1DA0004A063 /* XCRemoteSwiftPackageReference "ScaleKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/indextrown/ScaleKit";
@@ -732,6 +760,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		DF1FD5B82DD4D08B00D57F58 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DF1FD5B72DD4D08B00D57F58 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
 		DFA616E62DB8A1DA0004A063 /* ScaleKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DFA616E52DB8A1DA0004A063 /* XCRemoteSwiftPackageReference "ScaleKit" */;

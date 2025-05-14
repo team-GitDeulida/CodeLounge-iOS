@@ -141,6 +141,13 @@ extension MarkdownParser {
     private func parseHeading() -> MarkdownNode? {
         let line = currentLine()
         
+        // 1. 줄이 '## ... ##' 형식이면 heading 아님 → paragraph로 넘김
+        if line.trimmingCharacters(in: .whitespaces).hasPrefix("##"),
+           line.trimmingCharacters(in: .whitespaces).hasSuffix("##"),
+           line.trimmingCharacters(in: .whitespaces).count > 4 {
+            return nil
+        }
+        
         // 반드시 '# ' 또는 '## ' 같은 패턴만 허용
         guard let _ = line.range(of: #"^#{1,6} "#, options: .regularExpression) else {
             return nil
@@ -322,9 +329,10 @@ struct MarkdownRenderer {
             ForEach(Array(nodes.enumerated()), id: \.offset) { _, node in
                 switch node {
                 case .heading(let level, let text):
-                    let fontSize = (28 - level * 2).scaled
+                    let fontSize = (Int(25.scaled) - level * 2).scaled
                     Text(text)
                         .font(.system(size: CGFloat(fontSize), weight: .bold))
+                        .foregroundStyle(Color.mainGreen)
                 case .listItem(let inlines):
                     HStack(alignment: .top) {
                         Text("•")
