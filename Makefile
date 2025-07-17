@@ -68,13 +68,13 @@ install_fastlane: install_homebrew
 	@brew install fastlane || true
 	@echo "✅ fastlane 설치 완료 (Homebrew 사용)"
 	
-# 인증서 다운로드 (readonly 모드)
+# 인증서 다운로드 (readonly 모드) 
 fetch_certs: install_fastlane
-	@echo "Fetching development certificates..."
-	@fastlane match development --readonly
-	@echo "Fetching appstore certificates..."
-	@fastlane match appstore --readonly
-	@echo "✅ 인증서 가져오기 완료"
+	@echo "Fetching development provisioning profiles..."
+	@fastlane match development --readonly false 
+	@echo "Fetching appstore provisioning profiles..."
+	@fastlane match appstore --readonly false 
+	@echo "✅ 인증서 및 프로비저닝 프로파일 처리 완료"
 
 # -------------------------
 # 통합 기본 타겟: 필요한 경우 Private 파일과 인증서 모두 다운로드
