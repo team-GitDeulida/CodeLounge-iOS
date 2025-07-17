@@ -83,9 +83,14 @@ struct iOSView: View {
                         DetailView(post: post)
                     }
                 }
-                .onTapGesture {
-                    CustomTextField.hideKeyboard() // ✅ 외부 터치 시 키보드 닫기
-                }
+                .simultaneousGesture(
+                    TapGesture().onEnded {
+                        CustomTextField.hideKeyboard()
+                    }
+                )
+//                .onTapGesture {
+//                    CustomTextField.hideKeyboard() // ✅ 외부 터치 시 키보드 닫기
+//                }
             }
             .tint(Color.mainWhite)
         }
