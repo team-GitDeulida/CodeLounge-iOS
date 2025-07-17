@@ -401,7 +401,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1540;
-				LastUpgradeCheck = 1620;
+				LastUpgradeCheck = 1640;
 				TargetAttributes = {
 					DFD31FD72D36175F0076DD16 = {
 						CreatedOnToolsVersion = 15.4;
@@ -498,6 +498,7 @@
 /* Begin XCBuildConfiguration section */
 		DFD31FE42D3617600076DD16 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DFD108292DD50E7B003F4DD5 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -561,6 +562,7 @@
 		};
 		DFD31FE52D3617600076DD16 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DFD108292DD50E7B003F4DD5 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -617,11 +619,12 @@
 		};
 		DFD31FE72D3617600076DD16 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DFD108292DD50E7B003F4DD5 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CodeLounge/CodeLounge.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"CodeLounge/Preview Content\"";
@@ -647,7 +650,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.indextrown.CodeLounge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore com.indextrown.CodeLounge";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match Development com.indextrown.CodeLounge";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -660,11 +663,13 @@
 		};
 		DFD31FE82D3617600076DD16 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DFD108292DD50E7B003F4DD5 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CodeLounge/CodeLounge.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"CodeLounge/Preview Content\"";
@@ -690,7 +695,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.indextrown.CodeLounge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore com.indextrown.CodeLounge";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match Development com.indextrown.CodeLounge";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
