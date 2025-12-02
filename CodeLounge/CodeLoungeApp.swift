@@ -49,7 +49,8 @@ struct CodeLoungeApp: App {
                         }
                     )
                 }
-        }.onChange(of: scenePhase) { _, newPhase in
+        }
+        .onChange(of: scenePhase) { _, newPhase in
             if newPhase == .active && !didSetScreenSize {
                 if let scene = UIApplication.shared.connectedScenes
                     .first(where: { $0 is UIWindowScene }) as? UIWindowScene {
@@ -61,6 +62,9 @@ struct CodeLoungeApp: App {
                 }
                 didSetScreenSize = true
             }
+            
+            // 앱 포그라운드 전환시 최신 버전 확인
+            checkForAppUpdates()
         }
     }
     
