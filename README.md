@@ -77,9 +77,9 @@ UI 출력
 ```
 
 > **성과**  
-> 🔸 Bold / Underline / 중첩 Inline 지원
-> 🔸 문서가 트리 형태로 유지되어 ForEach 순회로 SwiftUI 렌더링 성능 최적화
-> 🔸 문법 추가 시 확장성 높음
+> 🔸 Bold / Underline / 중첩 Inline 지원  
+> 🔸 문서가 트리 형태로 유지되어 ForEach 순회로 SwiftUI 렌더링 성능 최적화  
+> 🔸 문법 추가 시 확장성 높음  
 
 ---
 
