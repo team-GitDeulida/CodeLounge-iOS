@@ -143,8 +143,8 @@ private func parseUntil(_ delimiter: String?) -> [InlineNode] {
 ```
 
 > **성과**  
-- 🔸 Markdown의 **큰 구조 → 작은 구조** 흐름을 코드로 완전히 반영  
-- 🔸 중첩 Bold/Underline도 정확하게 파싱  
-- 🔸 Block·Inline이 분리되어 확장성 뛰어남  
+> - 🔸 Markdown의 **큰 구조 → 작은 구조** 흐름을 코드로 완전히 반영  
+> - 🔸 중첩 Bold/Underline도 정확하게 파싱  
+> - 🔸 Block·Inline이 분리되어 확장성 뛰어남  
 
 ---
