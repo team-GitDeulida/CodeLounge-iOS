@@ -1,8 +1,8 @@
 <div align=center>
 
 # CodeLounge
-개발자 지식 아카이브 서비스
-CS / iOS / Android / 알고리즘 면접 질문을
+개발자 지식 아카이브 서비스  
+CS / iOS / Android / 알고리즘 면접 질문을  
 읽기 쉬운 Markdown UI로 제공하는 개발자 학습 플랫폼입니다.
 
 </div>
