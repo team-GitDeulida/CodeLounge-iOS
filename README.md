@@ -69,7 +69,7 @@ Markdown 원본
    ↓
 [Inline Parser] — **굵게**, ##밑줄##, 텍스트 등 문장 구조 분석
    ↓
-[Node Tree] — MarkdownNode / InlineNode 트리 구조 생성
+[Node Tree] — BlockNode / InlineNode 트리 구조 생성
    ↓
 [Renderer] — SwiftUI View로 변환
    ↓
