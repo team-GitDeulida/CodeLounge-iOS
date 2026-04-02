@@ -1,5 +1,5 @@
 {
-  "originHash" : "82f274f78275a6a9f772723c62a323e26235bd942526ead3ebc419b695d34cfb",
+  "originHash" : "62a228b77a979855e5d27220a7e5518547660aee8499e0768511e88a60ab65a0",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -170,6 +170,15 @@
       "state" : {
         "revision" : "ebc7251dd5b37f627c93698e4374084d98409633",
         "version" : "1.28.2"
+      }
+    },
+    {
+      "identity" : "turbonavigator",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/indextrown/TurboNavigator",
+      "state" : {
+        "revision" : "2c8945756e4a20f469849f1b636dad01906cbb40",
+        "version" : "1.0.3"
       }
     }
   ],
