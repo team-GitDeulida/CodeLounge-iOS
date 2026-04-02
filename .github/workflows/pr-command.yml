@@ -1,0 +1,60 @@
+# PR에 댓글 작성
+#     ↓
+# issue_comment 이벤트 발생
+#     ↓
+# job 조건 검사
+#     ↓
+# 조건 안 맞으면 ❌ job 자체가 실행 안 됨
+# 조건 맞으면 ✅ 실행
+
+name: PR 명령어 실행
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+  actions: write
+
+jobs:
+  parse-and-run:
+    if: >
+      github.event.issue.pull_request != null &&
+      github.event.comment.user.type == 'User' &&
+      startsWith(github.event.comment.body, '/하루한컷 빌드하고 테스트')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Acknowledge
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            🔨 iOS 18.5 iPhone 16 Pro Max 에서 빌드 및 테스트를 실행합니다.
+
+      - name: Trigger build-and-test workflow
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = context.payload.issue.number;
+
+            const { data: pr } = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: prNumber,
+            });
+
+            const ref = pr.head.ref;
+
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: "build-and-test.yml",
+              ref,
+              inputs: {
+                triggered_by_command: "true",
+                pr_number: String(prNumber),
+              },
+            });

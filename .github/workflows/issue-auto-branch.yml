@@ -1,0 +1,35 @@
+# 워크플로우 이름 (GitHub UI에 표시됨)
+name: 이슈 브랜치 자동 생성 및 삭제
+
+# 언제 이 워크플로우가 실행될지를 정의
+on:
+  # 이슈에 'Assignee'가 지정될 때 실행
+  issues:
+    types: [assigned]
+  # 이슈에 댓글이 달렸을 때 실행
+  issue_comment:
+    types: [created]
+  # PR이 "Merge"되어 닫힐 때 실행
+  pull_request:
+    types: [closed]
+
+jobs:
+  # ✅ 이슈 번호 기반 브랜치를 생성하는 작업
+  create_issue_branch_job:
+    runs-on: ubuntu-latest # GitHub에서 제공하는 Ubuntu 가상 환경에서 실행
+    steps:
+      - name: Create Issue Branch # 스텝 이름
+        uses: robvanderleek/create-issue-branch@main # 오픈소스 액션 사용 (이슈에서 자동으로 브랜치 생성)
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }} # 인증용 토큰 (권한 있는 토큰 사용)
+
+  # ✅ PR이 병합되었을 경우 자동으로 브랜치 삭제하는 작업
+  delete_merged_branch:
+    if: github.event.pull_request.merged == true # PR이 머지된 경우에만 실행
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete Merged Branch # 스텝 이름
+        uses: dawidd6/action-delete-branch@v3 # 병합된 브랜치 자동 삭제 액션
+        with:
+          github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }} # 인증용 토큰
+          branches: ${{ github.event.pull_request.head.ref }} # 삭제할 브랜치 이름 (머지된 PR의 소스 브랜치)
