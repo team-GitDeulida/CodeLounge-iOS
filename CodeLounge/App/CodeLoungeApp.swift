@@ -31,6 +31,16 @@ struct CodeLoungeApp: App {
       .appearance()
       .titleTextAttributes = [.foregroundColor: UIColor.white]
     
+    /// 뒤로가기 버튼 텍스트/아이콘 색상
+    let barButtonAppearance = UIBarButtonItemAppearance()
+    barButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.white]
+    barButtonAppearance.highlighted.titleTextAttributes = [.foregroundColor: UIColor.white]
+    
+    UINavigationBar.appearance().standardAppearance.backButtonAppearance = barButtonAppearance
+    UINavigationBar.appearance().scrollEdgeAppearance?.backButtonAppearance = barButtonAppearance
+    UINavigationBar.appearance().compactAppearance?.backButtonAppearance = barButtonAppearance
+    UINavigationBar.appearance().tintColor = .white
+    
     // TabBar 색상 설정
     let appearance = UITabBarAppearance()
     appearance.configureWithOpaqueBackground()

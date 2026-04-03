@@ -25,11 +25,16 @@ enum AuthRoute: Hashable {
   case register
 }
 
-enum MainRoute: Hashable, CaseIterable {
+enum MainRoute: Hashable {
   case cs
   case ios
   case aos
   case profile
+  case postDetail(Post)
+  
+  static var tabCases: [MainRoute] {
+    [.cs, .ios, .aos, .profile]
+  }
   
   var title: String {
     switch self {
@@ -37,6 +42,7 @@ enum MainRoute: Hashable, CaseIterable {
     case .ios: return "iOS"
     case .aos: return "aOS"
     case .profile: return "Profile"
+    case .postDetail: return ""
     }
   }
   
@@ -50,6 +56,8 @@ enum MainRoute: Hashable, CaseIterable {
       return "smartphone"
     case .profile:
       return isSelected ? "person.fill" : "person"
+    case .postDetail:
+      return ""
     }
   }
 }
@@ -104,6 +112,23 @@ enum AppRouter {
           ProfileView(navigator: context.navigator)
         }
       }
+      .registering(
+        extracting: { (route: MainRoute) -> Post? in
+          guard case let .postDetail(post) = route else { return nil }
+          return post
+        },
+        build: { context, post in
+          WrappingController(
+            route: context.route,
+            title: ""
+          ) {
+            PostDetailView(
+              navigator: context.navigator,
+              post: post
+            )
+          }
+        }
+      )
     return Navigator(
       dependencies: AppDependencies(),
       registry: registry

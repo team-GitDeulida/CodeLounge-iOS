@@ -11,7 +11,10 @@ import TurboNavigator
 struct AOSView: View {
   let navigator: Navigator<AppDependencies, MainRoute>
     var body: some View {
+      VStack {
         Text("AOSView")
+        Spacer()
+      }
     }
 }
 

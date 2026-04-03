@@ -57,9 +57,14 @@ final class DIContainer {
 extension DIContainer {
   static func config() {
     let userRepository = UserDBRepository()
+    let postRepository = PostRepository()
     self.shared.register(
       UserService(dbRepository: userRepository),
       for: UserServiceProtocol.self
+    )
+    self.shared.register(
+      PostService(repository: postRepository),
+      for: PostServiceProtocol.self
     )
     self.shared.register(
       AuthService(),

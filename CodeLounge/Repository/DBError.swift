@@ -12,6 +12,7 @@ enum DBError: Error {
   case updateUserError(Error)
   case getUserError(Error)
   case loadUsersError(Error)
+  case loadPostsError(Error)
   case emptyValue
   case invalidatedType
   

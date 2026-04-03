@@ -11,6 +11,7 @@ import UIKit
 
 struct RootView: View {
   @StateObject var rootViewModel: RootViewModel
+  @StateObject private var postViewModel = PostViewModel()
   let authNavigator: Navigator<AppDependencies, AuthRoute>
   let mainNavigator: Navigator<AppDependencies, MainRoute>
   
@@ -26,7 +27,7 @@ struct RootView: View {
       case .authenticated:
         TabNavigationContainer(
           navigator: mainNavigator,
-          items: MainRoute.allCases.enumerated().map { (index, tab) -> TabNavigationItem<MainRoute> in
+          items: MainRoute.tabCases.enumerated().map { (index, tab) -> TabNavigationItem<MainRoute> in
 
             TabNavigationItem(
               tag: index,
@@ -50,6 +51,10 @@ struct RootView: View {
             )
           }
         )
+        .environmentObject(postViewModel)
+        .onAppear {
+          postViewModel.fetchAllPosts()
+        }
         
       case .firstTimeLogin:
         NavigationContainer(
@@ -58,6 +63,7 @@ struct RootView: View {
         )
       }
     }
+    // .ignoresSafeArea(edges: .all)
     .ignoresSafeArea(.container, edges: .all)
     .environmentObject(rootViewModel)
     .onAppear {

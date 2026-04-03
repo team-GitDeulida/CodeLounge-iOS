@@ -20,7 +20,7 @@ protocol UserDBRepositoryProtocol {
 
 final class UserDBRepository: UserDBRepositoryProtocol {
   
-  var db: DatabaseReference = Database.database().reference()
+  private let db: DatabaseReference = Database.database().reference()
   
   func addUser(_ dto: UserDTO) -> AnyPublisher<Void, DBError> {
     return Just(dto)
