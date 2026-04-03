@@ -1,5 +1,5 @@
 //
-//  HomeView.swift
+//  ProfileView.swift
 //  CodeLounge
 //
 //  Created by 김동현 on 4/3/26.
@@ -8,14 +8,13 @@
 import SwiftUI
 import TurboNavigator
 
-struct HomeView: View {
+struct ProfileView: View {
   let navigator: Navigator<AppDependencies, MainRoute>
-  
-  var body: some View {
-    Text("HomeView")
-  }
+    var body: some View {
+        Text("ProfileView")
+    }
 }
 
 #Preview {
-  HomeView(navigator: .preview)
+  ProfileView(navigator: .preview)
 }

@@ -469,7 +469,7 @@
 			repositoryURL = "https://github.com/indextrown/TurboNavigator";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.3;
+				minimumVersion = 1.0.5;
 			};
 		};
 		DF1FD5B72DD4D08B00D57F58 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {

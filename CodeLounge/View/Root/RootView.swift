@@ -7,6 +7,7 @@
 
 import SwiftUI
 import TurboNavigator
+import UIKit
 
 struct RootView: View {
   @StateObject var rootViewModel: RootViewModel
@@ -25,16 +26,29 @@ struct RootView: View {
       case .authenticated:
         TabNavigationContainer(
           navigator: mainNavigator,
-          items: [
-            .init(
-              tag: 0,
-              route: .home,
-              tabBarItem: UITabBarItem(title: "Home", image: nil, tag: 0)),
-            .init(
-              tag: 1,
-              route: .home,
-              tabBarItem: UITabBarItem(title: "Home", image: nil, tag: 1)),
-          ],
+          items: MainRoute.allCases.enumerated().map { (index, tab) -> TabNavigationItem<MainRoute> in
+
+            TabNavigationItem(
+              tag: index,
+              route: tab,  
+              tabBarItem: {
+                let item = UITabBarItem(
+                  title: tab.title,
+                  image: paddedTabBarImage(
+                    systemName: tab.imageName(isSelected: false),
+                    topPadding: 6
+                  ),
+                  selectedImage: paddedTabBarImage(
+                    systemName: tab.imageName(isSelected: true),
+                    topPadding: 6
+                  )
+                )
+                item.tag = index
+                return item
+              }(),
+              hapticStyle: .medium
+            )
+          }
         )
         
       case .firstTimeLogin:
@@ -52,3 +66,46 @@ struct RootView: View {
     }
   }
 }
+
+private func paddedTabBarImage(systemName: String, topPadding: CGFloat) -> UIImage? {
+  let configuration = UIImage.SymbolConfiguration(pointSize: 20, weight: .regular)
+  guard let image = UIImage(systemName: systemName, withConfiguration: configuration) else { return nil }
+
+  let newSize = CGSize(
+    width: image.size.width,
+    height: image.size.height + topPadding
+  )
+  let renderer = UIGraphicsImageRenderer(size: newSize)
+
+  return renderer.image { _ in
+    image.draw(at: CGPoint(x: 0, y: topPadding))
+  }.withRenderingMode(.alwaysTemplate)
+}
+
+//
+//  .init(
+//    tag: 0,
+//    route: .cs,
+//    tabBarItem: {
+//      let item = UITabBarItem(
+//        title: "Home",
+//        image: nil,
+//        selectedImage: nil
+//      )
+//      item.tag = 0
+//      return item
+//    }()
+//  ),
+//  .init(
+//    tag: 1,
+//    route: .cs,
+//    tabBarItem: {
+//      let item = UITabBarItem(
+//        title: "Home",
+//        image: nil,
+//        selectedImage: nil
+//      )
+//      item.tag = 0
+//      return item
+//    }()
+//  )

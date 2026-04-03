@@ -119,7 +119,7 @@ final class RootViewModel: ObservableObject {
           switch result {
           case .failure(let error):
             DispatchQueue.main.async {
-                print("닉네임 중복 확인 오류: \(error.localizedDescription)")
+                // 닉네임 사용 가능
                 completion(false) // 오류 발생 시 false 반환
             }
           case .finished:
@@ -138,7 +138,23 @@ final class RootViewModel: ObservableObject {
       
     case .updateUserInfo(let nickname, let birthday, let gender):
       guard let userId = userId else { return }
-      
+      userService.updateUserInfo(
+        userId: userId,
+        nickname: nickname,
+        birthday: birthday,
+        gender: gender
+      )
+      .sink { [weak self] completion in
+        switch completion {
+        case .finished:
+          self?.authenticationState = .authenticated
+        case .failure(let error):
+          print("닉네임 업데이트 실패: \(error)")
+        }
+      } receiveValue: { user in
+        self.user = user
+      }.store(in: &subscriptions)
+
       
     case .logout:
       authService.logout()

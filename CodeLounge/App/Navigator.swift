@@ -25,8 +25,33 @@ enum AuthRoute: Hashable {
   case register
 }
 
-enum MainRoute: Hashable {
-  case home
+enum MainRoute: Hashable, CaseIterable {
+  case cs
+  case ios
+  case aos
+  case profile
+  
+  var title: String {
+    switch self {
+    case .cs: return "CS"
+    case .ios: return "iOS"
+    case .aos: return "aOS"
+    case .profile: return "Profile"
+    }
+  }
+  
+  func imageName(isSelected: Bool) -> String {
+    switch self {
+    case .cs:
+      return "desktopcomputer"
+    case .ios:
+      return "apple.logo"
+    case .aos:
+      return "smartphone"
+    case .profile:
+      return isSelected ? "person.fill" : "person"
+    }
+  }
 }
 
 enum AppRouter {
@@ -58,11 +83,26 @@ enum AppRouter {
   
   static func buildMainNavigator() -> Navigator<AppDependencies, MainRoute> {
     let registry = RouteRegistry<AppDependencies, MainRoute>()
-      .registering(.home) { context in
+      .registering(.cs) { context in
         WrappingController(
           route: context.route) {
-            HomeView(navigator: context.navigator)
+            CSView(navigator: context.navigator)
           }
+      }
+      .registering(.ios) { context in
+        WrappingController(route: context.route) {
+          iOSView(navigator: context.navigator)
+        }
+      }
+      .registering(.aos) { context in
+        WrappingController(route: context.route) {
+          AOSView(navigator: context.navigator)
+        }
+      }
+      .registering(.profile) { context in
+        WrappingController(route: context.route) {
+          ProfileView(navigator: context.navigator)
+        }
       }
     return Navigator(
       dependencies: AppDependencies(),

@@ -30,6 +30,26 @@ struct CodeLoungeApp: App {
     UINavigationBar
       .appearance()
       .titleTextAttributes = [.foregroundColor: UIColor.white]
+    
+    // TabBar 색상 설정
+    let appearance = UITabBarAppearance()
+    appearance.configureWithOpaqueBackground()
+    appearance.backgroundColor = .black
+
+    // 선택된 아이콘 색상
+    appearance.stackedLayoutAppearance.selected.iconColor = .white
+    appearance.stackedLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor.white]
+
+    // 선택 안된 아이콘 색상
+    appearance.stackedLayoutAppearance.normal.iconColor = .gray
+    appearance.stackedLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.gray]
+    
+    //
+    // appearance.stackedLayoutAppearance.normal.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 10)
+    // appearance.stackedLayoutAppearance.selected.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 10)
+
+    UITabBar.appearance().standardAppearance = appearance
+    UITabBar.appearance().scrollEdgeAppearance = appearance
   }
 
   var body: some Scene {

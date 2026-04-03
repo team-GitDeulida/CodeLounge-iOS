@@ -21,123 +21,122 @@ struct RegisterView: View {
   
   // 닉네임이 유효한지 검사하는 프로퍼티
   private var isNicknameValid: Bool {
-      !nickname.trimmingCharacters(in: .whitespaces).isEmpty
+    !nickname.trimmingCharacters(in: .whitespaces).isEmpty
   }
   
   // 생년월일 날짜 포맷터
   private var dateFormatter: DateFormatter {
-      let formatter = DateFormatter()
-      formatter.dateFormat = "yyyy. MM. dd"
-      return formatter
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy. MM. dd"
+    return formatter
   }
   
   // 전송용 생년월일 날짜 포맷터
   private var isoDateFormatter: ISO8601DateFormatter {
-      let formatter = ISO8601DateFormatter()
-      formatter.timeZone = TimeZone(identifier: "Asia/Seoul") // KST 설정
-      return formatter
+    let formatter = ISO8601DateFormatter()
+    formatter.timeZone = TimeZone(identifier: "Asia/Seoul") // KST 설정
+    return formatter
   }
   
   var body: some View {
     VStack(spacing: 10) {
-        Text("CodeLounge")
-            .font(.system(size: 30, weight: .bold))
-            .padding(.bottom, 10)
+      Text("CodeLounge")
+        .font(.system(size: 30, weight: .bold))
+        .padding(.bottom, 10)
+        .foregroundColor(Color.mainWhite)
+      
+      Text("회원가입에 필요한 정보를 입력해주세요")
+        .font(.system(size: 22, weight: .bold))
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .foregroundColor(Color.mainWhite)
+      
+      Spacer()
+        .frame(height: 10)
+      
+      Text("닉네임")
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .foregroundColor(Color.mainWhite)
+      
+      TextField("2자 이상 20자 이하로 입력해주세요", text: $nickname)
+        .padding()
+        .overlay(
+          RoundedRectangle(cornerRadius: 10)
+            .stroke(lineWidth: 1.5)
             .foregroundColor(Color.mainWhite)
+        )
+      
+      
+      if let message = nicknameMessage {
+        Text(message)
+          .foregroundColor(.red)
+          .font(.caption)
+      }
+      
+      Spacer()
+        .frame(height: 10)
+      
+      Text("생년월일")
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .foregroundColor(Color.mainWhite)
+      
+      Button {
+        isDatePickerActive.toggle()
+      } label: {
+        Text("\(dateFormatter.string(from: birthdate))")
+          .frame(maxWidth: .infinity, alignment: .leading)
+          .foregroundColor(Color.mainWhite)
+          .padding()
+          .frame(maxWidth: .infinity)
+          .overlay(
+            RoundedRectangle(cornerRadius: 10)
+              .stroke(lineWidth: 1.5)
+              .foregroundColor(Color.mainWhite)
+          )
+      }
+      
+      Spacer()
+        .frame(height: 10)
+      
+      Text("성별")
+        .frame(maxWidth: .infinity, alignment: .leading)
+      
+      HStack {
+        GenderButton(gender: .male, isSelected: $selectedGender)
+        GenderButton(gender: .female, isSelected: $selectedGender)
+        GenderButton(gender: .other, isSelected: $selectedGender)
+      }
+      
+      Spacer()
+      
+      Button {
+        
+        if isNicknameValid {
+          rootViewModel.send(action: .checkNicknameDuplicate(nickname) { isDuplicate in
             
-        Text("회원가입에 필요한 정보를 입력해주세요")
-            .font(.system(size: 22, weight: .bold))
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .foregroundColor(Color.mainWhite)
-        
-        Spacer()
-            .frame(height: 10)
-        
-        Text("닉네임")
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .foregroundColor(Color.mainWhite)
-        
-        TextField("2자 이상 20자 이하로 입력해주세요", text: $nickname)
-            .padding()
-            .overlay(
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(lineWidth: 1.5)
-                    .foregroundColor(Color.mainWhite)
-            )
-
-            
-        if let message = nicknameMessage {
-            Text(message)
-                .foregroundColor(.red)
-                .font(.caption)
-        }
-        
-        Spacer()
-            .frame(height: 10)
-        
-        Text("생년월일")
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .foregroundColor(Color.mainWhite)
-        
-        Button {
-            isDatePickerActive.toggle()
-        } label: {
-            Text("\(dateFormatter.string(from: birthdate))")
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .foregroundColor(Color.mainWhite)
-                .padding()
-                .frame(maxWidth: .infinity)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(lineWidth: 1.5)
-                        .foregroundColor(Color.mainWhite)
-                )
-        }
-        
-        Spacer()
-            .frame(height: 10)
-        
-        Text("성별")
-            .frame(maxWidth: .infinity, alignment: .leading)
-        
-        HStack {
-            GenderButton(gender: .male, isSelected: $selectedGender)
-            GenderButton(gender: .female, isSelected: $selectedGender)
-            GenderButton(gender: .other, isSelected: $selectedGender)
-        }
-        
-        Spacer()
-        
-        Button {
-            
-            if isNicknameValid {
-              rootViewModel.send(action: .checkNicknameDuplicate(nickname) { isDuplicate in
-                    
-                    if isDuplicate {
-                        nicknameMessage = "닉네임이 중복되었습니다"
-                    } else {
-                        // 업데이트 성공
-                        nicknameMessage = nil
-                        let birthdayString = isoDateFormatter.string(from: birthdate)
-                        print("디버깅: \(birthdayString)")
-                        let genderString = selectedGender.rawValue
-                      rootViewModel.send(action: .updateUserInfo(nickname, birthdayString, genderString))
-                    }
-                })
+            if isDuplicate {
+              nicknameMessage = "닉네임이 중복되었습니다"
+            } else {
+              // 업데이트 성공
+              nicknameMessage = nil
+              let birthdayString = isoDateFormatter.string(from: birthdate)
+              let genderString = selectedGender.rawValue
+              rootViewModel.send(action: .updateUserInfo(nickname, birthdayString, genderString))
             }
-             
-            
-        } label: {
-            Text("완료")
-                .padding()
-                .frame(maxWidth: .infinity)
-                .foregroundColor(Color.mainBlack)
-                .background(!nickname.isEmpty ? Color.mainWhite : Color.gray)
-                .cornerRadius(20)
+          })
         }
-        .disabled(nickname.isEmpty)
         
         
+      } label: {
+        Text("완료")
+          .padding()
+          .frame(maxWidth: .infinity)
+          .foregroundColor(Color.mainBlack)
+          .background(!nickname.isEmpty ? Color.mainWhite : Color.gray)
+          .cornerRadius(20)
+      }
+      .disabled(nickname.isEmpty)
+      
+      
     }
     .padding(.horizontal, 25)
     .offset(x: slideOffset) // x축 오프셋 적용
@@ -158,74 +157,74 @@ struct RegisterView: View {
 
 // MARK: - 생년월일 선택
 private struct BirthdayPickerView: View {
-    @Binding var birthdate: Date
-    @Environment(\.dismiss) private var dismiss // sheet 닫기
-    
-    fileprivate var body: some View {
-        VStack {
-             Text("생년월일 선택")
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.leading, 50)
-                .font(.system(size: 20, weight: .bold))
-                
-            DatePicker(
-                "생년얼일",
-                selection: $birthdate,
-                in: ...Date(), // 현재 날짜까지 선택 가능
-                displayedComponents: .date
-            )
-            .datePickerStyle(.wheel)
-            .labelsHidden()
-            .padding()
-            .overlay(
-                RoundedRectangle(cornerRadius: 20)
-                    .stroke(.black, lineWidth: 2)
-            )
-            .environment(\.locale, Locale(identifier: "ko_KR"))
-            
-            Spacer()
-                .frame(height: 30)
-            
-            Button {
-                dismiss()
-            } label: {
-                Text("완료")
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .foregroundColor(Color.mainBlack)
-                    .background(Color.mainWhite)
-                    .cornerRadius(20)
-            }
-            .padding(.horizontal, 40)
-            
-        }
+  @Binding var birthdate: Date
+  @Environment(\.dismiss) private var dismiss // sheet 닫기
+  
+  fileprivate var body: some View {
+    VStack {
+      Text("생년월일 선택")
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.leading, 50)
+        .font(.system(size: 20, weight: .bold))
+      
+      DatePicker(
+        "생년얼일",
+        selection: $birthdate,
+        in: ...Date(), // 현재 날짜까지 선택 가능
+        displayedComponents: .date
+      )
+      .datePickerStyle(.wheel)
+      .labelsHidden()
+      .padding()
+      .overlay(
+        RoundedRectangle(cornerRadius: 20)
+          .stroke(.black, lineWidth: 2)
+      )
+      .environment(\.locale, Locale(identifier: "ko_KR"))
+      
+      Spacer()
+        .frame(height: 30)
+      
+      Button {
+        dismiss()
+      } label: {
+        Text("완료")
+          .padding()
+          .frame(maxWidth: .infinity)
+          .foregroundColor(Color.mainBlack)
+          .background(Color.mainWhite)
+          .cornerRadius(20)
+      }
+      .padding(.horizontal, 40)
+      
     }
+  }
 }
 
 // MARK: - 성별 버튼
 private struct GenderButton: View {
-    
-    // 성별
-    var gender: Gender
-    
-    // 선택유무
-    @Binding var isSelected: Gender
-    
-    fileprivate var  body: some View {
-        Button {
-            isSelected = gender
-        } label: {
-            Text(gender.rawValue)
-                .foregroundColor(isSelected == gender ? Color.mainBlack : Color.mainWhite)
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(isSelected == gender ? Color.mainWhite : Color.mainBlack) // 선택 여부에 따라 배경색 변경
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-        }
-        .overlay(
-            RoundedRectangle(cornerRadius: 10)
-                .stroke(lineWidth: 1.5)
-                .foregroundColor(Color.mainWhite)
-        )
+  
+  // 성별
+  var gender: Gender
+  
+  // 선택유무
+  @Binding var isSelected: Gender
+  
+  fileprivate var  body: some View {
+    Button {
+      isSelected = gender
+    } label: {
+      Text(gender.rawValue)
+        .foregroundColor(isSelected == gender ? Color.mainBlack : Color.mainWhite)
+        .padding()
+        .frame(maxWidth: .infinity)
+        .background(isSelected == gender ? Color.mainWhite : Color.mainBlack) // 선택 여부에 따라 배경색 변경
+        .clipShape(RoundedRectangle(cornerRadius: 10))
     }
+    .overlay(
+      RoundedRectangle(cornerRadius: 10)
+        .stroke(lineWidth: 1.5)
+        .foregroundColor(Color.mainWhite)
+    )
+  }
 }
