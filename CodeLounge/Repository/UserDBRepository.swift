@@ -9,16 +9,6 @@ import Foundation
 import Combine
 import FirebaseDatabase
 
-enum DBError: Error {
-  case addUserError(Error)
-  case updateUserError(Error)
-  case getUserError(Error)
-  case loadUsersError(Error)
-  case emptyValue
-  case invalidatedType
-  
-  case error(Error)
-}
 protocol UserDBRepositoryProtocol {
   func addUser(_ dto: UserDTO)    -> AnyPublisher<Void, DBError>
   func updateUser(_ dto: UserDTO) -> AnyPublisher<Void, DBError>

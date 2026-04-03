@@ -11,11 +11,16 @@ import TurboNavigator
 
 @main
 struct CodeLoungeApp: App {
-  private let authNavigator = AppRouter.buildAuthNavigator()
-  private let mainNavigator = AppRouter.buildMainNavigator()
+  @UIApplicationDelegateAdaptor var appDelegate: AppDelegate
+  private let authNavigator: Navigator<AppDependencies, AuthRoute>
+  private let mainNavigator: Navigator<AppDependencies, MainRoute>
+  @StateObject private var rootViewModel = RootViewModel()
   
   // MARK: - navigationTitle 색상 흰색으로 지정
   init() {
+    self.authNavigator = AppRouter.buildAuthNavigator()
+    self.mainNavigator = AppRouter.buildMainNavigator()
+
     /// Large Navigation Title
     UINavigationBar
       .appearance()
@@ -30,7 +35,7 @@ struct CodeLoungeApp: App {
   var body: some Scene {
     WindowGroup {
       RootView(
-        rootViewModel: RootViewModel(),
+        rootViewModel: rootViewModel,
         authNavigator: authNavigator,
         mainNavigator: mainNavigator
       )

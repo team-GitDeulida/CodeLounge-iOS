@@ -9,19 +9,20 @@ import TurboNavigator
 import SwiftUI
 
 struct AppDependencies {
-  
+
 }
 
 extension AppDependencies: PreviewDependencies {
-    @MainActor
-    static var preview: Self {
-      AppDependencies.init()
-    }
+  @MainActor
+  static var preview: Self {
+    AppDependencies()
+  }
 }
 
 enum AuthRoute: Hashable {
   case intro
   case login
+  case register
 }
 
 enum MainRoute: Hashable {
@@ -41,6 +42,12 @@ enum AppRouter {
         WrappingController(
           route: context.route) {
             LoginView(navigator: context.navigator)
+          }
+      }
+      .registering(.register) { context in
+        WrappingController(
+          route: context.route) {
+            RegisterView(navigator: context.navigator)
           }
       }
     return Navigator(

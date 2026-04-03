@@ -16,7 +16,7 @@ struct UserDTO: Codable {
   var loginPlatform: String
 }
 
-extension User {
+extension UserDTO {
     func toModel() -> User {
         let formatter = ISO8601DateFormatter()                              // 날짜를 ISO8601 문자열로 변환
         formatter.timeZone = TimeZone(identifier: "Asia/Seoul")             // KST (UTC+9)
@@ -31,4 +31,3 @@ extension User {
         )
     }
 }
-
