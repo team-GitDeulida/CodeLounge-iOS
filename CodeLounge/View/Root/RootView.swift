@@ -21,6 +21,7 @@ struct RootView: View {
           navigator: authNavigator,
           initialRoutes: [.intro]
         )
+        .environmentObject(rootViewModel)
       case .authenticated:
         TabNavigationContainer(
           navigator: mainNavigator,
@@ -35,6 +36,7 @@ struct RootView: View {
               tabBarItem: UITabBarItem(title: "Home", image: nil, tag: 1)),
           ],
         )
+        .environmentObject(rootViewModel)
       case .firstTimeLogin:
         EmptyView()
       }

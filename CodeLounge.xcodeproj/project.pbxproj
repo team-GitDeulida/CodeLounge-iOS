@@ -42,6 +42,8 @@
 		DF99DADE2F7EDDC000334221 /* View */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = View; sourceTree = "<group>"; };
 		DF99DAE62F7EDE1100334221 /* App */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = App; sourceTree = "<group>"; };
 		DFF1E4ED2F7F7F5500792F72 /* DesignSystem */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = DesignSystem; sourceTree = "<group>"; };
+		DFF1E6D92F7F909E00792F72 /* Repository */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Repository; sourceTree = "<group>"; };
+		DFF1E6DF2F7F910600792F72 /* Model */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Model; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,8 @@
 		DFD31FDA2D36175F0076DD16 /* CodeLounge */ = {
 			isa = PBXGroup;
 			children = (
+				DFF1E6DF2F7F910600792F72 /* Model */,
+				DFF1E6D92F7F909E00792F72 /* Repository */,
 				DFF1E4ED2F7F7F5500792F72 /* DesignSystem */,
 				DF99DAE62F7EDE1100334221 /* App */,
 				DF99D8F32F7ED48100334221 /* General */,
@@ -137,6 +141,8 @@
 				DF99DADE2F7EDDC000334221 /* View */,
 				DF99DAE62F7EDE1100334221 /* App */,
 				DFF1E4ED2F7F7F5500792F72 /* DesignSystem */,
+				DFF1E6D92F7F909E00792F72 /* Repository */,
+				DFF1E6DF2F7F910600792F72 /* Model */,
 			);
 			name = CodeLounge;
 			packageProductDependencies = (

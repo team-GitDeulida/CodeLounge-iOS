@@ -13,7 +13,6 @@ import TurboNavigator
 struct CodeLoungeApp: App {
   private let authNavigator = AppRouter.buildAuthNavigator()
   private let mainNavigator = AppRouter.buildMainNavigator()
-  @StateObject private var rootViewModel = RootViewModel()
   
   // MARK: - navigationTitle 색상 흰색으로 지정
   init() {
@@ -31,7 +30,7 @@ struct CodeLoungeApp: App {
   var body: some Scene {
     WindowGroup {
       RootView(
-        rootViewModel: rootViewModel,
+        rootViewModel: RootViewModel(),
         authNavigator: authNavigator,
         mainNavigator: mainNavigator
       )

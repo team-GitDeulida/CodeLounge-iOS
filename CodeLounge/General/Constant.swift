@@ -18,4 +18,4 @@ extension Constant {
   }
 }
 
-// typealias DBKey = Constant.DBKey
+typealias DBKey = Constant.DBKey

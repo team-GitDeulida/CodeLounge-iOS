@@ -10,6 +10,7 @@ import TurboNavigator
 
 struct LoginView: View {
   let navigator: Navigator<AppDependencies, AuthRoute>
+  @EnvironmentObject private var rootViewModel: RootViewModel
   
   var body: some View {
     ZStack {
@@ -31,7 +32,7 @@ struct LoginView: View {
         
         // apple
         SocialButtonView(type: .apple) {
-          
+          rootViewModel.send(action: .appleLogin)
         }
         
         // google
@@ -49,4 +50,5 @@ struct LoginView: View {
 
 #Preview {
   LoginView(navigator: .preview)
+    .environmentObject(RootViewModel())
 }
