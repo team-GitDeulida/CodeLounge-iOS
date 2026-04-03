@@ -9,7 +9,7 @@ import SwiftUI
 import TurboNavigator
 
 struct HomeView: View {
-  let navigator: Navigator<AppDependencies, AppRoute>
+  let navigator: Navigator<AppDependencies, MainRoute>
   
   var body: some View {
     Text("HomeView")

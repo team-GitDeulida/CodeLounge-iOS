@@ -9,7 +9,7 @@ import SwiftUI
 import TurboNavigator
 
 struct IntroView: View {
-  let navigator: Navigator<AppDependencies, AppRoute>
+  let navigator: Navigator<AppDependencies, AuthRoute>
   
   // MARK: - View Properties
   @State private var activePage: Page = .page1
@@ -159,7 +159,7 @@ struct IntroView: View {
       // activePage = activePage.nextPage
       if activePage == .page4 {
         // navigateToLogin = true // Trigger navigation to LoginView
-        navigator.replace(with: [.home])
+        navigator.replace(with: [.login])
       } else {
         activePage = activePage.nextPage
       }

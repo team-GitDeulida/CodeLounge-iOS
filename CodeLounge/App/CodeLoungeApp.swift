@@ -11,7 +11,9 @@ import TurboNavigator
 
 @main
 struct CodeLoungeApp: App {
-  private let navigator = AppRouter.buildNavigator()
+  private let authNavigator = AppRouter.buildAuthNavigator()
+  private let mainNavigator = AppRouter.buildMainNavigator()
+  @StateObject private var rootViewModel = RootViewModel()
   
   // MARK: - navigationTitle 색상 흰색으로 지정
   init() {
@@ -25,40 +27,47 @@ struct CodeLoungeApp: App {
       .appearance()
       .titleTextAttributes = [.foregroundColor: UIColor.white]
   }
-  
-  @State private var loggedIn: Bool = false
-  
+
   var body: some Scene {
-    
     WindowGroup {
-      Group {
-        if loggedIn {
-          TabNavigationContainer(
-            navigator: navigator,
-            items: [
-              .init(
-                tag: 0,
-                route: .home,
-                tabBarItem: UITabBarItem(title: "Home", image: nil, tag: 0)),
-              .init(
-                tag: 1,
-                route: .home,
-                tabBarItem: UITabBarItem(title: "Home", image: nil, tag: 1)),
-            ],
-          )
-        } else {
-          NavigationContainer(
-            navigator: navigator,
-            initialRoutes: [.intro]
-          )
-        }
-      }
-      .ignoresSafeArea(.container, edges: .all)
-      .versionUpdateAlert()
-      .task {
-        try? await Task.sleep(nanoseconds: 3_000_000_000)
-        loggedIn = true
-      }
+      RootView(
+        rootViewModel: rootViewModel,
+        authNavigator: authNavigator,
+        mainNavigator: mainNavigator
+      )
     }
   }
 }
+
+
+/*
+ @State private var loggedIn: Bool = false
+Group {
+  if loggedIn {
+    TabNavigationContainer(
+      navigator: navigator,
+      items: [
+        .init(
+          tag: 0,
+          route: .home,
+          tabBarItem: UITabBarItem(title: "Home", image: nil, tag: 0)),
+        .init(
+          tag: 1,
+          route: .home,
+          tabBarItem: UITabBarItem(title: "Home", image: nil, tag: 1)),
+      ],
+    )
+  } else {
+    NavigationContainer(
+      navigator: navigator,
+      initialRoutes: [.intro]
+    )
+  }
+}
+.ignoresSafeArea(.container, edges: .all)
+.versionUpdateAlert()
+.task {
+  try? await Task.sleep(nanoseconds: 3_000_000_000)
+  loggedIn = true
+}
+*/

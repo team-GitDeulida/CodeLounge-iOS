@@ -19,20 +19,38 @@ extension AppDependencies: PreviewDependencies {
     }
 }
 
-enum AppRoute: Hashable {
+enum AuthRoute: Hashable {
   case intro
+  case login
+}
+
+enum MainRoute: Hashable {
   case home
 }
 
 enum AppRouter {
-  static func buildNavigator() -> Navigator<AppDependencies, AppRoute> {
-    let registry = RouteRegistry<AppDependencies, AppRoute>()
+  static func buildAuthNavigator() -> Navigator<AppDependencies, AuthRoute> {
+    let registry = RouteRegistry<AppDependencies, AuthRoute>()
       .registering(.intro) { context in
         WrappingController(
           route: context.route) {
             IntroView(navigator: context.navigator)
           }
       }
+      .registering(.login) { context in
+        WrappingController(
+          route: context.route) {
+            LoginView(navigator: context.navigator)
+          }
+      }
+    return Navigator(
+      dependencies: AppDependencies(),
+      registry: registry
+    )
+  }
+  
+  static func buildMainNavigator() -> Navigator<AppDependencies, MainRoute> {
+    let registry = RouteRegistry<AppDependencies, MainRoute>()
       .registering(.home) { context in
         WrappingController(
           route: context.route) {
