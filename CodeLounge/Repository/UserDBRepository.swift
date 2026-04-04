@@ -14,6 +14,7 @@ protocol UserDBRepositoryProtocol {
   func updateUser(_ dto: UserDTO) -> AnyPublisher<Void, DBError>
   func deleteUser(userId: String) -> AnyPublisher<Void, DBError>
   func getUser(userId: String)    -> AnyPublisher<UserDTO, DBError>
+  func checkNicknameDuplicate(_ nickname: String) -> AnyPublisher<Bool, DBError>
   
   func loadUsers() -> AnyPublisher<[UserDTO], DBError>
 }
@@ -117,6 +118,31 @@ final class UserDBRepository: UserDBRepositoryProtocol {
       } else {
         return Fail(error: .emptyValue).eraseToAnyPublisher()
       }
+    }
+    .eraseToAnyPublisher()
+  }
+
+  func checkNicknameDuplicate(_ nickname: String) -> AnyPublisher<Bool, DBError> {
+    Future<Bool, DBError> { [weak self] promise in
+      self?.db
+        .child(DBKey.Users)
+        .getData { error, snapshot in
+          if let error {
+            promise(.failure(.loadUsersError(error)))
+            return
+          }
+
+          guard let users = snapshot?.value as? [String: [String: Any]] else {
+            promise(.success(false))
+            return
+          }
+
+          let hasDuplicate = users.values.contains { user in
+            (user["nickname"] as? String) == nickname
+          }
+
+          promise(.success(hasDuplicate))
+        }
     }
     .eraseToAnyPublisher()
   }

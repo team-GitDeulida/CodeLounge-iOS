@@ -17,18 +17,20 @@ enum AuthenticationState {
 
 final class RootViewModel: ObservableObject {
   enum Action {
-    case authLogin
+    case autoLogin
     case appleLogin(ASAuthorizationRequest)
     case appleLoginCompletion(Result<ASAuthorization, Error>)
     case googleLogin
     case checkNickname(User)
     case checkNicknameDuplicate(String, (Bool) -> Void)
     case updateUserInfo(String, String, String)
+    case deleteUser
     case logout
   }
   @Dependency private var authService: AuthServiceProtocol
   @Dependency private var userService: UserServiceProtocol
   @Published var authenticationState: AuthenticationState = .unauthenticated
+  @Published var nicknameValidationMessage: String?
   private var currentNonce: String?
   private var subscriptions = Set<AnyCancellable>()
   var userId: String?
@@ -37,7 +39,7 @@ final class RootViewModel: ObservableObject {
   func send(action: Action) {
     switch action {
       
-    case .authLogin:
+    case .autoLogin:
       if let userId = authService.checkAuthenticationState() {
         self.authenticationState = .authenticated
         self.userService.getUser(userId: userId)
@@ -69,7 +71,9 @@ final class RootViewModel: ObservableObject {
           nonce: nonce
         ).flatMap { user in
           self.userService.getUser(userId: user.id)
-            // adduser
+            .catch { _ in
+              self.userService.addUser(user)
+            }
         }.sink { [weak self] completion in
           if case .failure(let error) = completion {
             print("애플 로그인 실패: \(error.localizedDescription)")
@@ -104,9 +108,10 @@ final class RootViewModel: ObservableObject {
       
       
     case .checkNickname(let user):
+      self.userId = user.id
+      self.nicknameValidationMessage = nil
       if user.nickname.trimmingCharacters(in: .whitespaces).isEmpty {
         self.authenticationState = .firstTimeLogin
-        self.userId = user.id
       } else {
         self.authenticationState = .authenticated
         self.user = user
@@ -114,55 +119,103 @@ final class RootViewModel: ObservableObject {
       
       
     case .checkNicknameDuplicate(let nickname, let completion):
-      userService.checkNicknameDuplicate(nickname)
-        .sink { result in
+      let trimmedNickname = nickname.trimmingCharacters(in: .whitespacesAndNewlines)
+
+      guard !trimmedNickname.isEmpty else {
+        nicknameValidationMessage = "닉네임을 입력해주세요"
+        completion(true)
+        return
+      }
+
+      userService.checkNicknameDuplicate(trimmedNickname)
+        .sink { [weak self] result in
           switch result {
           case .failure(let error):
+            print("닉네임 확인 실패: \(error)")
             DispatchQueue.main.async {
-                // 닉네임 사용 가능
-                completion(false) // 오류 발생 시 false 반환
+              self?.nicknameValidationMessage = "닉네임 확인에 실패했습니다"
+              completion(true)
             }
           case .finished:
             break
           }
-        } receiveValue: { isDuplicate in
+        } receiveValue: { [weak self] isDuplicate in
           DispatchQueue.main.async {
-              if isDuplicate {
-                  completion(true) // 중복된 경우 클로저에 true 전달
-              } else {
-                  completion(false) // 중복되지 않은 경우 클로저에 false 전달
-              }
+            self?.nicknameValidationMessage = isDuplicate ? "닉네임이 중복되었습니다" : nil
+            completion(isDuplicate)
           }
         }.store(in: &subscriptions)
       
       
     case .updateUserInfo(let nickname, let birthday, let gender):
       guard let userId = userId else { return }
-      userService.updateUserInfo(
-        userId: userId,
-        nickname: nickname,
-        birthday: birthday,
-        gender: gender
-      )
-      .sink { [weak self] completion in
-        switch completion {
-        case .finished:
-          self?.authenticationState = .authenticated
-        case .failure(let error):
-          print("닉네임 업데이트 실패: \(error)")
+      let trimmedNickname = nickname.trimmingCharacters(in: .whitespacesAndNewlines)
+      let currentNickname = user?.nickname.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+
+      guard !trimmedNickname.isEmpty else {
+        nicknameValidationMessage = "닉네임을 입력해주세요"
+        return
+      }
+
+      userService.checkNicknameDuplicate(trimmedNickname)
+        .sink { [weak self] completion in
+          if case .failure(let error) = completion {
+            self?.nicknameValidationMessage = "닉네임 확인에 실패했습니다"
+            print("닉네임 중복 확인 실패: \(error)")
+          }
+        } receiveValue: { [weak self] isDuplicate in
+          guard let self else { return }
+
+          if isDuplicate, trimmedNickname != currentNickname {
+            self.nicknameValidationMessage = "닉네임이 중복되었습니다"
+            return
+          }
+
+          self.nicknameValidationMessage = nil
+          self.userService.updateUserInfo(
+            userId: userId,
+            nickname: trimmedNickname,
+            birthday: birthday,
+            gender: gender
+          )
+          .sink { [weak self] completion in
+            switch completion {
+            case .finished:
+              self?.authenticationState = .authenticated
+            case .failure(let error):
+              print("닉네임 업데이트 실패: \(error)")
+            }
+          } receiveValue: { [weak self] user in
+            self?.user = user
+          }.store(in: &self.subscriptions)
+        }.store(in: &subscriptions)
+
+    case .deleteUser:
+      guard let userId = userId ?? user?.id else { return }
+      userService.deleteUser(userId: userId)
+        .flatMap { [authService] _ in
+          authService.logout()
         }
-      } receiveValue: { user in
-        self.user = user
-      }.store(in: &subscriptions)
+        .sink { completion in
+          if case .failure(let error) = completion {
+            print("계정 삭제 실패: \(error)")
+          }
+        } receiveValue: { [weak self] _ in
+          self?.authenticationState = .unauthenticated
+          self?.user = nil
+          self?.userId = nil
+        }.store(in: &subscriptions)
 
       
     case .logout:
+      nicknameValidationMessage = nil
       authService.logout()
         .sink { _ in
           
         } receiveValue: { [weak self] _ in
           self?.authenticationState = .unauthenticated
           self?.user = nil
+          self?.userId = nil
         }.store(in: &subscriptions)
     }
   }

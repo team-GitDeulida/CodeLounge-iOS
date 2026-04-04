@@ -7,17 +7,18 @@
 
 import SwiftUI
 import TurboNavigator
+import Combine
 
 struct RegisterView: View {
   let navigator: Navigator<AppDependencies, AuthRoute>
   @EnvironmentObject private var rootViewModel: RootViewModel
   
   @State private var nickname: String = ""                             // 닉네임입력
-  @State private var nicknameMessage: String? = nil                    // 닉네임 오류 메시지
   @State private var slideOffset: CGFloat = UIScreen.main.bounds.width // 화면 너비만큼 오프셋 시작
   @State private var birthdate: Date = Date()                          // 기본값: 2000년 1월 1일
   @State private var isDatePickerActive: Bool = false                  // 생일입력
   @State private var selectedGender: Gender = .male                    // 성별입력
+  @State private var isKeyboardVisible = false
   
   // 닉네임이 유효한지 검사하는 프로퍼티
   private var isNicknameValid: Bool {
@@ -66,7 +67,7 @@ struct RegisterView: View {
         )
       
       
-      if let message = nicknameMessage {
+      if let message = rootViewModel.nicknameValidationMessage {
         Text(message)
           .foregroundColor(.red)
           .font(.caption)
@@ -109,23 +110,15 @@ struct RegisterView: View {
       Spacer()
       
       Button {
-        
         if isNicknameValid {
           rootViewModel.send(action: .checkNicknameDuplicate(nickname) { isDuplicate in
-            
-            if isDuplicate {
-              nicknameMessage = "닉네임이 중복되었습니다"
-            } else {
-              // 업데이트 성공
-              nicknameMessage = nil
+            if !isDuplicate {
               let birthdayString = isoDateFormatter.string(from: birthdate)
               let genderString = selectedGender.rawValue
               rootViewModel.send(action: .updateUserInfo(nickname, birthdayString, genderString))
             }
           })
         }
-        
-        
       } label: {
         Text("완료")
           .padding()
@@ -135,6 +128,7 @@ struct RegisterView: View {
           .cornerRadius(20)
       }
       .disabled(nickname.isEmpty)
+      .padding(.bottom, isKeyboardVisible ? 16 : 0)
       
       
     }
@@ -142,10 +136,24 @@ struct RegisterView: View {
     .offset(x: slideOffset) // x축 오프셋 적용
     .onAppear {
       slideOffset = 0 // 오프셋을 0으로 만들어 화면 중앙으로 이동
+      rootViewModel.nicknameValidationMessage = nil
+    }
+    .onChange(of: nickname) { _ in
+      rootViewModel.nicknameValidationMessage = nil
     }
     .sheet(isPresented: $isDatePickerActive) {
       BirthdayPickerView(birthdate: $birthdate)
         .presentationDetents([.fraction(0.5)])
+    }
+    .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)) { _ in
+      withAnimation(.easeOut(duration: 0.2)) {
+        isKeyboardVisible = true
+      }
+    }
+    .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)) { _ in
+      withAnimation(.easeOut(duration: 0.2)) {
+        isKeyboardVisible = false
+      }
     }
     .background(.black.gradient)
   }

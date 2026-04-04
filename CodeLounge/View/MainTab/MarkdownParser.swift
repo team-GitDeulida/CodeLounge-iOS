@@ -311,12 +311,50 @@ private struct MarkdownInlineText: View {
 struct MarkdownView: View {
   private let nodes: [MarkdownNode]
 
-  init(markdown: String) {
-    self.nodes = MarkdownParser(markdown: markdown).parseDocument()
+  init(markdown: String, hiddenTitle: String? = nil) {
+    let parsedNodes = MarkdownParser(markdown: markdown).parseDocument()
+    self.nodes = MarkdownView.removeLeadingDuplicateTitle(from: parsedNodes, hiddenTitle: hiddenTitle)
   }
 
   var body: some View {
     MarkdownRenderer(nodes: nodes)
       .frame(maxWidth: .infinity, alignment: .topLeading)
+  }
+
+  private static func removeLeadingDuplicateTitle(
+    from nodes: [MarkdownNode],
+    hiddenTitle: String?
+  ) -> [MarkdownNode] {
+    guard let hiddenTitle = hiddenTitle?.trimmingCharacters(in: .whitespacesAndNewlines),
+          !hiddenTitle.isEmpty else {
+      return nodes
+    }
+
+    guard let firstMeaningfulIndex = nodes.firstIndex(where: { node in
+      switch node {
+      case .lineBreak:
+        return false
+      default:
+        return true
+      }
+    }) else {
+      return nodes
+    }
+
+    guard case .heading(_, let text) = nodes[firstMeaningfulIndex],
+          text.trimmingCharacters(in: .whitespacesAndNewlines)
+            .localizedCaseInsensitiveCompare(hiddenTitle) == .orderedSame else {
+      return nodes
+    }
+
+    var filteredNodes = nodes
+    filteredNodes.remove(at: firstMeaningfulIndex)
+
+    if firstMeaningfulIndex < filteredNodes.count,
+       case .lineBreak = filteredNodes[firstMeaningfulIndex] {
+      filteredNodes.remove(at: firstMeaningfulIndex)
+    }
+
+    return filteredNodes
   }
 }

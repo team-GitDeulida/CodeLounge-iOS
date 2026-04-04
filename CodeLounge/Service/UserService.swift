@@ -80,10 +80,7 @@ final class UserService: UserServiceProtocol {
   /// - Parameter nickname: 닉네임
   /// - Returns: 닉네임이 이미 존재하면 true, 없어서 사용 가능하면 false
   func checkNicknameDuplicate(_ nickname: String) -> AnyPublisher<Bool, ServiceError> {
-    dbRepository.loadUsers()
-      .map { users in
-        users.contains { $0.nickname == nickname }
-      }
+    dbRepository.checkNicknameDuplicate(nickname)
       .mapError { .error($0) }
       .eraseToAnyPublisher()
   }

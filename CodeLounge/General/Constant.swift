@@ -9,6 +9,10 @@ import Foundation
 
 enum Constant {}
 extension Constant {
+  enum AdUnitID {
+    static let postDetailBanner = "ca-app-pub-6798240605221343/7424023393"
+  }
+
   enum DBKey {
     static let Users = "Users"
   }
@@ -18,4 +22,5 @@ extension Constant {
   }
 }
 
+typealias AdUnitID = Constant.AdUnitID
 typealias DBKey = Constant.DBKey

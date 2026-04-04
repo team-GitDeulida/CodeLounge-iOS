@@ -68,7 +68,7 @@ struct RootView: View {
     .ignoresSafeArea(.container, edges: .all)
     .environmentObject(rootViewModel)
     .onAppear {
-       rootViewModel.send(action: .authLogin)
+       rootViewModel.send(action: .autoLogin)
 //      rootViewModel.send(action: .logout)
     }
   }

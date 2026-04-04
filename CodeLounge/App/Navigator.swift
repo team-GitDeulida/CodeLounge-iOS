@@ -30,6 +30,7 @@ enum MainRoute: Hashable {
   case ios
   case aos
   case profile
+  case profileSettings
   case postDetail(Post)
   
   static var tabCases: [MainRoute] {
@@ -42,6 +43,7 @@ enum MainRoute: Hashable {
     case .ios: return "iOS"
     case .aos: return "aOS"
     case .profile: return "Profile"
+    case .profileSettings: return ""
     case .postDetail: return ""
     }
   }
@@ -56,6 +58,8 @@ enum MainRoute: Hashable {
       return "smartphone"
     case .profile:
       return isSelected ? "person.fill" : "person"
+    case .profileSettings:
+      return ""
     case .postDetail:
       return ""
     }
@@ -112,6 +116,15 @@ enum AppRouter {
           ProfileView(navigator: context.navigator)
         }
       }
+      .registering(.profileSettings) { context in
+        WrappingController(
+          route: context.route,
+          title: "",
+          isTabBarHiddenWhenPushed: true
+        ) {
+          ProfileSettingView()
+        }
+      }
       .registering(
         extracting: { (route: MainRoute) -> Post? in
           guard case let .postDetail(post) = route else { return nil }
@@ -135,3 +148,4 @@ enum AppRouter {
     )
   }
 }
+

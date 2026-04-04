@@ -177,8 +177,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/indextrown/TurboNavigator",
       "state" : {
-        "revision" : "834ea82eef120e1ecb4962c4c74faa47bc5df210",
-        "version" : "1.0.8"
+        "revision" : "a1d56c538879f7a6a8d17f839a7c79a8681cabda",
+        "version" : "1.0.9"
       }
     }
   ],

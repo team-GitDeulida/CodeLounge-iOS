@@ -14,12 +14,17 @@ extension View {
 }
 
 struct VersionUpdateModifier: ViewModifier {
+  @Environment(\.scenePhase) private var scenePhase
   @State private var showAlert = false
   @State private var latestVersion: String?
   
   func body(content: Content) -> some View {
     content
       .onAppear {
+        checkForAppUpdates()
+      }
+      .onChange(of: scenePhase) { _, newPhase in
+        guard newPhase == .active else { return }
         checkForAppUpdates()
       }
       .alert(isPresented: $showAlert) {

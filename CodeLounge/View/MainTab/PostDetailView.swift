@@ -16,20 +16,17 @@ struct PostDetailView: View {
     VStack(spacing: 0) {
       ScrollView(showsIndicators: false) {
         VStack(alignment: .leading, spacing: 20) {
-          Text(post.title)
-            .font(.system(size: 28, weight: .bold))
-            .foregroundStyle(Color.mainWhite)
-
           MarkdownView(markdown: post.content)
         }
         .frame(maxWidth: .infinity, alignment: .topLeading)
         .padding(24)
       }
 
-      Spacer(minLength: 0)
+      BannerAdView(adUnitID: AdUnitID.postDetailBanner)
     }
     .background(Color.mainBlack.ignoresSafeArea())
     .navigationBarTitleDisplayMode(.inline)
+    // .navigationTitle(post.title)
     .tint(Color.mainWhite)
   }
 }

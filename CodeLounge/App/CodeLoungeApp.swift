@@ -69,6 +69,7 @@ struct CodeLoungeApp: App {
         authNavigator: authNavigator,
         mainNavigator: mainNavigator
       )
+      .versionUpdateAlert()
     }
   }
 }
