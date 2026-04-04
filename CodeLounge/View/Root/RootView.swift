@@ -52,6 +52,7 @@ struct RootView: View {
           }
         )
         .environmentObject(postViewModel)
+        .ignoresSafeArea(.keyboard, edges: .bottom)
         .onAppear {
           postViewModel.fetchAllPosts()
         }

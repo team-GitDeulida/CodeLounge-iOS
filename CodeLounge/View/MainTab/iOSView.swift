@@ -10,9 +10,12 @@ import TurboNavigator
 
 struct iOSView: View {
   let navigator: Navigator<AppDependencies, MainRoute>
-    var body: some View {
-        Text("iOSView")
-    }
+
+  private let categories = ["Swift", "UIKit", "SwiftUI"]
+
+  var body: some View {
+    BoardView(title: "iOS", categories: categories, navigator: navigator)
+  }
 }
 
 #Preview {

@@ -10,12 +10,12 @@ import TurboNavigator
 
 struct AOSView: View {
   let navigator: Navigator<AppDependencies, MainRoute>
-    var body: some View {
-      VStack {
-        Text("AOSView")
-        Spacer()
-      }
-    }
+
+  private let categories = ["Kotlin", "Jetpack Compose UI"]
+
+  var body: some View {
+    BoardView(title: "AOS", categories: categories, navigator: navigator)
+  }
 }
 
 #Preview {
