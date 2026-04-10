@@ -138,7 +138,7 @@ struct RegisterView: View {
       slideOffset = 0 // 오프셋을 0으로 만들어 화면 중앙으로 이동
       rootViewModel.nicknameValidationMessage = nil
     }
-    .onChange(of: nickname) { _ in
+    .onChange(of: nickname) { _, _ in
       rootViewModel.nicknameValidationMessage = nil
     }
     .sheet(isPresented: $isDatePickerActive) {
@@ -161,6 +161,7 @@ struct RegisterView: View {
 
 #Preview {
   RegisterView(navigator: .preview)
+    .environmentObject(RootViewModel())
 }
 
 // MARK: - 생년월일 선택

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DF16EC872F7E5F7D00EE20C5 /* TurboNavigator in Frameworks */ = {isa = PBXBuildFile; productRef = DF16EC862F7E5F7D00EE20C5 /* TurboNavigator */; };
+		DF1CB3BB2F87B13900D152AD /* SwiftUI-Kit in Frameworks */ = {isa = PBXBuildFile; productRef = DF1CB3BA2F87B13900D152AD /* SwiftUI-Kit */; };
 		DF1FD5B92DD4D08B00D57F58 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = DF1FD5B82DD4D08B00D57F58 /* GoogleMobileAds */; };
 		DF4CD40C2D3A2D0800A9251D /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = DF4CD40B2D3A2D0800A9251D /* .gitignore */; };
 		DF6CBA0F2F7ED24F0096B7DE /* .editorConfig in Resources */ = {isa = PBXBuildFile; fileRef = DF6CBA0E2F7ED24F0096B7DE /* .editorConfig */; };
@@ -53,6 +54,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DFEFED4C2D38FF9400F18B90 /* GoogleSignInSwift in Frameworks */,
+				DF1CB3BB2F87B13900D152AD /* SwiftUI-Kit in Frameworks */,
 				DFEFED472D38FF8200F18B90 /* FirebaseDatabase in Frameworks */,
 				DFA616E72DB8A1DA0004A063 /* ScaleKit in Frameworks */,
 				DFEFED4A2D38FF9400F18B90 /* GoogleSignIn in Frameworks */,
@@ -157,6 +159,7 @@
 				DFA616E62DB8A1DA0004A063 /* ScaleKit */,
 				DF1FD5B82DD4D08B00D57F58 /* GoogleMobileAds */,
 				DF16EC862F7E5F7D00EE20C5 /* TurboNavigator */,
+				DF1CB3BA2F87B13900D152AD /* SwiftUI-Kit */,
 			);
 			productName = CodeLounge;
 			productReference = DFD31FD82D36175F0076DD16 /* CodeLounge.app */;
@@ -192,6 +195,7 @@
 				DFA616E52DB8A1DA0004A063 /* XCRemoteSwiftPackageReference "ScaleKit" */,
 				DF1FD5B72DD4D08B00D57F58 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 				DF16EC852F7E5F7D00EE20C5 /* XCRemoteSwiftPackageReference "TurboNavigator" */,
+				DF1CB3B92F87B13900D152AD /* XCRemoteSwiftPackageReference "SwiftUI-Kit" */,
 			);
 			productRefGroup = DFD31FD92D36175F0076DD16 /* Products */;
 			projectDirPath = "";
@@ -360,7 +364,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"CodeLounge/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = LGX4B4WC66;
@@ -405,7 +409,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"CodeLounge/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = LGX4B4WC66;
@@ -469,7 +473,15 @@
 			repositoryURL = "https://github.com/indextrown/TurboNavigator";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.9;
+				minimumVersion = 1.1.1;
+			};
+		};
+		DF1CB3B92F87B13900D152AD /* XCRemoteSwiftPackageReference "SwiftUI-Kit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TheSwiftLab/SwiftUI-Kit";
+			requirement = {
+				branch = main;
+				kind = branch;
 			};
 		};
 		DF1FD5B72DD4D08B00D57F58 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
@@ -511,6 +523,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DF16EC852F7E5F7D00EE20C5 /* XCRemoteSwiftPackageReference "TurboNavigator" */;
 			productName = TurboNavigator;
+		};
+		DF1CB3BA2F87B13900D152AD /* SwiftUI-Kit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DF1CB3B92F87B13900D152AD /* XCRemoteSwiftPackageReference "SwiftUI-Kit" */;
+			productName = "SwiftUI-Kit";
 		};
 		DF1FD5B82DD4D08B00D57F58 /* GoogleMobileAds */ = {
 			isa = XCSwiftPackageProductDependency;

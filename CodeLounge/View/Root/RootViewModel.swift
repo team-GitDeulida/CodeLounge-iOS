@@ -220,3 +220,13 @@ final class RootViewModel: ObservableObject {
     }
   }
 }
+
+extension RootViewModel: Hashable {
+  static func == (lhs: RootViewModel, rhs: RootViewModel) -> Bool {
+    lhs === rhs
+  }
+
+  func hash(into hasher: inout Hasher) {
+    hasher.combine(ObjectIdentifier(self))
+  }
+}

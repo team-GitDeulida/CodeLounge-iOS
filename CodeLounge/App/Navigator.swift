@@ -30,7 +30,7 @@ enum MainRoute: Hashable {
   case ios
   case aos
   case profile
-  case profileSettings
+  case profileSettings(RootViewModel)
   case postDetail(Post)
   
   static var tabCases: [MainRoute] {
@@ -116,15 +116,21 @@ enum AppRouter {
           ProfileView(navigator: context.navigator)
         }
       }
-      .registering(.profileSettings) { context in
-        WrappingController(
-          route: context.route,
-          title: "",
-          isTabBarHiddenWhenPushed: true
-        ) {
-          ProfileSettingView()
+      .registering(
+        extracting: { (route: MainRoute) -> RootViewModel? in
+          guard case let .profileSettings(rootViewModel) = route else { return nil }
+          return rootViewModel
+        },
+        build: { context, rootViewModel in
+          WrappingController(
+            route: context.route,
+            title: "",
+            isTabBarHiddenWhenPushed: true
+          ) {
+            ProfileSettingView(rootViewModel: rootViewModel)
+          }
         }
-      }
+      )
       .registering(
         extracting: { (route: MainRoute) -> Post? in
           guard case let .postDetail(post) = route else { return nil }
@@ -148,4 +154,3 @@ enum AppRouter {
     )
   }
 }
-

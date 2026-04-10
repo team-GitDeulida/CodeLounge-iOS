@@ -14,6 +14,16 @@ struct RootView: View {
   @StateObject private var postViewModel = PostViewModel()
   let authNavigator: Navigator<AppDependencies, AuthRoute>
   let mainNavigator: Navigator<AppDependencies, MainRoute>
+
+  init(
+    rootViewModel: RootViewModel,
+    authNavigator: Navigator<AppDependencies, AuthRoute>,
+    mainNavigator: Navigator<AppDependencies, MainRoute>
+  ) {
+    _rootViewModel = StateObject(wrappedValue: rootViewModel)
+    self.authNavigator = authNavigator
+    self.mainNavigator = mainNavigator
+  }
   
   var body: some View {
     Group {
@@ -49,9 +59,9 @@ struct RootView: View {
               }(),
               hapticStyle: .medium
             )
-          }
+          },
+          disablesSystemTabTransitionAnimation: true
         )
-        .environmentObject(postViewModel)
         .ignoresSafeArea(.keyboard, edges: .bottom)
         .onAppear {
           postViewModel.fetchAllPosts()
@@ -64,12 +74,11 @@ struct RootView: View {
         )
       }
     }
-    // .ignoresSafeArea(edges: .all)
     .ignoresSafeArea(.container, edges: .all)
     .environmentObject(rootViewModel)
+    .environmentObject(postViewModel)
     .onAppear {
        rootViewModel.send(action: .autoLogin)
-//      rootViewModel.send(action: .logout)
     }
   }
 }

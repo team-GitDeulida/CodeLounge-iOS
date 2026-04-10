@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import ScaleKit
 import TurboNavigator
 
 @main
@@ -16,50 +15,12 @@ struct CodeLoungeApp: App {
   private let mainNavigator: Navigator<AppDependencies, MainRoute>
   @StateObject private var rootViewModel = RootViewModel()
   
-  // MARK: - navigationTitle 색상 흰색으로 지정
   init() {
     self.authNavigator = AppRouter.buildAuthNavigator()
     self.mainNavigator = AppRouter.buildMainNavigator()
-
-    /// Large Navigation Title
-    UINavigationBar
-      .appearance()
-      .largeTitleTextAttributes = [.foregroundColor: UIColor.white]
     
-    /// Inline Navigation Title
-    UINavigationBar
-      .appearance()
-      .titleTextAttributes = [.foregroundColor: UIColor.white]
-    
-    /// 뒤로가기 버튼 텍스트/아이콘 색상
-    let barButtonAppearance = UIBarButtonItemAppearance()
-    barButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.white]
-    barButtonAppearance.highlighted.titleTextAttributes = [.foregroundColor: UIColor.white]
-    
-    UINavigationBar.appearance().standardAppearance.backButtonAppearance = barButtonAppearance
-    UINavigationBar.appearance().scrollEdgeAppearance?.backButtonAppearance = barButtonAppearance
-    UINavigationBar.appearance().compactAppearance?.backButtonAppearance = barButtonAppearance
-    UINavigationBar.appearance().tintColor = .white
-    
-    // TabBar 색상 설정
-    let appearance = UITabBarAppearance()
-    appearance.configureWithOpaqueBackground()
-    appearance.backgroundColor = .black
-
-    // 선택된 아이콘 색상
-    appearance.stackedLayoutAppearance.selected.iconColor = .white
-    appearance.stackedLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor.white]
-
-    // 선택 안된 아이콘 색상
-    appearance.stackedLayoutAppearance.normal.iconColor = .gray
-    appearance.stackedLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.gray]
-    
-    //
-    // appearance.stackedLayoutAppearance.normal.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 10)
-    // appearance.stackedLayoutAppearance.selected.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 10)
-
-    UITabBar.appearance().standardAppearance = appearance
-    UITabBar.appearance().scrollEdgeAppearance = appearance
+    configureNavigationBar()
+    configureTabBar()
   }
 
   var body: some Scene {
@@ -74,6 +35,68 @@ struct CodeLoungeApp: App {
   }
 }
 
+// MARK: - Appearance
+private extension CodeLoungeApp {
+  
+  func configureNavigationBar() {
+    let standardAppearance = UINavigationBarAppearance()
+    standardAppearance.configureWithDefaultBackground()
+    standardAppearance.shadowColor = .clear
+    standardAppearance.largeTitleTextAttributes = [
+      .foregroundColor: UIColor.white
+    ]
+    standardAppearance.titleTextAttributes = [
+      .foregroundColor: UIColor.white
+    ]
+
+    let scrollEdgeAppearance = UINavigationBarAppearance()
+    scrollEdgeAppearance.configureWithTransparentBackground()
+    scrollEdgeAppearance.backgroundColor = .clear
+    scrollEdgeAppearance.shadowColor = .clear
+    scrollEdgeAppearance.largeTitleTextAttributes = [
+      .foregroundColor: UIColor.white
+    ]
+    scrollEdgeAppearance.titleTextAttributes = [
+      .foregroundColor: UIColor.white
+    ]
+
+    let backButtonAppearance = UIBarButtonItemAppearance()
+    backButtonAppearance.normal.titleTextAttributes = [
+      .foregroundColor: UIColor.white
+    ]
+    backButtonAppearance.highlighted.titleTextAttributes = [
+      .foregroundColor: UIColor.white
+    ]
+
+    standardAppearance.backButtonAppearance = backButtonAppearance
+    scrollEdgeAppearance.backButtonAppearance = backButtonAppearance
+
+    let navigationBar = UINavigationBar.appearance()
+    navigationBar.standardAppearance = standardAppearance
+    navigationBar.scrollEdgeAppearance = scrollEdgeAppearance
+    navigationBar.compactAppearance = standardAppearance
+    navigationBar.tintColor = .white
+  }
+  
+  func configureTabBar() {
+    let appearance = UITabBarAppearance()
+    appearance.configureWithOpaqueBackground()
+    appearance.backgroundColor = .black
+
+    appearance.stackedLayoutAppearance.selected.iconColor = .white
+    appearance.stackedLayoutAppearance.selected.titleTextAttributes = [
+      .foregroundColor: UIColor.white
+    ]
+
+    appearance.stackedLayoutAppearance.normal.iconColor = .gray
+    appearance.stackedLayoutAppearance.normal.titleTextAttributes = [
+      .foregroundColor: UIColor.gray
+    ]
+
+    UITabBar.appearance().standardAppearance = appearance
+    UITabBar.appearance().scrollEdgeAppearance = appearance
+  }
+}
 
 /*
  @State private var loggedIn: Bool = false

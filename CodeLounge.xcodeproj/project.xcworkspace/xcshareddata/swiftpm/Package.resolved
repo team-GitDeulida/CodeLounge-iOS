@@ -1,5 +1,5 @@
 {
-  "originHash" : "62a228b77a979855e5d27220a7e5518547660aee8499e0768511e88a60ab65a0",
+  "originHash" : "b57bf8b575073006561d1ee99661b14e0a2489d9583e0cb6415e02afdff7ab37",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -173,12 +173,21 @@
       }
     },
     {
+      "identity" : "swiftui-kit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/TheSwiftLab/SwiftUI-Kit",
+      "state" : {
+        "branch" : "main",
+        "revision" : "7f3a0c6001f6322ba0a12209106f8d47f27d3acb"
+      }
+    },
+    {
       "identity" : "turbonavigator",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/indextrown/TurboNavigator",
       "state" : {
-        "revision" : "a1d56c538879f7a6a8d17f839a7c79a8681cabda",
-        "version" : "1.0.9"
+        "revision" : "da177361504bc244861f41064a6c6564bb061ea7",
+        "version" : "1.1.1"
       }
     }
   ],

@@ -20,9 +20,6 @@ struct VersionUpdateModifier: ViewModifier {
   
   func body(content: Content) -> some View {
     content
-      .onAppear {
-        checkForAppUpdates()
-      }
       .onChange(of: scenePhase) { _, newPhase in
         guard newPhase == .active else { return }
         checkForAppUpdates()
