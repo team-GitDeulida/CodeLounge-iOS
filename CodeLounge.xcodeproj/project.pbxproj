@@ -10,6 +10,7 @@
 		DF16EC872F7E5F7D00EE20C5 /* TurboNavigator in Frameworks */ = {isa = PBXBuildFile; productRef = DF16EC862F7E5F7D00EE20C5 /* TurboNavigator */; };
 		DF1CB3BB2F87B13900D152AD /* SwiftUI-Kit in Frameworks */ = {isa = PBXBuildFile; productRef = DF1CB3BA2F87B13900D152AD /* SwiftUI-Kit */; };
 		DF1FD5B92DD4D08B00D57F58 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = DF1FD5B82DD4D08B00D57F58 /* GoogleMobileAds */; };
+		DF4B47392F89875F0053911D /* CodeLoungeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4B47372F89875F0053911D /* CodeLoungeTests.swift */; };
 		DF4CD40C2D3A2D0800A9251D /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = DF4CD40B2D3A2D0800A9251D /* .gitignore */; };
 		DF6CBA0F2F7ED24F0096B7DE /* .editorConfig in Resources */ = {isa = PBXBuildFile; fileRef = DF6CBA0E2F7ED24F0096B7DE /* .editorConfig */; };
 		DFA616E72DB8A1DA0004A063 /* ScaleKit in Frameworks */ = {isa = PBXBuildFile; productRef = DFA616E62DB8A1DA0004A063 /* ScaleKit */; };
@@ -24,10 +25,22 @@
 		DFEFED4C2D38FF9400F18B90 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DFEFED4B2D38FF9400F18B90 /* GoogleSignInSwift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		DF7A10082F90000800ABCDEF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DFD31FD02D36175F0076DD16 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DFD31FD72D36175F0076DD16;
+			remoteInfo = CodeLounge;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		DF2834C32D3A6B79009AF58A /* CodeLounge.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CodeLounge.entitlements; sourceTree = "<group>"; };
+		DF4B47372F89875F0053911D /* CodeLoungeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeLoungeTests.swift; sourceTree = "<group>"; };
 		DF4CD40B2D3A2D0800A9251D /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		DF6CBA0E2F7ED24F0096B7DE /* .editorConfig */ = {isa = PBXFileReference; lastKnownFileType = text; path = .editorConfig; sourceTree = "<group>"; };
+		DF7A10012F90000100ABCDEF /* CodeLoungeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CodeLoungeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFD108292DD50E7B003F4DD5 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		DFD31FD82D36175F0076DD16 /* CodeLounge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CodeLounge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFD31FDF2D3617600076DD16 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +62,13 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		DF7A10032F90000300ABCDEF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DFD31FD52D36175F0076DD16 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -68,6 +88,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DF4B47382F89875F0053911D /* CodeLoungeTests */ = {
+			isa = PBXGroup;
+			children = (
+				DF4B47372F89875F0053911D /* CodeLoungeTests.swift */,
+			);
+			path = CodeLoungeTests;
+			sourceTree = "<group>";
+		};
 		DFD31FCF2D36175F0076DD16 = {
 			isa = PBXGroup;
 			children = (
@@ -75,6 +103,7 @@
 				DF4CD40B2D3A2D0800A9251D /* .gitignore */,
 				DFD108292DD50E7B003F4DD5 /* Config.xcconfig */,
 				DF6CBA0E2F7ED24F0096B7DE /* .editorConfig */,
+				DF4B47382F89875F0053911D /* CodeLoungeTests */,
 				DFD31FDA2D36175F0076DD16 /* CodeLounge */,
 				DFD31FD92D36175F0076DD16 /* Products */,
 			);
@@ -84,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				DFD31FD82D36175F0076DD16 /* CodeLounge.app */,
+				DF7A10012F90000100ABCDEF /* CodeLoungeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -127,6 +157,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		DF7A10042F90000400ABCDEF /* CodeLoungeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DF7A100B2F90000B00ABCDEF /* Build configuration list for PBXNativeTarget "CodeLoungeTests" */;
+			buildPhases = (
+				DF7A10052F90000500ABCDEF /* Sources */,
+				DF7A10032F90000300ABCDEF /* Frameworks */,
+				DF7A10062F90000600ABCDEF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DF7A10092F90000900ABCDEF /* PBXTargetDependency */,
+			);
+			name = CodeLoungeTests;
+			packageProductDependencies = (
+			);
+			productName = CodeLoungeTests;
+			productReference = DF7A10012F90000100ABCDEF /* CodeLoungeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		DFD31FD72D36175F0076DD16 /* CodeLounge */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = DFD31FE62D3617600076DD16 /* Build configuration list for PBXNativeTarget "CodeLounge" */;
@@ -175,6 +225,10 @@
 				LastSwiftUpdateCheck = 1540;
 				LastUpgradeCheck = 1640;
 				TargetAttributes = {
+					DF7A10042F90000400ABCDEF = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = DFD31FD72D36175F0076DD16;
+					};
 					DFD31FD72D36175F0076DD16 = {
 						CreatedOnToolsVersion = 15.4;
 					};
@@ -201,12 +255,20 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				DF7A10042F90000400ABCDEF /* CodeLoungeTests */,
 				DFD31FD72D36175F0076DD16 /* CodeLounge */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		DF7A10062F90000600ABCDEF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DFD31FD62D36175F0076DD16 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -223,6 +285,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		DF7A10052F90000500ABCDEF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF4B47392F89875F0053911D /* CodeLoungeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DFD31FD42D36175F0076DD16 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -232,7 +302,63 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		DF7A10092F90000900ABCDEF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DFD31FD72D36175F0076DD16 /* CodeLounge */;
+			targetProxy = DF7A10082F90000800ABCDEF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		DF7A100C2F90000C00ABCDEF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DFD108292DD50E7B003F4DD5 /* Config.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.indextrown.CodeLoungeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CodeLounge.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CodeLounge";
+			};
+			name = Debug;
+		};
+		DF7A100D2F90000D00ABCDEF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DFD108292DD50E7B003F4DD5 /* Config.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.indextrown.CodeLoungeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CodeLounge.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CodeLounge";
+			};
+			name = Release;
+		};
 		DFD31FE42D3617600076DD16 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DFD108292DD50E7B003F4DD5 /* Config.xcconfig */;
@@ -447,6 +573,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		DF7A100B2F90000B00ABCDEF /* Build configuration list for PBXNativeTarget "CodeLoungeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DF7A100C2F90000C00ABCDEF /* Debug */,
+				DF7A100D2F90000D00ABCDEF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		DFD31FD32D36175F0076DD16 /* Build configuration list for PBXProject "CodeLounge" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

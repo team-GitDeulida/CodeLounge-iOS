@@ -114,8 +114,12 @@ struct ProfileSettingView: View {
           dismiss()
         } label: {
           Image(systemName: "chevron.left")
+            .font(.system(size: 18, weight: .semibold))
             .foregroundStyle(Color.mainGreen)
+            .frame(width: 44, height: 44, alignment: .center)
+            .contentShape(Rectangle())
         }
+        .buttonStyle(.plain)
       }
     }
     .toolbar(.hidden, for: .tabBar)
