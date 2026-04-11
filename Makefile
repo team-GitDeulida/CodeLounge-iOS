@@ -82,7 +82,7 @@ fetch_certs: install_fastlane
 all: download-privates fetch_certs
 	@echo "✅ 모든 작업 완료"
 
-.PHONY: release
+.PHONY: release retag-release
 
 release:
 	@if [ -z "$(word 2,$(MAKECMDGOALS))" ]; then \
@@ -91,6 +91,16 @@ release:
 		exit 1; \
 	fi
 	bash Scripts/release.sh $(word 2,$(MAKECMDGOALS))
+
+retag-release:
+	@if [ -z "$(word 2,$(MAKECMDGOALS))" ]; then \
+		echo "❌ 버전을 입력하세요."; \
+		echo "예: make retag-release 1.0.6"; \
+		exit 1; \
+	fi
+	@echo "⚠️ $(word 2,$(MAKECMDGOALS)) 태그를 현재 HEAD로 이동합니다."
+	git tag -fa $(word 2,$(MAKECMDGOALS)) -m "release: $(word 2,$(MAKECMDGOALS))"
+	git push origin $(word 2,$(MAKECMDGOALS)) --force
 
 %:
 	@:
