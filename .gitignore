@@ -8,3 +8,7 @@
 *.xcconfig
 
 .env
+
+xcuserdata/
+*.xcuserstatexcuserdata/
+*.xcuserstate
