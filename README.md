@@ -18,25 +18,67 @@ CS / iOS / Android / 알고리즘 면접 질문을
 | **1. 온보딩 화면** | **2. 메인 화면** | **3. 상세 화면** | **4. 검색 기능** |
 
 # 1. 기능 소개
-1. 마크다운 기반 Q&A 뷰어 📘
-2. Block·Inline 문법을 직접 파싱해 렌더링 🧩
-3. 질문/카테고리별 필터링 🔎
+1. CS / iOS / Android 카테고리별 개발 지식 Q&A 제공 📘
+2. Block·Inline 문법을 직접 파싱해 SwiftUI로 Markdown 렌더링 🧩
+3. 질문/카테고리별 검색 및 필터링 🔎
+4. Google / Apple 로그인 기반 사용자 인증
+5. 프로필 조회·수정, 닉네임 중복 확인, 생년월일·성별 관리
+6. TurboNavigator 기반 Auth / Main 탭 / 상세 화면 라우팅
 
 <br/><br/>
 
 # 2. 기술 스택
 |library|description|
 |:---:|:---:|
-|**SwiftUI**| 전체 UI 렌더링 및 레이아웃 |
-|**Combine**| 문서 업데이트·데이터 흐름 관리 |
-|**Fastlane**| 배포 자동화 |
-|**Firebase**| 문서 관리·실시간 데이터 |
-|**Custom Markdown Parser**| Block/Inline 문법 직접 파싱 |
+|**SwiftUI**| 앱 전반의 UI 렌더링 및 화면 구성 |
+|**UIKit**| UINavigationBar / UITabBar appearance 및 일부 시스템 UI 제어 |
+|**Combine**| Firebase 데이터 흐름, 검색 debounce, 비동기 결과 처리 |
+|**TurboNavigator**| 직접 제작한 Swift Package 기반 타입 세이프 라우팅, Navigation / Tab 컨테이너 구성 |
+|**Firebase Auth**| Google / Apple 로그인 인증 처리 |
+|**Firebase Realtime Database**| 사용자 정보 및 게시글 데이터 저장·조회 |
+|**GoogleSignIn**| Google 로그인 연동 |
+|**Google Mobile Ads**| 게시글 상세 화면 배너 광고 |
+|**Swift Testing**| DTO 변환, Markdown Parser 등 유닛 테스트 |
+|**Fastlane**| 앱 배포 자동화 |
+|**Custom Markdown Parser**| Block / Inline 문법 직접 파싱 및 SwiftUI 렌더링 |
 
 </br><br/>
 
 # 3. 핵심 성과
-### **1. Markdown 문법을 직접 정의하고 커스텀 파서 구축**
+### **1. TurboNavigator 기반 라우팅 구조 적용**
+
+> **문제**  
+> SwiftUI 기본 NavigationStack만으로 Auth Flow, Main Tab, 상세 화면, 프로필 수정 화면을 일관된 방식으로 관리하기 어려웠음.
+>
+> **해결**  
+> 직접 제작한 **TurboNavigator** 라이브러리를 Swift Package로 적용하고,  
+> Route enum과 RouteRegistry 기반으로 화면 생성을 중앙화.
+>
+> 현재 라우팅 구조
+> - AuthRoute: Intro, Login, Register
+> - MainRoute: CS, iOS, AOS, Profile, ProfileSettings, PostDetail
+> - NavigationContainer: 인증 플로우
+> - TabNavigationContainer: 메인 탭 플로우
+
+```swift
+enum MainRoute: Hashable {
+    case cs
+    case ios
+    case aos
+    case profile
+    case profileSettings(RootViewModel)
+    case postDetail(Post)
+}
+```
+
+> **성과**  
+> 🔸 화면 전환을 문자열이 아닌 타입 기반 route로 관리  
+> 🔸 탭 화면과 push 상세 화면의 생성 로직을 AppRouter로 분리  
+> 🔸 PreviewDependencies를 통해 SwiftUI Preview에서도 navigator 사용 가능  
+
+---
+
+### **2. Markdown 문법을 직접 정의하고 커스텀 파서 구축**
 
 > **문제**  
 > SwiftUI 기본 Markdown은 Bold/Underline 커스텀 문법 적용, Inline 중첩 구조 표현이 어려웠음.
@@ -83,7 +125,7 @@ UI 출력
 
 ---
 
-## 2. Top‑Down + 재귀 하강 기반 Block/Inline 파싱 구조 설계
+## 3. Top‑Down + 재귀 하강 기반 Block/Inline 파싱 구조 설계
 
 > **문제**  
 > Heading, List, Paragraph, CodeBlock 같은 **Block 문법**과  
@@ -148,3 +190,30 @@ private func parseUntil(_ delimiter: String?) -> [InlineNode] {
 > - 🔸 Block·Inline이 분리되어 확장성 뛰어남  
 
 ---
+
+## 4. 테스트 타깃 구성 및 핵심 로직 검증
+
+> **문제**  
+> DTO 변환, Markdown 파싱처럼 앱 동작의 기반이 되는 로직은 UI 없이 빠르게 검증할 수 있어야 함.
+>
+> **해결**  
+> `CodeLoungeTests` 유닛 테스트 타깃을 추가하고 Swift Testing 기반 테스트 작성.
+>
+> 테스트 범위
+> - User ↔ UserDTO 변환
+> - PostDTO → Post 변환
+> - 잘못된 날짜·enum 값에 대한 fallback 처리
+> - MarkdownParser / InlineParser 파싱 결과
+
+```swift
+@Test("MarkdownParser가 제목 목록 문단 코드블록을 파싱한다")
+func markdownParserParsesStructuredBlocks() {
+    let nodes = MarkdownParser(markdown: markdown).parseDocument()
+
+    #expect(nodes[0] == .heading(level: 1, text: "Title"))
+}
+```
+
+> **성과**  
+> 🔸 Firebase나 UI 실행 없이 순수 변환·파싱 로직을 빠르게 검증  
+> 🔸 Markdown 파서 리팩토링 시 회귀 버그를 테스트로 방지  
